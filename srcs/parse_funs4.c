@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_funs3.c                                      :+:      :+:    :+:   */
+/*   parse_funs4.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:24:05 by vparis           ###   ########.fr       */
+/*   Created: 2018/04/07 17:12:06 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/07 18:17:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,47 @@
 #include "objects.h"
 #include "types.h"
 
-int		parse_t_orig(void *data, char **strs)
-{
-	t_env	*env;
-	t_float	n[3];
-
-	env = (t_env *)data;
-	if (ft_atof_s(strs[0], &n[0]) == ERROR
-		|| ft_atof_s(strs[1], &n[1]) == ERROR
-		|| ft_atof_s(strs[2], &n[2]) == ERROR)
-		return (ERROR);
-	env->cam_orig = (t_vec){{n[0], n[1], n[2], 0.0}};
-	return (SUCCESS);
-}
-
-int		parse_t_phong(void *data, char **strs)
+int		parse_t_angle(void *data, char **strs)
 {
 	t_object	*obj;
-	t_float		phong[PHONGS];
-	int			shini;
+	t_float		n;
 
+	(void)strs;
 	obj = (t_object *)data;
-	if (ft_atoi_s(strs[0], &shini) == ERROR
-		|| ft_atof_s(strs[1], &phong[PHONG_KA]) == ERROR
-		|| ft_atof_s(strs[2], &phong[PHONG_KD]) == ERROR
-		|| ft_atof_s(strs[3], &phong[PHONG_KS]) == ERROR)
-		return (ERROR);
-	phong[PHONG_SHINI] = (t_float)shini;
-	object_set_phong(obj, phong);
 	return (SUCCESS);
 }
 
-int		parse_t_perturbation(void *data, char **strs)
+int		parse_t_size(void *data, char **strs)
+{
+	t_object	*obj;
+	t_float		n;
+
+	(void)strs;
+	obj = (t_object *)data;
+	return (SUCCESS);
+}
+
+int		parse_t_reflexion(void *data, char **strs)
+{
+	t_object	*obj;
+	t_float		n;
+
+	(void)strs;
+	obj = (t_object *)data;
+	return (SUCCESS);
+}
+
+int		parse_t_refraction(void *data, char **strs)
+{
+	t_object	*obj;
+	t_float		n;
+
+	(void)strs;
+	obj = (t_object *)data;
+	return (SUCCESS);
+}
+
+int		parse_t_transparency(void *data, char **strs)
 {
 	t_object	*obj;
 	t_float		n;

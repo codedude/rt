@@ -6,12 +6,12 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/06 17:20:59 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/07 18:23:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include "types.h"
 # include "objects.h"

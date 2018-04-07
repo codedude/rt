@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/06 18:11:51 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/07 18:23:47 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,35 @@
 
 # include "types.h"
 
-# define OBJECTS		4
-# define PLANE			0
-# define SPHERE			1
-# define CONE			2
-# define CYLINDER		3
-# define LIGHT			4
+# define OBJECTS		16
+
+/*
+** canvas = 0, camera = 1 => always firsts
+** plane = 2... => in between
+** light_ambient = 14.. => always the lasts
+*/
+
+enum {
+	CANVAS, CAMERA,
+	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
+	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
+	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
+};
 
 # define PHONGS			4
 # define PHONG_SHINI	0
 # define PHONG_KA		1
 # define PHONG_KD		2
 # define PHONG_KS		3
+
+/*
+** type : int of object
+** id : int unique id (incremental 0..)
+** radius2 : radius * radius cache
+** other : from parsing
+** int * 2 + vec * 4 + float * 12 = 4 + 16 + 48 = 68o/object
+** 1 object = 68o, 100 objects = 6Ko, 1000 objects = 66Ko
+*/
 
 typedef struct			s_object {
 	int					type;
@@ -41,8 +58,9 @@ typedef struct			s_object {
 	t_float				reflexion;
 	t_float				transparency;
 	t_float				refraction;
+	t_float				perturbation;
 	t_float				angle;
-	t_float				height;
+	t_float				size;
 }						t_object;
 
 typedef struct			s_obj_lst {

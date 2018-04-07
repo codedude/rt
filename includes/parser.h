@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/06 16:58:41 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/07 18:25:14 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define BUFF_SIZE				(4 * 1024 * 1024)
 # define BUFF_READ				4096
 
-# define OBJECT_SIZE			7
-# define OBJECT_DETAILS_SIZE	12
+# define OBJECT_SIZE			18
+# define OBJECT_DETAILS_SIZE	17
 
 /*
 ** Type counter order
@@ -51,6 +51,12 @@ typedef struct	s_parse_type {
 	size_t		size;
 }				t_parse_type;
 
+typedef struct	s_parse_objects {
+	char		*name;
+	int			id;
+	int			required;
+}				t_parse_objects;
+
 /*
 ** reader.c
 */
@@ -65,6 +71,12 @@ int				trim_content(char **dest);
 */
 
 int				parse_map(t_env *env, char *map);
+
+/*
+** parse_data.c
+*/
+
+int				parse_data(t_env *env, char **data);
 
 /*
 ** parse_type.c & parse_type_2.c
@@ -92,9 +104,15 @@ int				parse_t_orig(void *data, char **strs);
 int				parse_t_fov(void *data, char **strs);
 int				parse_t_pos(void *data, char **strs);
 int				parse_t_dir(void *data, char **strs);
-int				parse_t_size(void *data, char **strs);
+int				parse_t_radius(void *data, char **strs);
 int				parse_t_color(void *data, char **strs);
 int				parse_t_intensity(void *data, char **strs);
 int				parse_t_phong(void *data, char **strs);
+int				parse_t_angle(void *data, char **strs);
+int				parse_t_size(void *data, char **strs);
+int				parse_t_reflexion(void *data, char **strs);
+int				parse_t_refraction(void *data, char **strs);
+int				parse_t_transparency(void *data, char **strs);
+int				parse_t_perturbation(void *data, char **strs);
 
 #endif

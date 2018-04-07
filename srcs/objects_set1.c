@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects_set.c                                      :+:      :+:    :+:   */
+/*   objects_set1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/06 18:06:01 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/07 18:27:25 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ void		object_set_color(t_object *obj, t_vec color)
 		(t_float)clamp_int(color.s[1], 0, 255) / 255.,
 		(t_float)clamp_int(color.s[2], 0, 255) / 255.,
 		0.0}};
-}
-
-void		object_set_radius(t_object *obj, t_float radius)
-{
-	obj->radius = clamp_float(radius, 0.001, 10000.0);
-	obj->radius2 = obj->radius * obj->radius;
 }
 
 void		object_set_phong(t_object *obj, t_float phong[PHONGS])

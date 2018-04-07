@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:31:31 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/06 18:04:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/07 17:11:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		parse_t_dir(void *data, char **strs)
 	return (SUCCESS);
 }
 
-int		parse_t_size(void *data, char **strs)
+int		parse_t_radius(void *data, char **strs)
 {
 	t_object	*obj;
 	t_float		size;

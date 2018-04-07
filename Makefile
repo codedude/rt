@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/06 18:03:14 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/07 18:27:44 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,13 @@ SRCD		=	srcs
 INCD		=	includes
 LIBFTD		=	libft
 
-SRCS		=	$(SRCD)/main.c $(SRCD)/objects.c $(SRCD)/objects_set.c \
+SRCS		=	$(SRCD)/main.c $(SRCD)/objects.c $(SRCD)/objects_set1.c \
+				$(SRCD)/objects_set2.c \
 				$(SRCD)/vec.c $(SRCD)/types.c $(SRCD)/ft_atof_s.c \
 				$(SRCD)/reader.c $(SRCD)/parser.c \
 				$(SRCD)/parse_funs1.c $(SRCD)/parse_funs2.c \
-				$(SRCD)/parse_funs3.c $(SRCD)/parse_details.c \
+				$(SRCD)/parse_funs3.c $(SRCD)/parse_funs4.c \
+				$(SRCD)/parse_details.c $(SRCD)/parse_data.c\
 				$(SRCD)/parse_type.c $(SRCD)/parse_type_2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
