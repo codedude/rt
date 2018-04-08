@@ -3,39 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   parse_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:26:38 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/08 20:10:51 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parser.h"
+#include "objects.h"
 #include "libft.h"
 #include "rt.h"
 
 t_parse_objects	*get_parse_objects(void)
 {
 	static t_parse_objects	parse_objects[] = {
-		{"canvas", 0, 1},
-		{"camera", 1, 1},
-		{"plane", 2, 0},
-		{"sphere", 3, 0},
-		{"cone", 4, 0},
-		{"cylinder", 5, 0},
-		{"disk", 6, 0},
-		{"half_sphere", 7, 0},
-		{"hyperboloid", 8, 0},
-		{"torus", 9, 0},
-		{"paraboloid", 10, 0},
-		{"parallelogram", 11, 0},
-		{"cube", 12, 0},
-		{"pyramid", 13, 0},
-		{"light_ambient", 14, 1},
-		{"light_point", 15, 0},
-		{"light_spot", 16, 0},
-		{"light_par", 17, 0},
+		ADD_OBJECT(canvas, 1), ADD_OBJECT(camera, 1),
+		ADD_OBJECT(light_ambient, 1), ADD_OBJECT(light_point, 0),
+		ADD_OBJECT(light_spot, 0), ADD_OBJECT(light_par, 0),
+		ADD_OBJECT(plane, 0), ADD_OBJECT(sphere, 0),
+		ADD_OBJECT(cone, 0), ADD_OBJECT(cylinder, 0),
+		ADD_OBJECT(disk, 0), ADD_OBJECT(half_sphere, 0),
+		ADD_OBJECT(hyperboloid, 0), ADD_OBJECT(torus, 0),
+		ADD_OBJECT(paraboloid, 0), ADD_OBJECT(parallelogram, 0),
+		ADD_OBJECT(cube, 0), ADD_OBJECT(pyramid, 0),
 		{NULL, 0, 0}};
 
 	return (parse_objects);
@@ -51,7 +43,7 @@ static int		parse_check_header(char *str)
 	while (parse_objects[i].name != NULL)
 	{
 		if (ft_strcmp(str, parse_objects[i].name) == 0)
-			return (i);
+			return (parse_objects[i].id);
 		i++;
 	}
 	return (-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/07 18:25:14 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/08 22:30:13 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@
 # define BUFF_SIZE				(4 * 1024 * 1024)
 # define BUFF_READ				4096
 
-# define OBJECT_SIZE			18
-# define OBJECT_DETAILS_SIZE	17
-
 /*
-** Type counter order
-** plane, sphere, cone, cylinder, light, canvas, camera
-** -----------------------------
-** Counter order list
-** width, height, background, ang, orig, fov,
-** pos, dir, size, color, intensity, phong
+** Max numbers
 */
+
+# define OBJECT_SIZE			32
+# define OBJECT_DETAILS_SIZE	32
 
 /*
 ** Tokens
@@ -43,6 +38,9 @@
 # define T_OPEN			'{'
 # define T_CLOSE		'}'
 # define T_SEPAR		'='
+
+# define ADD_OBJECT(obj, req)		{#obj, (obj), (req)}
+# define ADD_TYPE(type, args, req)	{#type, &parse_t_ ## type, req, (args)}
 
 typedef struct	s_parse_type {
 	char		*name;

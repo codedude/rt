@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:36:41 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/08 22:28:56 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,21 @@
 t_parse_type	*get_parse_funs(void)
 {
 	static t_parse_type	parse_type[] = {
-		{"width", &parse_t_width, "0", 1},
-		{"height", &parse_t_height, "0", 1},
-		{"background", &parse_t_background, "0", 3},
-		{"ang", &parse_t_ang, "1", 3},
-		{"orig", &parse_t_orig, "1", 3},
-		{"fov", &parse_t_fov, "1", 1},
-		{"pos", &parse_t_pos, "2 3 4 5 15 16 17", 3},
-		{"dir", &parse_t_dir, "2 3 4 5", 3},
-		{"radius", &parse_t_radius, "2 3 4 5", 1},
-		{"color", &parse_t_color, "2 3 4 5", 3},
-		{"intensity", &parse_t_intensity, "14 15 16 17", 3},
-		{"phong", &parse_t_phong, "2 3 4 5", 4},
-		{"angle", &parse_t_angle, "", 1},
-		{"size", &parse_t_size, "", 1},
-		{"reflexion", &parse_t_reflexion, "", 1},
-		{"refraction", &parse_t_refraction, "", 1},
-		{"transparency", &parse_t_transparency, "", 1},
-		{"perturbation", &parse_t_perturbation, "", 1},
+		ADD_TYPE(width, 1, "0"), ADD_TYPE(height, 1, "0"),
+		ADD_TYPE(background, 3, "0"),
+		ADD_TYPE(ang, 3, "1"), ADD_TYPE(orig, 3, "1"), ADD_TYPE(fov, 1, "1"),
+		ADD_TYPE(pos, 3, "2 3 4 5 15 16 17"),
+		ADD_TYPE(dir, 3, "2 3 4 5"),
+		ADD_TYPE(radius, 1, "2 3 4 5"),
+		ADD_TYPE(color, 3, "2 3 4 5"),
+		ADD_TYPE(intensity, 3, "14 15 16 17"),
+		ADD_TYPE(phong, 4, "2 3 4 5"),
+		ADD_TYPE(angle, 1, ""),
+		ADD_TYPE(size, 1, ""),
+		ADD_TYPE(reflexion, 1, ""),
+		ADD_TYPE(refraction, 1, ""),
+		ADD_TYPE(transparency, 1, ""),
+		ADD_TYPE(perturbation, 1, ""),
 		{NULL, NULL, NULL, 0}};
 
 	return (parse_type);
@@ -53,20 +50,20 @@ static int		check_counter_details_other(int counter[OBJECT_DETAILS_SIZE],
 static int		check_counter_details(int counter[OBJECT_DETAILS_SIZE],
 						int type)
 {
-	if (type == CANVAS)
+	if (type == canvas)
 		return (counter[0] == 1 && counter[1] == 1 && counter[2] == 1);
-	else if (type == CAMERA)
+	else if (type == camera)
 		return (counter[3] == 1 && counter[4] == 1 && counter[5] == 1);
-	else if (type == LIGHT_AMBIENT)
+	else if (type == light_ambient)
 		return (counter[10] == 1);
-	else if (type > LIGHT_AMBIENT)
+	else if (type > light_ambient)
 		return (counter[6] == 1 && counter[10] == 1);
 	return (check_counter_details_other(counter, type));
 }
 
 static int		parse_global_need_space(int *i, int type, t_object **obj)
 {
-	if (type <= CAMERA)
+	if (type <= camera)
 		*obj = NULL;
 	else if ((*obj = object_new(type)) == NULL)
 		return (ERROR);

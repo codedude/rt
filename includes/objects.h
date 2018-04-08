@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:23:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/08 20:00:23 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "types.h"
 
-# define OBJECTS		16
-
 /*
 ** canvas = 0, camera = 1 => always firsts
 ** plane = 2... => in between
@@ -24,10 +22,10 @@
 */
 
 enum {
-	CANVAS, CAMERA,
-	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
-	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
-	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
+	canvas, camera,
+	plane, sphere, cone, cylinder, disk, half_sphere, hyperboloid, torus,
+	paraboloid, parallelogram, cube, pyramid,
+	light_ambient, light_point, light_spot, light_par
 };
 
 # define PHONGS			4
