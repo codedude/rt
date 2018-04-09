@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:46:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 18:28:21 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 22:57:42 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,41 @@ int			object_add(t_objects *objects, t_object *object)
 	objects->objects_lst = tmp;
 	objects->size += 1;
 	return (SUCCESS);
+}
+
+int			object_del(t_objects *objects, t_id id)
+{
+	t_obj_lst	*iter;
+	t_obj_lst	*tmp;
+
+	tmp = NULL;
+	iter = objects->objects_lst;
+	while (iter != NULL && iter->object->id != id)
+	{
+		tmp = iter;
+		iter = iter->next;
+	}
+	if (iter == NULL)
+		return (ERROR);
+	if (tmp == NULL)
+		objects->objects_lst = iter->next;
+	else
+		tmp->next = iter->next;
+	objects->size -= 1;
+	free(iter);
+	return (SUCCESS);
+}
+
+t_object	*object_get(t_objects *objects, t_id id)
+{
+	t_obj_lst	*iter;
+
+	iter = objects->objects_lst;
+	while (iter != NULL && iter->object->id != id)
+		iter = iter->next;
+	if (iter == NULL)
+		return (NULL);
+	return (iter->object);
 }
 
 void		object_free(t_objects *objects)

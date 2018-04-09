@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 19:25:55 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 22:11:34 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ enum {
 ** id : int unique id (incremental 0..)
 ** radius2 : radius * radius cache
 ** other : from parsing
-** int * 2 + vec * 4 + float * 12 = 4 + 16 + 48 = 68o/object
-** 1 object = 68o, 100 objects = 6Ko, 1000 objects = 66Ko
+** ulong + int + vec * 4 + float * 12 = 8 + 4 + 64 + 48 = 124o/object
+** sizeof => 128o
+** 100 objects = 12.5Ko, 1000 objects = 125Ko
 */
 
 typedef struct			s_object {
-	int					type;
 	t_id				id;
+	int					type;
 	t_vec				pos;
 	t_vec				dir;
 	t_vec				color;
@@ -83,6 +84,8 @@ typedef struct			s_objects {
 
 t_object				*object_new(int type);
 int						object_add(t_objects *objects, t_object *object);
+int						object_del(t_objects *objects, t_id id);
+t_object				*object_get(t_objects *objects, t_id id);
 void					object_free(t_objects *objects);
 
 void					object_set_pos(t_object *obj, t_vec pos);
