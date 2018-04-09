@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/08 20:10:51 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:36:54 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 t_parse_objects	*get_parse_objects(void)
 {
 	static t_parse_objects	parse_objects[] = {
-		ADD_OBJECT(canvas, 1), ADD_OBJECT(camera, 1),
-		ADD_OBJECT(light_ambient, 1), ADD_OBJECT(light_point, 0),
-		ADD_OBJECT(light_spot, 0), ADD_OBJECT(light_par, 0),
-		ADD_OBJECT(plane, 0), ADD_OBJECT(sphere, 0),
-		ADD_OBJECT(cone, 0), ADD_OBJECT(cylinder, 0),
-		ADD_OBJECT(disk, 0), ADD_OBJECT(half_sphere, 0),
-		ADD_OBJECT(hyperboloid, 0), ADD_OBJECT(torus, 0),
-		ADD_OBJECT(paraboloid, 0), ADD_OBJECT(parallelogram, 0),
-		ADD_OBJECT(cube, 0), ADD_OBJECT(pyramid, 0),
+		ADD_OBJECT(CANVAS, 1), ADD_OBJECT(CAMERA, 1),
+		ADD_OBJECT(LIGHT_AMBIENT, 1), ADD_OBJECT(LIGHT_POINT, 0),
+		ADD_OBJECT(LIGHT_SPOT, 0), ADD_OBJECT(LIGHT_PAR, 0),
+		ADD_OBJECT(PLANE, 0), ADD_OBJECT(SPHERE, 0),
+		ADD_OBJECT(CONE, 0), ADD_OBJECT(CYLINDER, 0),
+		ADD_OBJECT(DISK, 0), ADD_OBJECT(HALF_SPHERE, 0),
+		ADD_OBJECT(HYPERBOLOID, 0), ADD_OBJECT(TORUS, 0),
+		ADD_OBJECT(PARABOLOID, 0), ADD_OBJECT(PARALLELOGRAM, 0),
+		ADD_OBJECT(CUBE, 0), ADD_OBJECT(PYRAMID, 0),
 		{NULL, 0, 0}};
 
 	return (parse_objects);
@@ -39,6 +39,7 @@ static int		parse_check_header(char *str)
 	t_parse_objects	*parse_objects;
 
 	parse_objects = get_parse_objects();
+	ft_strtoupper(str);
 	i = 0;
 	while (parse_objects[i].name != NULL)
 	{

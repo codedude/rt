@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/08 22:30:13 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 19:20:07 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int				trim_content(char **dest);
 ** parser.c
 */
 
-int				parse_map(t_env *env, char *map);
+int				parse_file(t_env *env, char **file);
+char			**read_file(char *filename);
 
 /*
 ** parse_data.c
@@ -98,7 +99,7 @@ int				parse_t_width(void *data, char **strs);
 int				parse_t_height(void *data, char **strs);
 int				parse_t_background(void *data, char **strs);
 int				parse_t_ang(void *data, char **strs);
-int				parse_t_orig(void *data, char **strs);
+int				parse_t_origin(void *data, char **strs);
 int				parse_t_fov(void *data, char **strs);
 int				parse_t_pos(void *data, char **strs);
 int				parse_t_dir(void *data, char **strs);

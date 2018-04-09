@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:31:17 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/07 18:32:27 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/09 19:22:51 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,42 @@
 #include "libft.h"
 #include "rt.h"
 
-int			parse_map(t_env *env, char *map)
+int			trim_content(char **dest)
+{
+	char	*tmp;
+
+	if ((tmp = ft_strtrim(*dest)) == NULL)
+		return (ERROR);
+	free(*dest);
+	*dest = tmp;
+	return (SUCCESS);
+}
+
+int			parse_file(t_env *env, char **file)
+{
+	if (parse_data(env, file) == ERROR)
+	{
+		ft_putendl("Invalid file");
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+char		**read_file(char *filename)
 {
 	char	*map_str;
 	char	**map_cut;
 
-	if (check_map(map) == ERROR)
+	if (check_map(filename) == ERROR)
 	{
 		ft_putendl("Invalid file");
-		return (ERROR);
+		return (NULL);
 	}
-	if ((map_str = read_map(map)) == NULL)
-		return (ERROR);
+	if ((map_str = read_map(filename)) == NULL)
+		return (NULL);
 	map_cut = cut_map(map_str);
 	free(map_str);
 	if (map_cut == NULL)
-		return (ERROR);
-	if (parse_data(env, map_cut) == ERROR)
-	{
-		ft_putendl("Invalid file");
-		ft_strsplit_free(map_cut);
-		return (ERROR);
-	}
-	ft_strsplit_free(map_cut);
-	return (SUCCESS);
+		return (NULL);
+	return (map_cut);
 }

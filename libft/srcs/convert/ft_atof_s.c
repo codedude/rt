@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/06 18:02:28 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/06 18:03:33 by vparis           ###   ########.fr       */
+/*   Created: 2018/03/28 01:05:08 by valentin          #+#    #+#             */
+/*   Updated: 2018/04/09 17:40:00 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "types.h"
 #include "ft_math.h"
 
-static int	ft_atof64_s_divi(size_t len)
+static int	ft_atof_s_divi(size_t len)
 {
 	int	divi;
 
@@ -24,18 +23,18 @@ static int	ft_atof64_s_divi(size_t len)
 	return (divi);
 }
 
-static void	compute_d(int d[2], char *str, t_float *n, int sign)
+static void	compute_d(int d[2], char *str, t_f32 *n, int sign)
 {
 	int	divi;
 
-	divi = ft_atof64_s_divi(ft_strlen(str));
+	divi = ft_atof_s_divi(ft_strlen(str));
 	if (sign < 0)
-		*n = (t_float)d[0] - (t_float)d[1] / (t_float)divi;
+		*n = (t_f32)d[0] - (t_f32)d[1] / (t_f32)divi;
 	else
-		*n = (t_float)d[0] + (t_float)d[1] / (t_float)divi;
+		*n = (t_f32)d[0] + (t_f32)d[1] / (t_f32)divi;
 }
 
-int			ft_atof_s(char *str, t_float *n)
+int			ft_atof_s(char *str, t_f32 *n)
 {
 	char	**parts;
 	int		d[2];
@@ -52,7 +51,7 @@ int			ft_atof_s(char *str, t_float *n)
 	if (ft_atoi_s(parts[0], &d[0]) == ERROR
 		|| ft_atoi_s(parts[1], &d[1]) == ERROR)
 	{
-		*n = 0.0;
+		*n = ZERO_FLOAT;
 		ft_strsplit_free(parts);
 		return (ERROR);
 	}

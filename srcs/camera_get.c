@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects_set2.c                                     :+:      :+:    :+:   */
+/*   camera_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 17:46:44 by valentin         ###   ########.fr       */
+/*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
+/*   Updated: 2018/04/09 19:31:44 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <math.h>
-#include "libft.h"
-#include "objects.h"
 #include "types.h"
-#include "vec.h"
+#include "rt.h"
 
-void		object_set_radius(t_object *obj, t_float radius)
+t_vec	camera_get_origin(t_camera *camera)
 {
-	obj->radius = clamp_f32(radius, 0.001, 10000.0);
-	obj->radius2 = obj->radius * obj->radius;
+	return (camera->origin);
+}
+
+t_vec	camera_get_angle(t_camera *camera)
+{
+	return (camera->angle);
+}
+
+t_float	camera_get_fov(t_camera *camera)
+{
+	return (camera->fov);
 }

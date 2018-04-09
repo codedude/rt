@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/08 20:00:23 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 19:25:55 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 */
 
 enum {
-	canvas, camera,
-	plane, sphere, cone, cylinder, disk, half_sphere, hyperboloid, torus,
-	paraboloid, parallelogram, cube, pyramid,
-	light_ambient, light_point, light_spot, light_par
+	CANVAS, CAMERA,
+	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
+	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
+	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
 };
 
 # define PHONGS			4
@@ -45,7 +45,7 @@ enum {
 
 typedef struct			s_object {
 	int					type;
-	int					id;
+	t_id				id;
 	t_vec				pos;
 	t_vec				dir;
 	t_vec				color;
@@ -61,14 +61,29 @@ typedef struct			s_object {
 	t_float				size;
 }						t_object;
 
+/*
+** List of all objects
+*/
+
 typedef struct			s_obj_lst {
 	struct s_obj_lst	*next;
 	t_object			*object;
 }						t_obj_lst;
 
+/*
+** Objects : list of objects
+** objects_array : generate light first array to send to GPU, id object = id pos
+*/
+
+typedef struct			s_objects {
+	t_obj_lst			*objects_lst;
+	int					size;
+	t_object			*objects_array;
+}						t_objects;
+
 t_object				*object_new(int type);
-t_obj_lst				*object_add(t_obj_lst **objects, t_object *object);
-void					object_free(t_obj_lst **objects);
+int						object_add(t_objects *objects, t_object *object);
+void					object_free(t_objects *objects);
 
 void					object_set_pos(t_object *obj, t_vec pos);
 void					object_set_dir(t_object *obj, t_vec dir);

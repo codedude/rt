@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects_set2.c                                     :+:      :+:    :+:   */
+/*   canvas_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 17:46:44 by valentin         ###   ########.fr       */
+/*   Created: 2018/04/09 19:29:16 by valentin          #+#    #+#             */
+/*   Updated: 2018/04/09 19:32:10 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <math.h>
-#include "libft.h"
-#include "objects.h"
 #include "types.h"
-#include "vec.h"
+#include "rt.h"
 
-void		object_set_radius(t_object *obj, t_float radius)
+int		canvas_get_width(t_canvas *canvas)
 {
-	obj->radius = clamp_f32(radius, 0.001, 10000.0);
-	obj->radius2 = obj->radius * obj->radius;
+	return (canvas->width);
+}
+
+int		canvas_get_height(t_canvas *canvas)
+{
+	return (canvas->height);
+}
+
+t_color	canvas_get_bg_color(t_canvas *canvas)
+{
+	return (canvas->bg_color);
 }

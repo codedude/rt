@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:46:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/06 18:08:18 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/09 18:28:21 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include "types.h"
 #include "objects.h"
 
 t_object	*object_new(int type)
@@ -22,32 +23,40 @@ t_object	*object_new(int type)
 		return (NULL);
 	ft_bzero(tmp, sizeof(t_object));
 	tmp->type = type;
+	tmp->id = gen_id();
 	return (tmp);
 }
 
-t_obj_lst	*object_add(t_obj_lst **objects, t_object *object)
+int			object_add(t_objects *objects, t_object *object)
 {
 	t_obj_lst	*tmp;
 
 	if ((tmp = (t_obj_lst *)malloc(sizeof(t_obj_lst))) == NULL)
-		return (NULL);
+		return (ERROR);
 	tmp->object = object;
-	tmp->next = *objects;
-	*objects = tmp;
-	return (*objects);
+	tmp->next = objects->objects_lst;
+	objects->objects_lst = tmp;
+	objects->size += 1;
+	return (SUCCESS);
 }
 
-void		object_free(t_obj_lst **objects)
+void		object_free(t_objects *objects)
 {
 	t_obj_lst	*iter;
 	t_obj_lst	*tmp;
 
-	iter = *objects;
+	iter = objects->objects_lst;
 	while (iter != NULL)
 	{
 		tmp = iter->next;
 		free(iter);
 		iter = tmp;
 	}
-	*objects = NULL;
+	objects->objects_lst = NULL;
+	objects->size = 0;
+	if (objects->objects_array != NULL)
+	{
+		free(objects->objects_array);
+		objects->objects_array = NULL;
+	}
 }

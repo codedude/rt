@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/07 18:27:44 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/09 19:31:12 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,12 @@ SRCD		=	srcs
 INCD		=	includes
 LIBFTD		=	libft
 
-SRCS		=	$(SRCD)/main.c $(SRCD)/objects.c $(SRCD)/objects_set1.c \
+SRCS		=	$(SRCD)/main.c $(SRCD)/env.c \
+				$(SRCD)/vec.c $(SRCD)/types.c \
+				$(SRCD)/camera_set.c $(SRCD)/canvas_set.c \
+				$(SRCD)/camera_get.c $(SRCD)/canvas_get.c \
+				$(SRCD)/objects.c $(SRCD)/objects_set1.c \
 				$(SRCD)/objects_set2.c \
-				$(SRCD)/vec.c $(SRCD)/types.c $(SRCD)/ft_atof_s.c \
 				$(SRCD)/reader.c $(SRCD)/parser.c \
 				$(SRCD)/parse_funs1.c $(SRCD)/parse_funs2.c \
 				$(SRCD)/parse_funs3.c $(SRCD)/parse_funs4.c \
@@ -43,7 +46,7 @@ $(NAME): $(OBJS)
 
 libs:
 	make -C $(LIBFTD)
-	
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $<
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/03 14:20:03 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/09 17:40:39 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ LIBFT_SRCS	+= $(STRINGD)/ft_strncpy.c $(STRINGD)/ft_strsub.c \
 			$(STRINGD)/ft_strcmp.c $(STRINGD)/ft_strrchr.c \
 			$(STRINGD)/ft_strcpy.c $(STRINGD)/ft_strsplit_free.c \
 			$(STRINGD)/ft_strdel.c $(STRINGD)/ft_strtrim.c \
-			$(STRINGD)/ft_strnew.c $(STRINGD)/ft_strncmp.c
+			$(STRINGD)/ft_strnew.c $(STRINGD)/ft_strncmp.c \
+			$(STRINGD)/ft_strtoupper.c $(STRINGD)/ft_strtolower.c
 LIBFT_SRCS	+= $(MEMORYD)/ft_memccpy_fast.c $(MEMORYD)/ft_memset.c \
 			$(MEMORYD)/ft_memalloc_fast.c $(MEMORYD)/ft_memchr.c \
 			$(MEMORYD)/ft_memmove.c $(MEMORYD)/ft_memccpy.c \
@@ -62,7 +63,7 @@ LIBFT_SRCS	+= $(MATHD)/ft_sqrt.c $(MATHD)/ft_find_next_prime.c \
 			$(MATHD)/ft_power.c $(MATHD)/ft_factorial.c
 LIBFT_SRCS	+= $(CONVERTD)/ft_atoi_base.c $(CONVERTD)/ft_atoi_s.c \
 			$(CONVERTD)/ft_itoa.c $(CONVERTD)/ft_atoi.c $(CONVERTD)/ft_clamp.c \
-			$(CONVERTD)/ft_atof64_s.c
+			$(CONVERTD)/ft_atof_s.c
 LIBFT_SRCS	+= $(ASCIID)/ft_toupper.c $(ASCIID)/ft_islower.c \
 			$(ASCIID)/ft_isgraph.c $(ASCIID)/ft_isupper.c \
 			$(ASCIID)/ft_isspace.c $(ASCIID)/ft_isdigit.c \

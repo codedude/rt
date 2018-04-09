@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/24 19:08:37 by valentin          #+#    #+#             */
-/*   Updated: 2018/03/28 01:07:56 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:45:01 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef enum				e_bool
 	False, True
 }							t_bool;
 
-int							clamp_int(int f, int lmin, int lmax);
 t_f32						clamp_f32(t_f32 f, t_f32 lmin, t_f32 lmax);
 t_f64						clamp_f64(t_f64 f, t_f64 lmin, t_f64 lmax);
 t_i32						clamp_i32(t_i32 f, t_i32 lmin, t_i32 lmax);

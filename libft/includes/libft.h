@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 22:22:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/03/28 01:07:25 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:40:19 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void				ft_strdel(char **as);
 void				ft_strclr(char *s);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
+void				ft_strtoupper(char *s1);
+void				ft_strtolower(char *s1);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strmap(char const *s, char (*f)(char));
@@ -82,7 +84,7 @@ int					ft_atoi(const char *nptr);
 char				*ft_itoa(int n);
 int					ft_atoi_base(char const *nptr, char const *base);
 int					ft_atoi_s(const char *str, int *nb);
-int					ft_atof64_s(char *str, t_f64 *n);
+int					ft_atof_s(char *str, t_f32 *n);
 
 /*
 ** ASCII Characters checking

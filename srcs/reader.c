@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:31:22 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/06 17:44:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/09 17:22:12 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,6 @@ char		*read_map(char *filename)
 	buff[n] = 0;
 	close(fd);
 	return (buff);
-}
-
-int			trim_content(char **dest)
-{
-	char	*tmp;
-
-	if ((tmp = ft_strtrim(*dest)) == NULL)
-		return (ERROR);
-	free(*dest);
-	*dest = tmp;
-	return (SUCCESS);
 }
 
 char		**cut_map(char *map)
