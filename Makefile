@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/09 19:31:12 by valentin         ###   ########.fr        #
+#    Updated: 2018/04/10 18:04:53 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/env.c \
 				$(SRCD)/vec.c $(SRCD)/types.c \
 				$(SRCD)/camera_set.c $(SRCD)/canvas_set.c \
 				$(SRCD)/camera_get.c $(SRCD)/canvas_get.c \
-				$(SRCD)/objects.c $(SRCD)/objects_set1.c \
-				$(SRCD)/objects_set2.c \
+				$(SRCD)/objects.c $(SRCD)/objects_format.c \
+				$(SRCD)/objects_set1.c $(SRCD)/objects_set2.c \
+				$(SRCD)/objects_set3.c \
 				$(SRCD)/reader.c $(SRCD)/parser.c \
 				$(SRCD)/parse_funs1.c $(SRCD)/parse_funs2.c \
 				$(SRCD)/parse_funs3.c $(SRCD)/parse_funs4.c \

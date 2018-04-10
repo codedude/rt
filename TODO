@@ -1,5 +1,1 @@
-- check_counter_details_other a faire dans parse_type.c
-
-- Jeu de fonctions pour les objects, set/get/rm selon l'id
-- Générer le tableau d'objects pour OpenCL
 - Revoir .h et sous-dossiers

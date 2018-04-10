@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 19:23:40 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 17:59:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,34 @@
 ** Init all env at 0, init random, and parse file
 */
 
-int			env_init(t_env *env, char *filename)
+t_env		*env_init(char *filename)
 {
+	t_env	*env;
 	char	**file;
 
+	if ((env = (t_env *)malloc(sizeof(t_env))) == NULL)
+		return (NULL);
 	ft_bzero(env, sizeof(t_env));
 	srand(time(NULL));
 	if ((file = read_file(filename)) == NULL)
-		return (ERROR);
+		return (NULL);
 	if (parse_file(env, file) == ERROR)
 	{
 		ft_strsplit_free(file);
-		return (ERROR);
+		return (NULL);
 	}
 	ft_strsplit_free(file);
-	return (SUCCESS);
+	return (env);
 }
 
 /*
 ** Reset env
 */
 
-int			env_destroy(t_env *env)
+int			env_destroy(t_env **env)
 {
-	object_free(&env->objects);
-	ft_bzero(env, sizeof(t_env));
+	object_destroy(&(*env)->objects);
+	ft_bzero(*env, sizeof(t_env));
+	*env = NULL;
 	return (SUCCESS);
 }

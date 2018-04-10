@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 18:42:25 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 17:59:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,27 @@ t_parse_type	*get_parse_funs(void)
 	return (parse_type);
 }
 
-static int		check_counter_details_other(int counter[OBJECT_DETAILS_SIZE],
-						int type)
-{
-	if (1)
-		return (1);
-	return (0);
-}
-
 static int		check_counter_details(int counter[OBJECT_DETAILS_SIZE],
-						int type)
+									int type)
 {
-	if (type == CANVAS)
-		return (counter[0] == 1 && counter[1] == 1 && counter[2] == 1);
-	else if (type == CAMERA)
-		return (counter[3] == 1 && counter[4] == 1 && counter[5] == 1);
-	else if (type == LIGHT_AMBIENT)
-		return (counter[10] == 1);
-	else if (type == LIGHT_POINT || type == LIGHT_SPOT || type == LIGHT_PAR)
-		return (counter[6] == 1 && counter[10] == 1);
-	return (check_counter_details_other(counter, type));
+	int				i;
+	int				n;
+	t_parse_type	*types;
+
+	i = 0;
+	n = 0;
+	types = get_parse_funs();
+	while (types[i].name != NULL)
+	{
+		if (check_line_object(types[i].types, type) == SUCCESS)
+		{
+			if (counter[i] != 1)
+				return (ERROR);
+			n += 1;
+		}
+		i++;
+	}
+	return (n == 0 ? ERROR : SUCCESS);
 }
 
 static int		parse_global_need_space(int *i, int type, t_object **obj)
@@ -97,5 +98,5 @@ int				parse_global(t_env *env, char **str, int type)
 	}
 	if (obj != NULL)
 		object_add(&(env->objects), obj);
-	return (check_counter_details(counter, type) ? i : -1);
+	return (check_counter_details(counter, type) == SUCCESS ? i : -1);
 }

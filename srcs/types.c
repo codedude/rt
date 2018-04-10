@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:47:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 18:32:53 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 14:14:25 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ t_id		gen_id(void)
 	gettimeofday(&t, NULL);
 	id = ((t.tv_sec * 1000 * 1000) + (t.tv_usec * 1000)) << 42;
 	id |= (u_id % 16777216) << 24;
-	return id;
+	return (id);
 }

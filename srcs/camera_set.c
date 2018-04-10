@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   camera_set.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 19:29:08 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 18:11:45 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "libft.h"
 #include "types.h"
 #include "rt.h"
@@ -23,9 +24,9 @@ int		camera_set_origin(t_camera *camera, t_vec v)
 int		camera_set_angle(t_camera *camera, t_vec v)
 {
 	camera->angle = (t_vec){{
-		clamp_f32(v.s[0], -360.0, 360.0),
-		clamp_f32(v.s[1], -360.0, 360.0),
-		clamp_f32(v.s[2], -360.0, 360.0)}};
+		fmodf(v.s[0], 360.0),
+		fmodf(v.s[1], 360.0),
+		fmodf(v.s[1], 360.0)}};
 	return (SUCCESS);
 }
 

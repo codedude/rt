@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 17:12:06 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:17:13 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/10 18:18:29 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int		parse_t_angle(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_angle(obj, n);
 	return (SUCCESS);
 }
 
@@ -33,8 +35,10 @@ int		parse_t_size(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_size(obj, n);
 	return (SUCCESS);
 }
 
@@ -43,8 +47,10 @@ int		parse_t_reflexion(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_reflexion(obj, n);
 	return (SUCCESS);
 }
 
@@ -53,8 +59,10 @@ int		parse_t_refraction(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_refraction(obj, n);
 	return (SUCCESS);
 }
 
@@ -63,7 +71,9 @@ int		parse_t_transparency(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_transparency(obj, n);
 	return (SUCCESS);
 }

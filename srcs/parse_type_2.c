@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:12:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/10 17:57:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,31 @@ static char		**get_line(char *str)
 	return (tmp);
 }
 
-static int		check_line_object(char *lst, int type)
+int				check_line_object(char *lst, int type)
 {
 	char	*type_str;
+	char	**r_str;
 	int		r;
+	int		i;
 
 	r = ERROR;
 	if ((type_str = ft_itoa(type)) == NULL)
 		return (r);
-	if (ft_strstr(lst, type_str) != NULL)
-		r = SUCCESS;
+	if ((r_str = ft_strsplit_whitespaces(lst)) == NULL)
+	{
+		free(type_str);
+		return (r);
+	}
+	i = 0;
+	while (r_str[i] != NULL)
+	{
+		if (ft_strcmp(type_str, r_str[i++]) == 0)
+		{
+			r = SUCCESS;
+			break ;
+		}
+	}
+	ft_strsplit_free(r_str);
 	free(type_str);
 	return (r);
 }

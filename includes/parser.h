@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 19:20:07 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 17:13:30 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int				parse_data(t_env *env, char **data);
 
 t_parse_type	*get_parse_funs(void);
 int				parse_global(t_env *env, char **str, int type);
+int				check_line_object(char *lst, int type);
 char			**check_line(char *str, int type, int *r);
 
 /*

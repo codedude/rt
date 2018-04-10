@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:24:11 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/10 14:17:33 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		vec_norm(t_vec v1)
 	len = vec_len(v1);
 	if (len > 0.0)
 	{
-		len = 1.0 / sqrt(len);
+		len = 1.0 / len;
 		v1.s[0] *= len;
 		v1.s[1] *= len;
 		v1.s[2] *= len;

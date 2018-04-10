@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 19:27:45 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 15:24:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct		s_env {
 	t_objects		objects;
 }					t_env;
 
-int					env_init(t_env *env, char *filename);
-int					env_destroy(t_env *env);
+t_env				*env_init(char *filename);
+int					env_destroy(t_env **env);
 
 int					camera_set_origin(t_camera *camera, t_vec v);
 int					camera_set_angle(t_camera *camera, t_vec v);

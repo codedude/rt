@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 18:39:15 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 18:18:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		parse_t_origin(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_origin(&env->camera, (t_vec){{n[0], n[1], n[2],0.0}}));
+	return (camera_set_origin(&env->camera, (t_vec){{n[0], n[1], n[2], 0.0}}));
 }
 
 int		parse_t_phong(void *data, char **strs)
@@ -53,7 +53,9 @@ int		parse_t_perturbation(void *data, char **strs)
 	t_object	*obj;
 	t_float		n;
 
-	(void)strs;
 	obj = (t_object *)data;
+	if (ft_atof_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	object_set_perturbation(obj, n);
 	return (SUCCESS);
 }

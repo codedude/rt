@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 22:11:34 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 18:09:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,39 @@ typedef struct			s_objects {
 	t_object			*objects_array;
 }						t_objects;
 
+/*
+** objects.c
+*/
+
 t_object				*object_new(int type);
 int						object_add(t_objects *objects, t_object *object);
 int						object_del(t_objects *objects, t_id id);
 t_object				*object_get(t_objects *objects, t_id id);
-void					object_free(t_objects *objects);
+void					object_destroy(t_objects *objects);
 
-void					object_set_pos(t_object *obj, t_vec pos);
-void					object_set_dir(t_object *obj, t_vec dir);
-void					object_set_intensity(t_object *obj, t_vec intensity);
-void					object_set_color(t_object *obj, t_vec color);
-void					object_set_radius(t_object *obj, t_float radius);
-void					object_set_phong(t_object *obj, t_float phong[PHONGS]);
+/*
+** objects_format.c
+*/
+
+int						object_is_light(t_object *object);
+t_obj_lst				*object_get_iter(t_objects *objects);
+int						object_gen_array(t_objects *objects);
+
+/*
+** object_setX.c
+*/
+
+int						object_set_pos(t_object *obj, t_vec pos);
+int						object_set_dir(t_object *obj, t_vec dir);
+int						object_set_color(t_object *obj, t_vec color);
+int						object_set_intensity(t_object *obj, t_vec intensity);
+int						object_set_radius(t_object *obj, t_float radius);
+int						object_set_phong(t_object *obj, t_float phong[PHONGS]);
+int						object_set_reflexion(t_object *obj, t_float n);
+int						object_set_transparency(t_object *obj, t_float n);
+int						object_set_refraction(t_object *obj, t_float n);
+int						object_set_perturbation(t_object *obj, t_float n);
+int						object_set_angle(t_object *obj, t_float n);
+int						object_set_size(t_object *obj, t_float n);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:46:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/09 22:57:42 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/10 14:18:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_object	*object_get(t_objects *objects, t_id id)
 	return (iter->object);
 }
 
-void		object_free(t_objects *objects)
+void		object_destroy(t_objects *objects)
 {
 	t_obj_lst	*iter;
 	t_obj_lst	*tmp;

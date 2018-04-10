@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_set.c                                       :+:      :+:    :+:   */
+/*   objects_set3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/10 14:15:05 by vparis           ###   ########.fr       */
+/*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
+/*   Updated: 2018/04/10 18:15:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <math.h>
 #include "libft.h"
+#include "objects.h"
 #include "types.h"
-#include "rt.h"
+#include "vec.h"
 
-int		canvas_set_width(t_canvas *canvas, int width)
+int		object_set_reflexion(t_object *obj, t_float n)
 {
-	if (width < 64 || width > 4096)
-		return (ERROR);
-	canvas->width = width;
+	obj->reflexion = clamp_f32(n, 0.0, 1.0);
 	return (SUCCESS);
 }
 
-int		canvas_set_height(t_canvas *canvas, int height)
+int		object_set_refraction(t_object *obj, t_float n)
 {
-	if (height < 64 || height > 2160)
-		return (ERROR);
-	canvas->height = height;
+	obj->refraction = clamp_f32(n, 1.0, 10.0);
 	return (SUCCESS);
 }
 
-int		canvas_set_bg_color(t_canvas *canvas, t_color color)
+int		object_set_transparency(t_object *obj, t_float n)
 {
-	canvas->bg_color = color;
+	obj->transparency = clamp_f32(n, 0.0, 1.0);
+	return (SUCCESS);
+}
+
+int		object_set_perturbation(t_object *obj, t_float n)
+{
+	obj->perturbation = clamp_f32(n, 0.0, 100.0);
 	return (SUCCESS);
 }
