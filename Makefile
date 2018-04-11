@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/10 18:04:53 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/11 16:26:55 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,23 +16,28 @@ CC			=	clang
 SRCD		=	srcs
 INCD		=	includes
 LIBFTD		=	libft
+ENVD		=	$(SRCD)/env
+OBJECTSD	=	$(SRCD)/objects
+PARSERD		=	$(SRCD)/parser
+UTILSD		=	$(SRCD)/utils
 
-SRCS		=	$(SRCD)/main.c $(SRCD)/env.c \
-				$(SRCD)/vec.c $(SRCD)/types.c \
-				$(SRCD)/camera_set.c $(SRCD)/canvas_set.c \
-				$(SRCD)/camera_get.c $(SRCD)/canvas_get.c \
-				$(SRCD)/objects.c $(SRCD)/objects_format.c \
-				$(SRCD)/objects_set1.c $(SRCD)/objects_set2.c \
-				$(SRCD)/objects_set3.c \
-				$(SRCD)/reader.c $(SRCD)/parser.c \
-				$(SRCD)/parse_funs1.c $(SRCD)/parse_funs2.c \
-				$(SRCD)/parse_funs3.c $(SRCD)/parse_funs4.c \
-				$(SRCD)/parse_details.c $(SRCD)/parse_data.c\
-				$(SRCD)/parse_type.c $(SRCD)/parse_type_2.c
+SRCS		=	$(SRCD)/main.c
+SRCS		+=	$(ENVD)/env.c \
+				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
+				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
+SRCS		+=	$(UTILSD)/vec.c $(UTILSD)/types.c
+SRCS		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_format.c \
+				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \
+				$(OBJECTSD)/objects_set3.c
+SRCS		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
+				$(PARSERD)/parse_funs1.c $(PARSERD)/parse_funs2.c \
+				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
+				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
+				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -O3 -flto -march=native -std=c11 -pedantic \
-				-I$(LIBFTD)/includes
+CFLAGS		+=	-O3 -flto -march=native -std=c11 -pedantic \
+				-I$(LIBFTD)/includes -I$(INCD) 
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -framework OpenCL
 
