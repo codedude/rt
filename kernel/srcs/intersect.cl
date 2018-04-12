@@ -13,37 +13,36 @@
 #include "types.h"
 #include "rt.h"
 
-t_inter		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n)
+void		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n, t_inter *interi)
 {
-	private int 	i;
-	private t_float	t;
-	private t_inter inter;
+	int 	i;
+	t_float	t;
 
 	i = 0;
-	inter.t = t_max;
-	inter.id = -1;
-	inter.color = 0;
+	interi->t = t_max;
+	interi->id = -1;
+	interi->color = 0;
 	while (i < n)
 	{
 		t = inters(ray, obj[i]);
-		if (t < inter.t && t > t_min && t < t_max
+		if (t < interi->t && t > t_min && t < t_max
 			&& obj[i].type != LIGHT_AMBIENT 
 			&& obj[i].type != LIGHT_POINT 
 			&& obj[i].type != LIGHT_SPOT 
 			&& obj[i].type != LIGHT_PAR)
 		{
-			inter.t = t;
-			inter.id = i;
-			inter.color = obj[i].color;
+			interi->t = t;
+			interi->id = i;
+			interi->color = obj[i].color;
 		}
 		i++;
 	}
-	if (inter.id > -1)
+	if (interi->id > -1)
 	{
-		inter.point = (inter.t * ray.dir) + ray.origin;
+		interi->point = (interi->t * ray.dir) + ray.origin;
 //		inter.normal = compute_normal(inter.point, obj[inter.id]);
 	}
-	return (inter);
+
 }
 
 
@@ -197,13 +196,14 @@ __float2	quadratic(t_float a, t_float b, t_float c)
 	return (ret);
 }
 
-__kernel void intersect(__constant t_object *obj, __constant t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
+__kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
 {
 	int		gid;
+	t_inter	interi;
 
 	gid = get_global_id(0);
-	inter[gid] = closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n);
-	screen[gid] = get_color(inter[gid].color);
+	closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n, &interi);
+	screen[gid] = get_color(interi.color);
 }
 
 unsigned int	get_color(t_vec color)

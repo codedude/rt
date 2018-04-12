@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:30:15 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:59:28 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/04/12 19:55:01 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				pixel_to_ray_in_world(__constant t_camera *camera,
 						__constant t_canvas *canvas, t_ray *ray,
 						t_float x, t_float y);
 
-__kernel void		intersect(__constant t_object *obj, __constant t_ray *rays,
+__kernel void		intersect(__constant t_object *obj, __global t_ray *rays,
 						__global t_inter *inter, int n, __global unsigned int *screen);
 __float2	quadratic(t_float a, t_float b, t_float c);
 t_float	r_inter_cone2(t_ray ray, t_object cone, t_vec axis, __float2 t);
@@ -94,7 +94,7 @@ t_float	r_inter_cyl2(t_ray ray, t_object cylinder, t_vec axis, __float2 t);
 t_float	r_inter_sphere(t_ray ray, t_object sphere);
 t_float	r_inter_plan(__private t_ray ray, __private t_object plan);
 t_float inters(__private t_ray ray, __private t_object obj);
-t_inter		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n);
+void		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n, t_inter *interi);
 unsigned int	get_color(t_vec color);
 
 #endif

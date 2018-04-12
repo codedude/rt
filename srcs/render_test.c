@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:41:36 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/04/12 19:55:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,36 @@ int			run_cl(t_env *env, t_rt *rt, SDL_Surface *screen)
 							1, NULL, &global_work_size, NULL, 0, NULL, NULL);
 	if (err != CL_SUCCESS)
 	{
+		switch (err) {
+			case CL_INVALID_WORK_ITEM_SIZE:
+				printf("args\n"); break ;
+			case CL_OUT_OF_RESOURCES:
+				printf("dim\n"); break ;
+			case CL_MEM_OBJECT_ALLOCATION_FAILURE :
+				printf("workgroup\n"); break ;
+			default:
+				break ;
+		}
 		printf("err intersect\n");
 		return (ERROR);
 	}
+	clFinish(env->opencl.cmd_queue);
 	err = clEnqueueReadBuffer(env->opencl.cmd_queue, env->opencl.buffers.screen,
-		CL_TRUE, 0, sizeof(Uint32) * rt->canvas.size, (Uint32 *)screen->pixels,
+		CL_TRUE, 0, sizeof(t_uint) * rt->canvas.size, (t_uint *)screen->pixels,
 		0, NULL, NULL);
 	if (err != CL_SUCCESS)
 	{
 		printf("err read back\n");	
+		switch (err) {
+			case CL_INVALID_MEM_OBJECT:
+				printf("mem\n"); break ;
+			case CL_INVALID_VALUE:
+				printf("value\n"); break ;
+			case CL_MEM_OBJECT_ALLOCATION_FAILURE :
+				printf("alloc\n"); break ;
+			default:
+				break ;
+		}
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -78,13 +99,13 @@ void		loop(t_env *env, t_rt *rt, SDL_Window *window,
 			if (event.key.keysym.sym == SDLK_ESCAPE)
 				loop = 0;
 			else if (event.key.keysym.sym == SDLK_RIGHT)
-				cam_pos.s[0] += 2;
+				cam_pos.s[0] += 1.0;
 			else if (event.key.keysym.sym == SDLK_LEFT)
-				cam_pos.s[0] -= 2;
+				cam_pos.s[0] -= 1.0;
         	else if (event.key.keysym.sym == SDLK_UP)
-				cam_pos.s[1] += 2;
+				cam_pos.s[1] += 1.0;
         	else if (event.key.keysym.sym == SDLK_DOWN)
-				cam_pos.s[1] -= 2;
+				cam_pos.s[1] -= 1.0;
 			camera_set_origin(&rt->camera, cam_pos);
 			opencl_update_camera(&env->opencl, rt);
         	update = 1;
@@ -106,6 +127,7 @@ void		render(t_env *env, t_rt *rt)
 {
 	SDL_Window		*window;
 	SDL_Surface		*screen;
+	t_uint			*image;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -124,7 +146,11 @@ void		render(t_env *env, t_rt *rt)
 		printf("Screen could not be created! SDL_Error: %s\n", SDL_GetError());
 		return ;
 	}
+	image = (t_uint *)screen->pixels;
+	if ((image = (t_uint *)malloc(sizeof(t_uint) * rt->canvas.size)) == NULL)
+		return ;
 	loop(env, rt, window, screen);
+	free(image);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
