@@ -51,8 +51,8 @@ void		pixel_to_ray_in_world(__constant t_camera *camera,
 	ray->refraction = 1.0;
 }
 
-__kernel void primary_rays(__constant t_camera *camera,
-							__constant t_canvas *canvas, __global t_ray *rays)
+__kernel void primary_rays(__constant t_canvas *canvas,
+							__constant t_camera *camera, __global t_ray *rays)
 {
 	int		gid;
 	int		x;

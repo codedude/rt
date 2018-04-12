@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:30:15 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:44:51 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 17:48:07 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ typedef struct		s_camera {
 	t_float			fov;
 }					t_camera;
 
-__kernel void		primary_rays(__constant t_camera *camera,
-						__constant t_canvas *canvas, __global t_ray *ray);
+__kernel void		primary_rays(__constant t_canvas *canvas,
+						__constant t_camera *camera, __global t_ray *rays);
 void				raster_to_ndc(__float2 *v, float width, float height);
 void				ndc_to_cam_coord(__float2 v, t_vec *vec, float fov,
 						float aspect_ratio);
