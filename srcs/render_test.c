@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:20:00 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 17:43:03 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ int			run_cl(t_env *env, t_rt *rt, SDL_Surface *screen)
 	err = clEnqueueNDRangeKernel(env->opencl.cmd_queue, env->opencl.kernels[0],
 							1, NULL, &global_work_size, NULL, 0, NULL, NULL);
 	if (err != CL_SUCCESS)
+	{
+		printf("run : start\n");
 		return (ERROR);
+	}
 	clFinish(env->opencl.cmd_queue);
 	err = clEnqueueReadBuffer(env->opencl.cmd_queue, env->opencl.buffers.screen,
 		CL_TRUE, 0, sizeof(Uint32) * rt->canvas.size, (Uint32 *)screen->pixels,
 		0, NULL, NULL);
 	if (err != CL_SUCCESS)
+	{
+		printf("run : read back\n");
 		return (ERROR);
+	}
 	return (SUCCESS);
 }
 

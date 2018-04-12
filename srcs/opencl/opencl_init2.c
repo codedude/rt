@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:02:52 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 17:30:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static int		format_srcs(t_src_def *sources, char ***srcs)
 static void		print_kernel_error(t_opencl *env, cl_int err)
 {
 	size_t	len;
-	char	logs[32768];
+	char	logs[65000];
 
 	ft_putstr("Error : Failed to build program executable!\n");
 	ft_putstr("Error ID : ");
 	ft_putnbr((int)err);
 	ft_putstr("\nLogs size : ");
 	clGetProgramBuildInfo(env->program, env->device, CL_PROGRAM_BUILD_LOG,
-							32768, logs, &len);
+							65000, logs, &len);
 	ft_putnbr((int)len);
 	ft_putstr("\n\n");
 	ft_putendl(logs);
