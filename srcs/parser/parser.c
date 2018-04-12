@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:31:17 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/09 19:22:51 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/12 15:14:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			trim_content(char **dest)
 	return (SUCCESS);
 }
 
-int			parse_file(t_env *env, char **file)
+int			parse_file(t_rt *env, char **file)
 {
 	if (parse_data(env, file) == ERROR)
 	{

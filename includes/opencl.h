@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 14:32:34 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:09:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int						opencl_init_context(t_opencl *env);
 int						opencl_init_program(t_opencl *env, t_src_def *sources);
 int						opencl_init_kernels(t_opencl *env, t_src_def *sources);
 
-int						opencl_init_buffer(t_opencl *ocl, t_env *env);
-int						opencl_update_canvas(t_opencl *ocl, t_env *env);
-int						opencl_update_camera(t_opencl *ocl, t_env *env);
-int						opencl_update_objects(t_opencl *ocl, t_env *env);
+int						opencl_init_buffers(t_opencl *ocl, t_rt *rt);
+int						opencl_update_canvas(t_opencl *ocl, t_rt *rt);
+int						opencl_update_camera(t_opencl *ocl, t_rt *rt);
+int						opencl_update_objects(t_opencl *ocl, t_rt *rt);
 
 #endif

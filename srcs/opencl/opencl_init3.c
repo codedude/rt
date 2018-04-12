@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:09:05 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 14:35:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:19:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,57 @@
 #include "opencl.h"
 #include "rt.h"
 
-int		opencl_update_canvas(t_opencl *ocl, t_env *env)
+int			opencl_update_canvas(t_opencl *ocl, t_rt *rt)
 {
 	cl_int	err;
 
 	err = clEnqueueWriteBuffer(ocl->cmd_queue, ocl->buffers.canvas, CL_TRUE, 0,
-			sizeof(t_canvas), (void *)&env->canvas, 0, NULL, NULL);
+			sizeof(t_canvas), (void *)&rt->canvas, 0, NULL, NULL);
 	return (err == CL_SUCCESS ? SUCCESS : ERROR);
 }
 
-int		opencl_update_camera(t_opencl *ocl, t_env *env)
+int			opencl_update_camera(t_opencl *ocl, t_rt *rt)
 {
 	cl_int	err;
 
 	err = clEnqueueWriteBuffer(ocl->cmd_queue, ocl->buffers.camera, CL_TRUE, 0,
-			sizeof(t_camera), (void *)&env->camera, 0, NULL, NULL);
+			sizeof(t_camera), (void *)&rt->camera, 0, NULL, NULL);
 	return (err == CL_SUCCESS ? SUCCESS : ERROR);
 }
 
-int		opencl_update_objects(t_opencl *ocl, t_env *env)
+static int	opencl_update_objects_buffer(t_opencl *ocl, t_rt *rt)
 {
 	cl_int	err;
 
-	if (object_gen_array(&env->objects) == ERROR)
+	clReleaseMemObject(ocl->buffers.objects);
+	ocl->buffers.objects = clCreateBuffer(ocl->context,
+		CL_MEM_READ_ONLY, sizeof(t_object) * rt->objects.size, NULL, &err);
+	if (err != CL_SUCCESS || ocl->buffers.objects == NULL)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+int			opencl_update_objects(t_opencl *ocl, t_rt *rt)
+{
+	cl_int	err;
+
+	if (rt->objects.is_update == 0)
+		return (SUCCESS);
+	rt->objects.is_update = 0;
+	if (rt->objects.last_size != rt->objects.size)
+	{
+		if (opencl_update_objects_buffer(ocl, rt) == ERROR)
+			return (ERROR);
+	}
+	if (objects_gen_array(&rt->objects) == ERROR)
 		return (ERROR);
 	err = clEnqueueWriteBuffer(ocl->cmd_queue, ocl->buffers.objects, CL_TRUE, 0,
-			sizeof(t_object) * env->objects.size, 
-			(void *)env->objects.objects_array, 0, NULL, NULL);
+			sizeof(t_object) * rt->objects.size,
+			(void *)rt->objects.objects_array, 0, NULL, NULL);
 	return (err == CL_SUCCESS ? SUCCESS : ERROR);
 }
 
-int		opencl_init_buffer(t_opencl *ocl, t_env *env)
+int			opencl_init_buffers(t_opencl *ocl, t_rt *rt)
 {
 	cl_int	err;
 
@@ -61,17 +81,17 @@ int		opencl_init_buffer(t_opencl *ocl, t_env *env)
 	if (err != CL_SUCCESS || ocl->buffers.canvas == NULL)
 		return (ERROR);
 	ocl->buffers.objects = clCreateBuffer(ocl->context,
-		CL_MEM_READ_ONLY, sizeof(t_object) * env->objects.size, NULL, &err);
+		CL_MEM_READ_ONLY, sizeof(t_object) * rt->objects.size, NULL, &err);
 	if (err != CL_SUCCESS || ocl->buffers.objects == NULL)
 		return (ERROR);
 	ocl->buffers.screen = clCreateBuffer(ocl->context,
 		CL_MEM_WRITE_ONLY,
-		sizeof(cl_int) * (env->canvas.width * env->canvas.height), NULL, &err);
+		sizeof(cl_int) * (rt->canvas.width * rt->canvas.height), NULL, &err);
 	if (err != CL_SUCCESS || ocl->buffers.screen == NULL)
 		return (ERROR);
-	opencl_update_canvas(ocl, env);
-	opencl_update_camera(ocl, env);
-	opencl_update_objects(ocl, env);
+	opencl_update_canvas(ocl, rt);
+	opencl_update_camera(ocl, rt);
+	opencl_update_objects(ocl, rt);
 	clFinish(ocl->cmd_queue);
 	return (SUCCESS);
 }

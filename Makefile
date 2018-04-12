@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/12 14:09:23 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/12 14:52:54 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,12 @@ UTILSD		=	utils
 OPENCLD		=	opencl
 
 FILES		=	main.c
-FILES		+=	$(ENVD)/env.c \
+FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
 FILES		+=	$(UTILSD)/vec.c $(UTILSD)/types.c
-FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_format.c \
+FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
+				$(OBJECTSD)/objects_format.c \
 				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \
 				$(OBJECTSD)/objects_set3.c
 FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \

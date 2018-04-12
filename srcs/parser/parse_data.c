@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/10 15:05:12 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:14:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int		check_counter_objects(int counter[OBJECT_SIZE])
 	return (1);
 }
 
-static int		parse_data_2(t_env *env, char **data, int *i, int type)
+static int		parse_data_2(t_rt *env, char **data, int *i, int type)
 {
 	int	n_type;
 
@@ -84,7 +84,7 @@ static int		parse_data_2(t_env *env, char **data, int *i, int type)
 	return (SUCCESS);
 }
 
-int				parse_data(t_env *env, char **data)
+int				parse_data(t_rt *env, char **data)
 {
 	int		i;
 	int		type;

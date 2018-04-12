@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/10 15:24:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:10:28 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ typedef struct		s_camera {
 ** Entire environnement for RT
 */
 
-typedef struct		s_env {
+typedef struct		s_rt {
 	t_canvas		canvas;
 	t_camera		camera;
 	t_objects		objects;
-}					t_env;
+}					t_rt;
 
-t_env				*env_init(char *filename);
-int					env_destroy(t_env **env);
+t_rt				*rt_init(char *filename);
+int					rt_destroy(t_rt **rt);
 
 int					camera_set_origin(t_camera *camera, t_vec v);
 int					camera_set_angle(t_camera *camera, t_vec v);

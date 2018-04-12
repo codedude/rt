@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 14:19:51 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/10 14:36:32 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:17:21 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include "libft.h"
 #include "types.h"
 #include "objects.h"
-
-t_obj_lst	*object_get_iter(t_objects *objects)
-{
-	return (objects->objects_lst);
-}
 
 int			object_is_light(t_object *object)
 {
@@ -32,7 +27,7 @@ static void	object_fill_array(t_objects *objects, t_object *tmp)
 	int			i;
 	int			j;
 
-	iter = object_get_iter(objects);
+	iter = objects_get_iter(objects);
 	i = 0;
 	j = objects->size - 1;
 	while (iter != NULL)
@@ -51,7 +46,7 @@ static void	object_fill_array(t_objects *objects, t_object *tmp)
 	}
 }
 
-int			object_gen_array(t_objects *objects)
+int			objects_gen_array(t_objects *objects)
 {
 	if (objects->objects_array != NULL)
 		free(objects->objects_array);
@@ -59,5 +54,6 @@ int			object_gen_array(t_objects *objects)
 		(t_object *)malloc(objects->size * sizeof(t_object ))) == NULL)
 		return (ERROR);
 	object_fill_array(objects, objects->objects_array);
+	objects->last_size = objects->size;
 	return (SUCCESS);
 }

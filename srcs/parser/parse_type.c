@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/10 17:59:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:14:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int		parse_global_need_space(int *i, int type, t_object **obj)
 	return (SUCCESS);
 }
 
-int				parse_global(t_env *env, char **str, int type)
+int				parse_global(t_rt *env, char **str, int type)
 {
 	int				i;
 	int				r;

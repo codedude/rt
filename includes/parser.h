@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/10 17:13:30 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:11:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,21 @@ int				trim_content(char **dest);
 ** parser.c
 */
 
-int				parse_file(t_env *env, char **file);
+int				parse_file(t_rt *rt, char **file);
 char			**read_file(char *filename);
 
 /*
 ** parse_data.c
 */
 
-int				parse_data(t_env *env, char **data);
+int				parse_data(t_rt *rt, char **data);
 
 /*
 ** parse_type.c & parse_type_2.c
 */
 
 t_parse_type	*get_parse_funs(void);
-int				parse_global(t_env *env, char **str, int type);
+int				parse_global(t_rt *rt, char **str, int type);
 int				check_line_object(char *lst, int type);
 char			**check_line(char *str, int type, int *r);
 
@@ -90,7 +90,7 @@ char			**check_line(char *str, int type, int *r);
 ** parse_details.c
 */
 
-int				parse_details(t_env *env, int id, char *line, t_object *obj);
+int				parse_details(t_rt *rt, int id, char *line, t_object *obj);
 
 /*
 ** parse_funsX.c

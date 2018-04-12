@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 12:59:53 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/07 18:13:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:14:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static size_t	len_strs(char **strs)
 	return (i);
 }
 
-int				parse_details(t_env *env, int id, char *line, t_object *obj)
+int				parse_details(t_rt *env, int id, char *line, t_object *obj)
 {
 	t_parse_type	*parse_funs;
 	char			**tmp;

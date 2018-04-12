@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/10 18:18:55 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:14:51 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 int		parse_t_origin(void *data, char **strs)
 {
-	t_env	*env;
+	t_rt	*env;
 	t_float	n[3];
 
-	env = (t_env *)data;
+	env = (t_rt *)data;
 	if (ft_atof_s(strs[0], &n[0]) == ERROR
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)

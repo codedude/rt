@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/11 19:08:54 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:27:09 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,16 @@ int				opencl_init_program(t_opencl *env, t_src_def *sources)
 	char		**program_srcs;
 	int			count;
 
-#pragma mark Program compilation
-	{
-		if ((count = format_srcs(sources, &program_srcs)) == 0)
-			return (ERROR);
-		env->program = clCreateProgramWithSource(env->context, (cl_uint)count,
-			(const char **)program_srcs, NULL, &err);
-		assert(err == CL_SUCCESS);
-		ft_strsplit_free(program_srcs);
-		err = clBuildProgram(env->program, 0, NULL, KERNEL_INCLUDES,
-			NULL, NULL);
-		if (err != CL_SUCCESS)
-			print_kernel_error(env, err);
-	}
+	if ((count = format_srcs(sources, &program_srcs)) == 0)
+		return (ERROR);
+	env->program = clCreateProgramWithSource(env->context, (cl_uint)count,
+		(const char **)program_srcs, NULL, &err);
+	assert(err == CL_SUCCESS);
+	ft_strsplit_free(program_srcs);
+	err = clBuildProgram(env->program, 0, NULL, KERNEL_INCLUDES,
+		NULL, NULL);
+	if (err != CL_SUCCESS)
+		print_kernel_error(env, err);
 	return (SUCCESS);
 }
 
@@ -94,16 +91,13 @@ int				opencl_init_kernels(t_opencl *env, t_src_def *sources)
 	cl_int		err;
 	int			i;
 
-#pragma mark Kernels creation
+	i = 0;
+	while (sources[i].file != NULL)
 	{
-		i = 0;
-		while (sources[i].file != NULL)
-		{
-			env->kernels[i] = clCreateKernel(env->program, sources[i].kernel,
-				&err);
-			assert(err == CL_SUCCESS);
-			i++;
-		}
+		env->kernels[i] = clCreateKernel(env->program, sources[i].kernel,
+			&err);
+		assert(err == CL_SUCCESS);
+		i++;
 	}
 	return (SUCCESS);
 }

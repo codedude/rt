@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 14:32:30 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:17:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,33 @@ typedef struct			s_objects {
 	t_obj_lst			*objects_lst;
 	int					size;
 	t_object			*objects_array;
+	int					is_update;
+	int					last_size;
 }						t_objects;
 
 /*
 ** objects.c
 */
 
+void					objects_init(t_objects *objects);
+void					objects_destroy(t_objects *objects);
+int						objects_gen_array(t_objects *objects);
+
+/*
+** objects_queue.c
+*/
+
 t_object				*object_new(int type);
 int						object_add(t_objects *objects, t_object *object);
 int						object_del(t_objects *objects, t_id id);
 t_object				*object_get(t_objects *objects, t_id id);
-void					object_destroy(t_objects *objects);
 
 /*
 ** objects_format.c
 */
 
 int						object_is_light(t_object *object);
-t_obj_lst				*object_get_iter(t_objects *objects);
-int						object_gen_array(t_objects *objects);
+t_obj_lst				*objects_get_iter(t_objects *objects);
 
 /*
 ** object_setX.c
