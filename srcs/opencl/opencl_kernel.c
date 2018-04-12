@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_set.c                                       :+:      :+:    :+:   */
+/*   opencl_kernel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/12 16:34:01 by vparis           ###   ########.fr       */
+/*   Created: 2018/04/12 16:12:47 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/12 16:38:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <OpenCL/OpenCL.h>
+#include <assert.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "types.h"
+#include "opencl.h"
 #include "rt.h"
 
-int		canvas_set_width(t_canvas *canvas, int width)
+int		opencl_kernel_set(t_opencl *ocl)
 {
-	if (width < 64 || width > 4096)
-		return (ERROR);
-	canvas->width = width;
-	canvas->size = canvas->width * canvas->height;
-	return (SUCCESS);
-}
+	cl_int	err;
 
-int		canvas_set_height(t_canvas *canvas, int height)
-{
-	if (height < 64 || height > 2160)
+	err  = clSetKernelArg(ocl->kernels[0],  0, sizeof(cl_mem),
+		&ocl->buffers.canvas);
+	if (err != CL_SUCCESS)
 		return (ERROR);
-	canvas->height = height;
-	canvas->size = canvas->width * canvas->height;
-	return (SUCCESS);
-}
-
-int		canvas_set_bg_color(t_canvas *canvas, t_color color)
-{
-	canvas->bg_color = color;
+	err  = clSetKernelArg(ocl->kernels[0],  1, sizeof(cl_mem),
+		&ocl->buffers.camera);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[0],  2, sizeof(cl_mem),
+		&ocl->buffers.rays);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	return (SUCCESS);
 }

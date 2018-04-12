@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:07:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 17:06:39 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 static t_src_def	*opencl_get_source_files(void)
 {
 	static t_src_def	sources[] = {
-		{"kernel/srcs/rt.cl", "rt"},
+		{"kernel/srcs/primary_rays.cl", "primary_rays"},
+		{"kernel/srcs/intersect.cl", "intersect"},
 		{NULL, NULL}
 	};
 

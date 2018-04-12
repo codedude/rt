@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:09:10 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 16:17:54 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_opencl_buffer {
 	cl_mem				camera;
 	cl_mem				objects;
 	cl_mem				screen;
+	cl_mem				rays;
 }						t_opencl_buffer;
 
 typedef struct			s_opencl {

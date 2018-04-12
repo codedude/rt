@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:09:05 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:19:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 16:50:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,13 @@ int			opencl_init_buffers(t_opencl *ocl, t_rt *rt)
 		return (ERROR);
 	ocl->buffers.screen = clCreateBuffer(ocl->context,
 		CL_MEM_WRITE_ONLY,
-		sizeof(cl_int) * (rt->canvas.width * rt->canvas.height), NULL, &err);
+		sizeof(cl_uint) * rt->canvas.size, NULL, &err);
 	if (err != CL_SUCCESS || ocl->buffers.screen == NULL)
+		return (ERROR);
+	ocl->buffers.rays = clCreateBuffer(ocl->context,
+		CL_MEM_READ_WRITE,
+		sizeof(t_ray) * rt->canvas.size, NULL, &err);
+	if (err != CL_SUCCESS || ocl->buffers.rays == NULL)
 		return (ERROR);
 	opencl_update_canvas(ocl, rt);
 	opencl_update_camera(ocl, rt);

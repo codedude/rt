@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:17:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 16:34:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ enum {
 
 typedef struct			s_object {
 	t_id				id;
-	int					type;
+	t_int				type;
 	t_vec				pos;
 	t_vec				dir;
 	t_vec				color;

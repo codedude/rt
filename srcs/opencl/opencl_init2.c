@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:27:09 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 17:02:52 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void		print_kernel_error(t_opencl *env, cl_int err)
 	size_t	len;
 	char	logs[32768];
 
-	ft_putstr("\tError : Failed to build program executable!\n");
-	ft_putstr("\tError ID : ");
+	ft_putstr("Error : Failed to build program executable!\n");
+	ft_putstr("Error ID : ");
 	ft_putnbr((int)err);
 	ft_putstr("\nLogs size : ");
 	clGetProgramBuildInfo(env->program, env->device, CL_PROGRAM_BUILD_LOG,

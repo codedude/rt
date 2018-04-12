@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:10:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 16:31:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,23 @@
 # include "objects.h"
 
 /*
+**
+*/
+
+typedef struct		s_ray {
+	t_vec			origin;
+	t_vec			dir;
+	t_float			refraction;
+}					t_ray;
+
+/*
 ** Canvas : the physical window, can change
 */
 
 typedef struct		s_canvas {
-	int				width;
-	int				height;
+	t_int			width;
+	t_int			height;
+	t_int			size;
 	t_color			bg_color;
 }					t_canvas;
 
