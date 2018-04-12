@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/12 14:52:54 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/12 15:30:21 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ PARSERD		=	parser
 UTILSD		=	utils
 OPENCLD		=	opencl
 
-FILES		=	main.c
+FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c

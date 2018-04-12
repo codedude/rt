@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:19:39 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 15:30:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "objects.h"
 #include "parser.h"
 #include "opencl.h"
+
+void		render(t_env *env, t_rt *rt);
 
 /*
 ** rt + opencl_init_buffers se fait pour chaque fichier
@@ -46,6 +48,9 @@ int			main(int argc, char **argv)
 		ft_putstr("Error : can't init opencl\n");
 		return (ERROR);
 	}
+
+	render(&env, rt);
+
 	rt_destroy(&rt);
 	env_destroy(&env);
 	return (EXIT_SUCCESS);
