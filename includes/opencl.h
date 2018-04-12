@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   opencl.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/12 14:32:34 by vparis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef OPENCL_H
+# define OPENCL_H
+
+# include <OpenCL/OpenCL.h>
+# include "types.h"
+# include "rt.h"
+
+# define KERNEL_NUMBERS		1
+# define KERNEL_INCLUDES	"-I kernel/includes -I /usr/include"
+
+typedef struct			s_src_def {
+	const char			*file;
+	const char			*kernel;
+}						t_src_def;
+
+typedef struct			s_opencl_buffer {
+	cl_mem				canvas;
+	cl_mem				camera;
+	cl_mem				objects;
+	cl_mem				screen;
+}						t_opencl_buffer;
+
+typedef struct			s_opencl {
+	cl_context			context;
+	cl_device_id		cpu;
+	cl_device_id		device;
+	cl_program			program;
+	cl_kernel			kernels[KERNEL_NUMBERS];
+	cl_command_queue	cmd_queue;
+	t_opencl_buffer		buffers;
+}						t_opencl;
+
+int						opencl_init(t_opencl *env);
+int						opencl_destroy(t_opencl *env);
+
+int						opencl_init_device(t_opencl *env);
+int						opencl_init_context(t_opencl *env);
+int						opencl_init_program(t_opencl *env, t_src_def *sources);
+int						opencl_init_kernels(t_opencl *env, t_src_def *sources);
+
+int						opencl_init_buffer(t_opencl *ocl, t_env *env);
+int						opencl_update_canvas(t_opencl *ocl, t_env *env);
+int						opencl_update_camera(t_opencl *ocl, t_env *env);
+int						opencl_update_objects(t_opencl *ocl, t_env *env);
+
+#endif

@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/11 16:26:55 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/12 14:09:23 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,24 +16,29 @@ CC			=	clang
 SRCD		=	srcs
 INCD		=	includes
 LIBFTD		=	libft
-ENVD		=	$(SRCD)/env
-OBJECTSD	=	$(SRCD)/objects
-PARSERD		=	$(SRCD)/parser
-UTILSD		=	$(SRCD)/utils
+ENVD		=	env
+OBJECTSD	=	objects
+PARSERD		=	parser
+UTILSD		=	utils
+OPENCLD		=	opencl
 
-SRCS		=	$(SRCD)/main.c
-SRCS		+=	$(ENVD)/env.c \
+FILES		=	main.c
+FILES		+=	$(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
-SRCS		+=	$(UTILSD)/vec.c $(UTILSD)/types.c
-SRCS		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_format.c \
+FILES		+=	$(UTILSD)/vec.c $(UTILSD)/types.c
+FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_format.c \
 				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \
 				$(OBJECTSD)/objects_set3.c
-SRCS		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
+FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_funs1.c $(PARSERD)/parse_funs2.c \
 				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
+FILES		+=	$(OPENCLD)/opencl.c $(OPENCLD)/opencl_init1.c \
+				$(OPENCLD)/opencl_init2.c $(OPENCLD)/opencl_init3.c
+
+SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-O3 -flto -march=native -std=c11 -pedantic \
