@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:51:34 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:11:43 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <OpenCL/OpenCL.h>
+#include <assert.h>
 #include "libft.h"
 #include "env.h"
 #include "rt.h"
@@ -26,22 +28,30 @@ int			run_cl(t_env *env, t_rt *rt, SDL_Surface *screen)
 	size_t	global_work_size;
 	size_t	buffer_size;
 
+	if (opencl_kernel_set(&env->opencl, rt) == ERROR)
+		return (ERROR);
 	global_work_size = rt->canvas.size;
 	buffer_size = sizeof(t_ray) * global_work_size;
 	err = clEnqueueNDRangeKernel(env->opencl.cmd_queue, env->opencl.kernels[0],
 							1, NULL, &global_work_size, NULL, 0, NULL, NULL);
 	if (err != CL_SUCCESS)
 	{
-		printf("run : start\n");
+		printf("err rays\n");
 		return (ERROR);
 	}
-	clFinish(env->opencl.cmd_queue);
+	err = clEnqueueNDRangeKernel(env->opencl.cmd_queue, env->opencl.kernels[1],
+							1, NULL, &global_work_size, NULL, 0, NULL, NULL);
+	if (err != CL_SUCCESS)
+	{
+		printf("err intersect\n");
+		return (ERROR);
+	}
 	err = clEnqueueReadBuffer(env->opencl.cmd_queue, env->opencl.buffers.screen,
 		CL_TRUE, 0, sizeof(Uint32) * rt->canvas.size, (Uint32 *)screen->pixels,
 		0, NULL, NULL);
 	if (err != CL_SUCCESS)
 	{
-		printf("run : read back\n");
+		printf("err read back\n");	
 		return (ERROR);
 	}
 	return (SUCCESS);

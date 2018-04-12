@@ -13,7 +13,7 @@
 #include "types.h"
 #include "rt.h"
 
-t_inter		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n);
+t_inter		closest_inter(t_ray *ray, float t_min, float t_max, __constant t_object *obj, int n);
 {
 	private int 	i;
 	private float	t;
@@ -80,7 +80,6 @@ __float	r_inter_sphere(t_ray ray, t_object sphere)
 {
 	__float2	t;
 	__float3	k;
-	__float delta;
 	__float3	d;
 	__float3	co;
 
@@ -89,11 +88,7 @@ __float	r_inter_sphere(t_ray ray, t_object sphere)
 	k.x = dot(d, d);
 	k.y = 2.0 * dot(co, d);
 	k.z = dot(co, co) - (obj.radius * obj.radius);
-	delta = sqrt(k.y * k.y - 4.0 * k.x * k.z);
-	if (isnan(delta))
-		return (-1);
-	t.x = (-k.y + delta) / (2.0 * k.x);
-	t.y = (-k.y - delta) / (2.0 * k.x);
+	t = quadratic(k.x, k.y, k.z);
 	if (t.x < 0.00000001 || t.y < 0.00000001)
 		return (fmax(t.x, t.y));
 	return (fmin(t.x, t.y));
@@ -103,7 +98,6 @@ __float	r_inter_cylinder(t_ray ray, t_object cylinder)
 {
 	__float2	t;
 	__float3	k;
-	__float	delta;
 	__float3	v[3];
 
 	v[0] = normalize(cylinder.top - cylinder.bottom);
@@ -113,11 +107,7 @@ __float	r_inter_cylinder(t_ray ray, t_object cylinder)
 	k.y = 2.0 * dot(v[1], ((v[0] * dot(v[0], v[2])) - v[2]));
 	v[1] = (v[0] * dot(v[0], v[2])) - v[2];
 	k.z = dot(v[1], v[1]) - (cylinder.r * cylinder.r);
-	delta = sqrt(k.y * k.y - 4.0 * k.x * k.z);
-	if (isnan(delta))
-		return (-1);
-	t.x = (-k.y + delta) / (2.0 * k.x);
-	t.y = (-k.y - delta) / (2.0 * k.x);
+	t = quadratic(k.x, k.y, k.z);
 	return (r_inter_cyl2(ray, cylinder, v[0], t));
 }
 
@@ -162,11 +152,7 @@ __float	r_inter_cone(t_ray ray, t_object cone)
 		pown(sin(cylinder.angle), 2) * k[4] * k[5];
 	k[2] = pown(cos(cylinder.angle), 2) * dot(v[2], v[2]) -
 		pown(sin(cylinder.angle), 2) * pown(k[5], 2);
-	k[3] = sqrt(k[1] * k[1] - 4.0 * k[0] * k[2]);
-	if (isnan(k[3]))
-		return (-1);
-	t.x = (-k[1] + k[3]) / (2.0 * k[0]);
-	t.y = (-k[1] - k[3]) / (2.0 * k[0]);
+	t = quadratic(k[0], k[1], k[2]);
 	return (r_inter_cone2(ray, cylinder, v[0], t));
 }
 
@@ -174,7 +160,7 @@ __float	r_inter_cone2(t_ray ray, t_object cone, __float3 axis, __float2 t)
 {
 	__float	test1;
 	__float	test2;
-	__float3	tmp;
+	t_vec	tmp;
 
 	tmp = ray.origin + ray.dir * t.x;
 	test1 = dot(axis, tmp - cylinder.bottom);
@@ -191,6 +177,19 @@ __float	r_inter_cone2(t_ray ray, t_object cone, __float3 axis, __float2 t)
 	if (t.x <= 0.0000001 || t.y <= 0.00000001)
 		return (fmax(t.x, t.y));
 	return (fmin(t.x, t.y));
+}
+
+__float2	quadratic(t_float a, t_float b, t_float c)
+{
+	t_float		delta;
+	__float2	ret;
+
+	delta = sqrt(b * b - 4.0 * a * c);
+	if (isnan(delta))
+		return (ret{{nan(0), nan(0)}})
+	ret.x = (-b + delta) / (2.0 * a);
+	ret.y = (-b - delta) / (2.0 * a);
+	return (ret);
 }
 
 __kernel void intersect(__constant t_object *obj, __constant t_ray *rays, __global t_inter *inter, int n)

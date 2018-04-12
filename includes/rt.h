@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 16:31:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:05:47 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 /*
 **
 */
+
+typedef struct		s_inter {
+	t_float			t;
+	t_int			id;
+	t_color			color;
+	t_vec			point;
+	t_vec			normal;
+}					t_inter;
 
 typedef struct		s_ray {
 	t_vec			origin;

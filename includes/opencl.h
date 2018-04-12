@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 16:17:54 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:11:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "types.h"
 # include "rt.h"
 
-# define KERNEL_NUMBERS		1
+# define KERNEL_NUMBERS		2
 # define KERNEL_INCLUDES	"-I kernel/includes -I /usr/include"
 
 typedef struct			s_src_def {
@@ -31,6 +31,7 @@ typedef struct			s_opencl_buffer {
 	cl_mem				objects;
 	cl_mem				screen;
 	cl_mem				rays;
+	cl_mem				inters;
 }						t_opencl_buffer;
 
 typedef struct			s_opencl {
@@ -44,7 +45,7 @@ typedef struct			s_opencl {
 }						t_opencl;
 
 int						opencl_init(t_opencl *env);
-int						opencl_destroy(t_opencl *env);
+int						opencl_destroy(t_opencl *ocl);
 
 int						opencl_init_device(t_opencl *env);
 int						opencl_init_context(t_opencl *env);
@@ -55,5 +56,7 @@ int						opencl_init_buffers(t_opencl *ocl, t_rt *rt);
 int						opencl_update_canvas(t_opencl *ocl, t_rt *rt);
 int						opencl_update_camera(t_opencl *ocl, t_rt *rt);
 int						opencl_update_objects(t_opencl *ocl, t_rt *rt);
+
+int						opencl_kernel_set(t_opencl *ocl, t_rt *rt);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:30:15 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:48:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:14:43 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RT_H
 
 # include "rt.h"
+
+# define T_MIN	1e-6
 
 enum {
 	CANVAS, CAMERA,

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:33:40 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:07:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_src_def	*opencl_get_source_files(void)
 {
 	static t_src_def	sources[] = {
 		{"kernel/srcs/primary_rays.cl", "primary_rays"},
-		//{"kernel/srcs/intersect.cl", "intersect"},
+		{"kernel/srcs/intersect.cl", "intersect"},
 		{NULL, NULL}
 	};
 
@@ -43,17 +43,23 @@ int					opencl_init(t_opencl *env)
 	return (SUCCESS);
 }
 
-int					opencl_destroy(t_opencl *env)
+int					opencl_destroy(t_opencl *ocl)
 {
 	int		i;
 
-	clReleaseCommandQueue(env->cmd_queue);
-	clReleaseContext(env->context);
-	clReleaseProgram(env->program);
+	clReleaseMemObject(ocl->buffers.canvas);
+	clReleaseMemObject(ocl->buffers.camera);
+	clReleaseMemObject(ocl->buffers.objects);
+	clReleaseMemObject(ocl->buffers.screen);
+	clReleaseMemObject(ocl->buffers.rays);
+	clReleaseMemObject(ocl->buffers.inters);
+	clReleaseCommandQueue(ocl->cmd_queue);
+	clReleaseContext(ocl->context);
+	clReleaseProgram(ocl->program);
 	i = 0;
 	while (i < KERNEL_NUMBERS)
 	{
-		clReleaseKernel(env->kernels[i]);
+		clReleaseKernel(ocl->kernels[i]);
 		i++;
 	}
 	return (SUCCESS);
