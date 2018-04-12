@@ -13,7 +13,7 @@
 #include "types.h"
 #include "rt.h"
 
-void		raster_to_ndc(__float2 *v, float width, float height)
+void		raster_to_ndc(__float2 *v, t_float width, t_float height)
 {
 	if (width <= 0.0 || height <= 0.0)
 		*v = (__float2)(0.0, 0.0);
@@ -24,10 +24,10 @@ void		raster_to_ndc(__float2 *v, float width, float height)
 	}
 }
 
-void		ndc_to_cam_coord(__float2 v, t_vec *vec, float fov,
-							float aspect_ratio)
+void		ndc_to_cam_coord(__float2 v, t_vec *vec, t_float fov,
+							t_float aspect_ratio)
 {
-	float	ang;
+	t_float	ang;
 
 	ang = DEG_TO_RAD * fov / 2.0;
 	vec->x = (2.0 * v.x - 1.0) * tan(ang) * aspect_ratio;
@@ -37,7 +37,7 @@ void		ndc_to_cam_coord(__float2 v, t_vec *vec, float fov,
 
 void		pixel_to_ray_in_world(__constant t_camera *camera,
 				__constant t_canvas *canvas, t_ray *ray,
-				float x, float y)
+				t_float x, t_float y)
 {
 	__float2	v;
 	t_vec		vec;

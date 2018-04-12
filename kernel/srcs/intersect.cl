@@ -13,18 +13,19 @@
 #include "types.h"
 #include "rt.h"
 
-t_inter		closest_inter(t_ray *ray, float t_min, float t_max, __constant t_object *obj, int n);
+t_inter		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n)
 {
 	private int 	i;
-	private float	t;
+	private t_float	t;
 	private t_inter inter;
 
 	i = 0;
 	inter.t = t_max;
 	inter.id = -1;
+	inter.color = 0;
 	while (i < n)
 	{
-		t = inter(ray, obj[i]);
+		t = inters(ray, obj[i]);
 		if (t < inter.t && t > t_min && t < t_max
 			&& obj[i].type != LIGHT_AMBIENT 
 			&& obj[i].type != LIGHT_POINT 
@@ -40,65 +41,65 @@ t_inter		closest_inter(t_ray *ray, float t_min, float t_max, __constant t_object
 	if (inter.id > -1)
 	{
 		inter.point = (inter.t * ray.dir) + ray.origin;
-		inter.normal = compute_normal(inter.point, obj[inter.id]);
+//		inter.normal = compute_normal(inter.point, obj[inter.id]);
 	}
 	return (inter);
 }
 
 
-__float inter(__private t_ray ray, __private t_object obj)
+t_float inters(__private t_ray ray, __private t_object obj)
 {
 
-	__float	t;
+	t_float	t;
 
 	t = 0;
 	if (obj.type == SPHERE)
 		t = r_inter_sphere(ray, obj);
 	else if (obj.type == PLANE)
 		t = r_inter_plan(ray, obj);
-	else if (obj.type == CYLINDER)
-		t = r_inter_cylindre(ray, obj);
+/*	else if (obj.type == CYLINDER)
+		t = r_inter_cylinder(ray, obj);
 	else if (obj.type == CONE)
-		t = r_inter_cone(ray, obj);
+		t = r_inter_cone(ray, obj);*/
 	return (t);
 }
 
-__float	r_inter_plan(__private t_ray ray, __private t_object plan)
+t_float	r_inter_plan(__private t_ray ray, __private t_object plan)
 {
-	__float	t;
-	__float	denom;
+	t_float	t;
+	t_float	denom;
 
 	denom = dot(ray.dir, plan.dir);
 	if (denom < 0.000001 && denom > -0.000001)
 		return (0);
-	t = -dot((ray.origin - plan.origin), plan.dir);
+	t = -dot((ray.origin - plan.pos), plan.dir);
 	t = t / denom;
 	return (t);
 }
 
-__float	r_inter_sphere(t_ray ray, t_object sphere)
+t_float	r_inter_sphere(t_ray ray, t_object sphere)
 {
 	__float2	t;
-	__float3	k;
-	__float3	d;
-	__float3	co;
+	t_vec	k;
+	t_vec	d;
+	t_vec	co;
 
 	d = ray.dir;
-	co = ray.origin - obj.pos;
+	co = ray.origin - sphere.pos;
 	k.x = dot(d, d);
 	k.y = 2.0 * dot(co, d);
-	k.z = dot(co, co) - (obj.radius * obj.radius);
+	k.z = dot(co, co) - (sphere.radius * sphere.radius);
 	t = quadratic(k.x, k.y, k.z);
 	if (t.x < 0.00000001 || t.y < 0.00000001)
 		return (fmax(t.x, t.y));
 	return (fmin(t.x, t.y));
 }
-
-__float	r_inter_cylinder(t_ray ray, t_object cylinder)
+/*
+t_float	r_inter_cylinder(t_ray ray, t_object cylinder)
 {
 	__float2	t;
-	__float3	k;
-	__float3	v[3];
+	t_vec	k;
+	t_vec	v[3];
 
 	v[0] = normalize(cylinder.top - cylinder.bottom);
 	v[1] = (v[0] * dot(v[0], ray.dir)) - ray.dir;
@@ -111,11 +112,11 @@ __float	r_inter_cylinder(t_ray ray, t_object cylinder)
 	return (r_inter_cyl2(ray, cylinder, v[0], t));
 }
 
-__float	r_inter_cyl2(t_ray ray, t_object cylinder, __float3 axis, __float2 t)
+t_float	r_inter_cyl2(t_ray ray, t_object cylinder, t_vec axis, __float2 t)
 {
-	__float	test1;
-	__float	test2;
-	__float3	tmp;
+	t_float	test1;
+	t_float	test2;
+	t_vec	tmp;
 
 	tmp = ray.origin + ray.dir * t.x;
 	test1 = dot(axis, tmp - cylinder.bottom);
@@ -134,11 +135,11 @@ __float	r_inter_cyl2(t_ray ray, t_object cylinder, __float3 axis, __float2 t)
 	return (fmin(t.x, t.y));
 }
 
-__float	r_inter_cone(t_ray ray, t_object cone)
+t_float	r_inter_cone(t_ray ray, t_object cone)
 {
 	__float2	t;
-	__float	k[6];
-	__float3	v[4];
+	t_float	k[6];
+	t_vec	v[4];
 
 	v[0] = normalize(cylinder.top - cylinder.bottom);
 	v[3] = ray.origin - cylinder.apex;
@@ -156,10 +157,10 @@ __float	r_inter_cone(t_ray ray, t_object cone)
 	return (r_inter_cone2(ray, cylinder, v[0], t));
 }
 
-__float	r_inter_cone2(t_ray ray, t_object cone, __float3 axis, __float2 t)
+t_float	r_inter_cone2(t_ray ray, t_object cone, t_vec axis, __float2 t)
 {
-	__float	test1;
-	__float	test2;
+	t_float	test1;
+	t_float	test2;
 	t_vec	tmp;
 
 	tmp = ray.origin + ray.dir * t.x;
@@ -178,7 +179,7 @@ __float	r_inter_cone2(t_ray ray, t_object cone, __float3 axis, __float2 t)
 		return (fmax(t.x, t.y));
 	return (fmin(t.x, t.y));
 }
-
+*/
 __float2	quadratic(t_float a, t_float b, t_float c)
 {
 	t_float		delta;
@@ -186,16 +187,39 @@ __float2	quadratic(t_float a, t_float b, t_float c)
 
 	delta = sqrt(b * b - 4.0 * a * c);
 	if (isnan(delta))
-		return (ret{{nan(0), nan(0)}})
+	{
+		ret.x = 0;
+		ret.y = 0;
+		return (ret);
+	}
 	ret.x = (-b + delta) / (2.0 * a);
 	ret.y = (-b - delta) / (2.0 * a);
 	return (ret);
 }
 
-__kernel void intersect(__constant t_object *obj, __constant t_ray *rays, __global t_inter *inter, int n)
+__kernel void intersect(__constant t_object *obj, __constant t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
 {
 	int		gid;
 
 	gid = get_global_id(0);
-	inter[gid] = closest_inter(ray[gid], t_min, t_max, inter, n);
+	inter[gid] = closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n);
+	screen[gid] = get_color(inter[gid].color);
+}
+
+unsigned int	get_color(t_vec color)
+{
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	c;
+
+	b = (unsigned int)(color.z * 255.0);
+	g = (unsigned int)(color.y * 255.0);
+	r = (unsigned int)(color.x * 255.0);
+
+	c = 0;
+	c |= (b & 0xFF);
+	c |= (g & 0xFF) << 8;
+	c |= (r & 0xFF) << 16;
+	return (c);
 }

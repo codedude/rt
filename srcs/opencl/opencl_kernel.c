@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:12:47 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:10:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:44:07 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,10 @@ int		opencl_kernel_set(t_opencl *ocl, t_rt *rt)
 		(t_int *)&rt->objects.size);
 	if (err != CL_SUCCESS)
 		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[1],  4, sizeof(cl_mem),
+		&ocl->buffers.screen);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:30:15 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:14:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/12 18:59:28 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct			s_object {
 typedef struct		s_inter {
 	t_float			t;
 	t_int			id;
+	t_vec			color;
 	t_vec			point;
 	t_vec			normal;
 }					t_inter;
@@ -76,14 +77,24 @@ typedef struct		s_camera {
 
 __kernel void		primary_rays(__constant t_canvas *canvas,
 						__constant t_camera *camera, __global t_ray *rays);
-void				raster_to_ndc(__float2 *v, float width, float height);
-void				ndc_to_cam_coord(__float2 v, t_vec *vec, float fov,
-						float aspect_ratio);
+void				raster_to_ndc(__float2 *v, t_float width, t_float height);
+void				ndc_to_cam_coord(__float2 v, t_vec *vec, t_float fov,
+						t_float aspect_ratio);
 void				pixel_to_ray_in_world(__constant t_camera *camera,
 						__constant t_canvas *canvas, t_ray *ray,
-						float x, float y);
+						t_float x, t_float y);
 
 __kernel void		intersect(__constant t_object *obj, __constant t_ray *rays,
-						__global t_inter *inter, int n);
+						__global t_inter *inter, int n, __global unsigned int *screen);
+__float2	quadratic(t_float a, t_float b, t_float c);
+t_float	r_inter_cone2(t_ray ray, t_object cone, t_vec axis, __float2 t);
+t_float	r_inter_cone(t_ray ray, t_object cone);
+t_float	r_inter_cylinder(t_ray ray, t_object cylinder);
+t_float	r_inter_cyl2(t_ray ray, t_object cylinder, t_vec axis, __float2 t);
+t_float	r_inter_sphere(t_ray ray, t_object sphere);
+t_float	r_inter_plan(__private t_ray ray, __private t_object plan);
+t_float inters(__private t_ray ray, __private t_object obj);
+t_inter		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n);
+unsigned int	get_color(t_vec color);
 
 #endif
