@@ -180,17 +180,19 @@ __kernel void	light(__constant t_object *obj, __global t_ray *rays, __global t_r
 	int gid;
 	int a;
 	t_vec	i;
+	t_float	ang;
 	t_ray	ray_tmp;
 	t_float	transp;
 
 	a = 0;
-	i = {0, 0, 0};
+	i = {0.0, 0.0};
 	gid = get_global_id(0);
 	while (a < n)
 	{
 		if (obj[a].type == LIGHT_AMBIENT)
 			intensity[gid] += obj[a].intensity * obj.phong[PHONG_KA];
 		else
+		{
 			if (obj[a].type == LIGHT_POINT)
 			{
 				ray_tmp.dir = normalize(obj[a].pos - inter[gid].point);
@@ -198,6 +200,7 @@ __kernel void	light(__constant t_object *obj, __global t_ray *rays, __global t_r
 				ray_tmp.refraction = inter[gid].refraction;
 				light_ray[gid] = ray_tmp;
 				intensity[gid] += obj[a].intensity * obj.phong[PHONG_KD];
+				transp = is_there_intersect(ray_tmp, 0.000000001, 1.0, obj);
 			}
 			else if (obj[a].type == LIGHT_PAR)
 			{
@@ -206,8 +209,59 @@ __kernel void	light(__constant t_object *obj, __global t_ray *rays, __global t_r
 				ray_tmp.refraction = inter[gid].refraction;
 				light_ray[gid] = ray_tmp;
 				intensity[gid] += obj[a].intensity * obj.phong[PHONG_KD];
+				transp = is_there_intersect(ray_tmp, 0.000000001, LONG_MAX, obj);
+			}
+			if (transp == 0.0)
+			{
+				a++;
+				continue ;
+			}
+			//{
+
+				/*if (inters.shp->ref_index >= 1.0 && inters.shp->transp > 0)
+				{
+					transp_inter = inters;
+					refr_ray = refract_ray(rayon, inters);
+					inters = closest_intersect(refr_ray, 0.000000001, LONG_MAX, env->shp);
+					if (inters.shp)
+					{
+						*tmp = (*tmp)->next;
+						return (0.0);
+					}
+					else
+						return (transp_inter.shp->transp);
+				}
+				else
+					*tmp = (*tmp)->next;
+				return (0.0);
+
+			}
+			return (1.0);*/
+			//	}
+			if (dot(ray_tmp.dir, inter[gid].normal) < 0 && transp > 0)
+				inter[gid].normal = - inter[gid].normal;	
+			ang = dot(inter[gid].normal, ray_tmp.dir);
+			i = obj[a].intensity;
+
+			{
+				t_float	ret;
+
+				ret = 0.0;
+				if (ang > 0)
+				{
+					ret = i * ang;
+				if (inter[gid].phong[PHONG_SHINI] > 0)
+					{
+						ray_tmp.dir = inter[gid].normal * dot(inter[gid].normal, ray_tmp.dir) * 2.0 - ray_tmp.dir;
+						ang = dot(ray_tmp.dir, -ray[gid].dir);
+						if (ang > 0)
+							ret += i * pow(ang / (length(ray_tmp.dir) * length(-ray[gid].dir)), inter[gid].phong[PHONG_SHINI]);
+					}
+				}
+	
 			}
 
+			intensity[gid] += transp * ret;
 		}
 		a++;
 	}
@@ -221,7 +275,7 @@ __kernel void	light(__constant t_object *obj, __global t_ray *rays, __global t_r
 
 
 
-
+/*
 
 #include "../includes/rtv1.h"
 
@@ -320,4 +374,4 @@ double				light_specular(t_inter it, double i[4], VEC3 v, RAY *r)
 		}
 	}
 	return (ret);
-}
+}*/
