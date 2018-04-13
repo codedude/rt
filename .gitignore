@@ -1,4 +1,5 @@
 rt
+*.swp
 
 # Prerequisites
 *.d

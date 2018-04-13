@@ -196,17 +196,6 @@ __float2	quadratic(t_float a, t_float b, t_float c)
 	return (ret);
 }
 
-__kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
-{
-	int		gid;
-	t_inter	interi;
-
-	gid = get_global_id(0);
-	closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n, &interi);
-	inter[gid] = interi;
-	screen[gid] = get_color(interi.color);
-}
-
 unsigned int	get_color(t_vec color)
 {
 	unsigned int	r;
@@ -223,4 +212,15 @@ unsigned int	get_color(t_vec color)
 	c |= (g & 0xFF) << 8;
 	c |= (r & 0xFF) << 16;
 	return (c);
+}
+
+__kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
+{
+	int		gid;
+	t_inter	interi;
+
+	gid = get_global_id(0);
+	closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n, &interi);
+	inter[gid] = interi;
+	screen[gid] = get_color(interi.color);
 }

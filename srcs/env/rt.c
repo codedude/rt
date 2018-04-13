@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/12 14:57:54 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 16:09:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #include "libft.h"
 #include "rt.h"
 #include "parser.h"
+
+static void	set_ratio(t_rt *rt)
+{
+	if (rt->canvas.width > rt->canvas.height)
+	{
+		rt->canvas.ratio[0] =
+		(t_float)rt->canvas.width / (t_float)rt->canvas.height;
+		rt->canvas.ratio[1] = 1.0;
+	}
+	else if (rt->canvas.height > rt->canvas.width)
+	{
+		rt->canvas.ratio[0] = 1.0;
+		rt->canvas.ratio[1] =
+		(t_float)rt->canvas.height / (t_float)rt->canvas.width;
+	}
+	else
+	{
+		rt->canvas.ratio[0] = 1.0;
+		rt->canvas.ratio[1] = 1.0;
+	}
+}
 
 /*
 ** Init all env at 0, init random, and parse file
@@ -35,6 +56,7 @@ t_rt		*rt_init(char *filename)
 		ft_strsplit_free(file);
 		return (NULL);
 	}
+	set_ratio(rt);
 	ft_strsplit_free(file);
 	return (rt);
 }

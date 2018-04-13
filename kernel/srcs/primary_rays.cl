@@ -13,45 +13,21 @@
 #include "types.h"
 #include "rt.h"
 
-void		raster_to_ndc(__float2 *v, t_float width, t_float height)
+t_vec			pixel_to_dir(__constant t_canvas *canvas,
+								t_float fov, t_int x, t_int y)
 {
-	if (width <= 0.0 || height <= 0.0)
-		*v = (__float2)(0.0, 0.0);
-	else
-	{
-		v->x = (v->x + 0.5) / width;
-		v->y = (v->y + 0.5) / height;
-	}
+	t_vec	dir;
+
+	dir.x = ((t_float)x + 0.5) / (t_float)canvas->width;
+	dir.y = ((t_float)y + 0.5) / (t_float)canvas->height;
+	dir.x = (2.0 * dir.x - 1.0) * fov * canvas->ratio[0];
+	dir.y = (1.0 - 2.0 * dir.y) * fov * canvas->ratio[1];
+	dir.z = 1.0;
+	normalize(dir);
+	return (dir);
 }
 
-void		ndc_to_cam_coord(__float2 v, t_vec *vec, t_float fov,
-							t_float aspect_ratio)
-{
-	t_float	ang;
-
-	ang = (DEG_TO_RAD * fov) / 2.0;
-	vec->x = (2.0 * v.x - 1.0) * tan(ang) * aspect_ratio;
-	vec->y = (1.0 - 2.0 * v.y) * tan(ang);
-	vec->z = 1;
-}
-
-void		pixel_to_ray_in_world(__constant t_camera *camera,
-				__constant t_canvas *canvas, t_ray *ray,
-				t_float x, t_float y)
-{
-	__float2	v;
-	t_vec		vec;
-
-	v = (__float2)(x, y);
-	raster_to_ndc(&v, (t_float)canvas->width, (t_float)canvas->height);
-	ndc_to_cam_coord(v, &vec, camera->fov, ((t_float)canvas->width / (t_float)canvas->height));
-	vec = vec + camera->origin;
-	ray->origin = camera->origin;
-	ray->dir = vec - ray->origin;
-	ray->refraction = 1.0;
-}
-
-__kernel void primary_rays(__constant t_canvas *canvas,
+__kernel void	primary_rays(__constant t_canvas *canvas,
 							__constant t_camera *camera, __global t_ray *rays)
 {
 	int		gid;
@@ -62,6 +38,8 @@ __kernel void primary_rays(__constant t_canvas *canvas,
 	gid = get_global_id(0);
 	x = gid % canvas->width;
 	y = gid / canvas->width;
-	pixel_to_ray_in_world(camera, canvas, &ray, x, y);
+	ray.origin = camera->origin;
+	ray.refraction = 1.0;
+	ray.dir = pixel_to_dir(canvas, camera->fov, x, y);
 	rays[gid] = ray;
 }

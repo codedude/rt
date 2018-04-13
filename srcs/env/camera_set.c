@@ -6,12 +6,13 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/10 18:11:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 15:56:58 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "libft.h"
+#include "ft_math.h"
 #include "types.h"
 #include "rt.h"
 
@@ -34,6 +35,6 @@ int		camera_set_fov(t_camera *camera, t_float fov)
 {
 	if (fov < 30.0 || fov > 120.0)
 		return (ERROR);
-	camera->fov = fov;
+	camera->fov = ft_tan(fov / 2.0);
 	return (SUCCESS);
 }
