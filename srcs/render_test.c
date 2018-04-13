@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/13 15:51:08 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 16:22:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ printf("Rays Execution time is: %0.3f milliseconds \n",nanoSeconds / 1000000.0);
 	nanoSeconds = time_end-time_start;
 printf("Inter Execution time is: %0.3f milliseconds \n\n",nanoSeconds / 1000000.0);
 
-	/*if (err != CL_SUCCESS)
+	if (err != CL_SUCCESS)
 	{
 		switch (err) {
 			case CL_INVALID_WORK_ITEM_SIZE:
@@ -97,7 +97,7 @@ printf("Inter Execution time is: %0.3f milliseconds \n\n",nanoSeconds / 1000000.
 		}
 		printf("err intersect\n");
 		return (ERROR);
-	}*/
+	}
 	err = clEnqueueReadBuffer(env->opencl.cmd_queue, env->opencl.buffers.screen,
 		CL_TRUE, 0, sizeof(t_uint) * rt->canvas.size, (void *)image,
 		0, NULL, NULL);

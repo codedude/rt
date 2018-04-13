@@ -23,7 +23,7 @@
 typedef struct		s_inter {
 	t_float			t;
 	t_int			id;
-	t_color			color;
+	t_vec			color;
 	t_vec			point;
 	t_vec			normal;
 }					t_inter;
