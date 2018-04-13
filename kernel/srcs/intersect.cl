@@ -203,6 +203,7 @@ __kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global
 
 	gid = get_global_id(0);
 	closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n, &interi);
+	inter[gid] = interi;
 	screen[gid] = get_color(interi.color);
 }
 
