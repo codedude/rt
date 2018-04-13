@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:05:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 15:58:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_canvas {
 	t_int			width;
 	t_int			height;
 	t_int			size;
+	t_float			ratio[2];
 	t_color			bg_color;
 }					t_canvas;
 

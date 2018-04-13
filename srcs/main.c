@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:30:08 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 15:10:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int			main(int argc, char **argv)
 		ft_putstr("Error : can't init opencl\n");
 		return (ERROR);
 	}
-
+	if (opencl_kernel_set(&env.opencl, rt) == ERROR)
+		return (ERROR);
 	render(&env, rt);
 
 	rt_destroy(&rt);

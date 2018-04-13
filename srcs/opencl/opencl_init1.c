@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:27:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/13 15:45:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				opencl_init_context(t_opencl *env)
 	env->context = clCreateContext(0, 1, &env->device, NULL, NULL, &err);
 	assert(err == CL_SUCCESS);
 	env->cmd_queue = clCreateCommandQueue(env->context, env->device,
-										0, NULL);
+										CL_QUEUE_PROFILING_ENABLE, &err);
+	assert(err == CL_SUCCESS);
 	return (SUCCESS);
 }
