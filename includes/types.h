@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:01:46 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 19:14:04 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 15:29:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef cl_double4		t_vec_d;
 
 t_id					gen_id(void);
 t_color					rgb_to_color(int r, int g, int b);
+void					get_fps(int show_fps, int refresh);
 
 #endif

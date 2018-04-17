@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 18:11:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 15:25:47 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <OpenCL/OpenCL.h>
 # include "types.h"
 # include "rt.h"
+# include "sdl_m.h"
 
 # define KERNEL_NUMBERS		2
 # define KERNEL_INCLUDES	"-I kernel/includes -I /usr/include"
@@ -58,5 +59,8 @@ int						opencl_update_camera(t_opencl *ocl, t_rt *rt);
 int						opencl_update_objects(t_opencl *ocl, t_rt *rt);
 
 int						opencl_kernel_set(t_opencl *ocl, t_rt *rt);
+
+void					opencl_err_enqueue(char *str, cl_int err);
+int						opencl_get_image(t_opencl *ocl, t_sdl *sdl);
 
 #endif

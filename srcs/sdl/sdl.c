@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:23:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:56:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 15:32:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int				sdl_init(t_sdl *sdl, int width, int height)
 		return (ERROR);
 	}
 	sdl->size_line = width * sizeof(t_uint);
+	sdl->size_buffer = height * sdl->size_line;
 	if (sdl_init2(sdl, width, height) == ERROR)
 		return (ERROR);
-	if ((sdl->image = (t_uint *)malloc(sdl->size_line * height)) == NULL)
+	if ((sdl->image = (t_uint *)malloc(sdl->size_buffer)) == NULL)
 	{
 		ft_putendl("Image buffer cannot be created !");
 		return (ERROR);
@@ -74,15 +75,10 @@ int				sdl_destroy(t_sdl *sdl)
 	return (SUCCESS);
 }
 
-int				sdl_update(t_sdl *sdl)
+int				sdl_render(t_sdl *sdl)
 {
 	SDL_UpdateTexture(sdl->texture, NULL, (void *)sdl->image, sdl->size_line);
 	SDL_RenderCopy(sdl->renderer, sdl->texture, NULL, NULL);
-	return (SUCCESS);
-}
-
-int				sdl_render(t_sdl *sdl)
-{
 	SDL_RenderPresent(sdl->renderer);
 	return (SUCCESS);
 }

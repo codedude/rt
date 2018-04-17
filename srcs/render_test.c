@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:55:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 15:36:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,15 @@
 #include "objects.h"
 #include "opencl.h"
 
-void	get_fps(int show_fps, int refresh)
-{
-	static struct timeval	last = {0, 0};
-	double					fps;
-	struct timeval			new;
-
-	if (show_fps == 0)
-		return ;
-	gettimeofday(&new, NULL);
-	if (refresh == 1)
-	{
-		fps = (new.tv_sec - last.tv_sec) * 1000 + (new.tv_usec - last.tv_usec)
-			/ 1000.;
-		ft_putstr("FPS : ");
-		ft_putnbr((int)(1000. / fps));
-		ft_putchar('\n');
-	}
-	last.tv_usec = new.tv_usec;
-	last.tv_sec = new.tv_sec;
-}
-
 int			run_cl(t_env *env)
 {
-	cl_int	err;
-	size_t	global_work_size;
-	size_t	buffer_size;
-	cl_ulong time_start;
-	cl_ulong time_end;
-	cl_event event;
-	double nanoSeconds;
+	cl_int		err;
+	size_t		global_work_size;
+	size_t		buffer_size;
+	cl_ulong	time_start;
+	cl_ulong	time_end;
+	cl_event	event;
+	double		nanoSeconds;
 
 	global_work_size = env->rt.canvas.size;
 	buffer_size = sizeof(t_ray) * global_work_size;
@@ -98,28 +77,9 @@ printf("Inter Execution time is: %0.3f milliseconds \n\n",nanoSeconds / 1000000.
 		printf("err intersect\n");
 		return (ERROR);
 	}
-	err = clEnqueueReadBuffer(env->opencl.cmd_queue, env->opencl.buffers.screen,
-		CL_TRUE, 0,
-		env->sdl.size_line * env->rt.canvas.height, (void *)env->sdl.image,
-		0, NULL, NULL);
 
-	sdl_update(&env->sdl);
-
-	if (err != CL_SUCCESS)
-	{
-		printf("err read back\n");	
-		switch (err) {
-			case CL_INVALID_MEM_OBJECT:
-				printf("mem\n"); break ;
-			case CL_INVALID_VALUE:
-				printf("value\n"); break ;
-			case CL_MEM_OBJECT_ALLOCATION_FAILURE :
-				printf("alloc\n"); break ;
-			default:
-				break ;
-		}
+	if (opencl_get_image(&env->opencl, &env->sdl) == ERROR)
 		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
@@ -127,11 +87,13 @@ void		loop(t_env *env)
 {
 	int			loop;
 	int			update;
+	int			show_fps;
 	SDL_Event	event;
 	t_vec		cam_pos;
 
 	loop = 1;
 	update = 1;
+	show_fps = 0;
 	while (loop == 1)
 	{
 		SDL_PollEvent(&event);
@@ -150,6 +112,8 @@ void		loop(t_env *env)
 				cam_pos.s[1] += 1.0;
         	else if (event.key.keysym.sym == SDLK_DOWN)
 				cam_pos.s[1] -= 1.0;
+			else if (event.key.keysym.sym == SDLK_f)
+				show_fps = !show_fps;
 			camera_set_origin(&env->rt.camera, cam_pos);
 			opencl_update_camera(&env->opencl, &env->rt);
         	update = 1;
@@ -162,7 +126,7 @@ void		loop(t_env *env)
 				break ;
 			}
 			sdl_render(&env->sdl);
-			get_fps(1, 1);
+			get_fps(show_fps, 1);
 			update = 0;
 		}
 	}

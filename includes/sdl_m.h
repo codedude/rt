@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:24:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:56:16 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 15:33:02 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_sdl {
 	SDL_Texture		*texture;
 	SDL_Renderer	*renderer;
 	size_t			size_line;
+	size_t			size_buffer;
 	SDL_Window		*window;
 }					t_sdl;
 
@@ -31,7 +32,6 @@ typedef struct		s_sdl {
 
 int					sdl_init(t_sdl *sdl, int width, int height);
 int					sdl_destroy(t_sdl *sdl);
-int					sdl_update(t_sdl *sdl);
 int					sdl_render(t_sdl *sdl);
 
 #endif
