@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/13 15:10:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 14:52:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "parser.h"
 #include "opencl.h"
 
-void		render(t_env *env, t_rt *rt);
+void		loop(t_env *env);
 
 /*
 ** rt + opencl_init_buffers se fait pour chaque fichier
@@ -29,30 +29,22 @@ void		render(t_env *env, t_rt *rt);
 int			main(int argc, char **argv)
 {
 	t_env		env;
-	t_rt		*rt;
 
 	if (argc < 2)
 	{
 		ft_putstr("rt : ./rtv1 SCENE\n");
 		return (EXIT_FAILURE);
 	}
-	if (env_init(&env) == ERROR)
+	if (env_init(&env, argv[1]) == ERROR)
 		return (EXIT_FAILURE);
-	if ((rt = rt_init(argv[1])) == NULL)
-	{
-		ft_putstr("Error : can't init env\n");
-		return (EXIT_FAILURE);
-	}
-	if (opencl_init_buffers(&env.opencl, rt) == ERROR)
+	if (opencl_init_buffers(&env.opencl, &env.rt) == ERROR)
 	{
 		ft_putstr("Error : can't init opencl\n");
 		return (ERROR);
 	}
-	if (opencl_kernel_set(&env.opencl, rt) == ERROR)
+	if (opencl_kernel_set(&env.opencl, &env.rt) == ERROR)
 		return (ERROR);
-	render(&env, rt);
-
-	rt_destroy(&rt);
+	loop(&env);
 	env_destroy(&env);
 	return (EXIT_SUCCESS);
 }

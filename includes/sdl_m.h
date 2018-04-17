@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   sdl_m.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:52:28 by vparis           ###   ########.fr       */
+/*   Created: 2018/04/17 14:24:09 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/17 14:56:16 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef SDL_M_H
+# define SDL_M_H
 
+# include <stdlib.h>
+# include "SDL.h"
 # include "types.h"
-# include "objects.h"
-# include "rt.h"
-# include "opencl.h"
-# include "sdl_m.h"
 
-typedef struct		s_env {
-	t_opencl		opencl;
-	t_sdl			sdl;
-	t_rt			rt;
-}					t_env;
+typedef struct		s_sdl {
+	t_uint			*image;
+	SDL_Texture		*texture;
+	SDL_Renderer	*renderer;
+	size_t			size_line;
+	SDL_Window		*window;
+}					t_sdl;
 
-int					env_init(t_env *env, char *filename);
-void				env_destroy(t_env *env);
+/*
+** sdl.c
+*/
+
+int					sdl_init(t_sdl *sdl, int width, int height);
+int					sdl_destroy(t_sdl *sdl);
+int					sdl_update(t_sdl *sdl);
+int					sdl_render(t_sdl *sdl);
 
 #endif

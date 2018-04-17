@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/13 16:09:40 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 14:51:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,31 @@ static void	set_ratio(t_rt *rt)
 ** Init all env at 0, init random, and parse file
 */
 
-t_rt		*rt_init(char *filename)
+int			rt_init(t_rt *rt, char *filename)
 {
-	t_rt	*rt;
 	char	**file;
 
-	if ((rt = (t_rt *)malloc(sizeof(t_rt))) == NULL)
-		return (NULL);
 	ft_bzero(rt, sizeof(t_rt));
 	objects_init(&rt->objects);
 	if ((file = read_file(filename)) == NULL)
-		return (NULL);
+		return (ERROR);
 	if (parse_file(rt, file) == ERROR)
 	{
 		ft_strsplit_free(file);
-		return (NULL);
+		return (ERROR);
 	}
 	set_ratio(rt);
 	ft_strsplit_free(file);
-	return (rt);
+	return (SUCCESS);
 }
 
 /*
 ** Reset rt
 */
 
-int			rt_destroy(t_rt **rt)
+int			rt_destroy(t_rt *rt)
 {
-	objects_destroy(&(*rt)->objects);
-	ft_bzero(*rt, sizeof(t_rt));
-	*rt = NULL;
+	objects_destroy(&rt->objects);
+	ft_bzero(rt, sizeof(t_rt));
 	return (SUCCESS);
 }

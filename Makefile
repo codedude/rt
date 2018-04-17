@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/12 17:21:05 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/17 14:38:13 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ OBJECTSD	=	objects
 PARSERD		=	parser
 UTILSD		=	utils
 OPENCLD		=	opencl
+SDLD		=	sdl
 SDLLIBD		=	$(HOME)/.brew/lib
 SDLINCD		=	$(HOME)/.brew/include/SDL2
 
@@ -41,6 +42,7 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 FILES		+=	$(OPENCLD)/opencl.c $(OPENCLD)/opencl_init1.c \
 				$(OPENCLD)/opencl_init2.c $(OPENCLD)/opencl_init3.c \
 				$(OPENCLD)/opencl_kernel.c
+FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))

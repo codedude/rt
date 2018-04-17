@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/13 15:58:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/17 14:56:07 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include "types.h"
 # include "objects.h"
-
-/*
-**
-*/
 
 typedef struct		s_inter {
 	t_float			t;
@@ -66,8 +62,8 @@ typedef struct		s_rt {
 	t_objects		objects;
 }					t_rt;
 
-t_rt				*rt_init(char *filename);
-int					rt_destroy(t_rt **rt);
+int					rt_init(t_rt *rt, char *filename);
+int					rt_destroy(t_rt *rt);
 
 int					camera_set_origin(t_camera *camera, t_vec v);
 int					camera_set_angle(t_camera *camera, t_vec v);
