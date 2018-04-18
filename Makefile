@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/17 15:21:17 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/18 15:08:50 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,10 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 FILES		+=	$(OPENCLD)/opencl.c $(OPENCLD)/opencl_init1.c \
-				$(OPENCLD)/opencl_init2.c $(OPENCLD)/opencl_init3.c \
-				$(OPENCLD)/opencl_kernel.c $(OPENCLD)/opencl_errors.c \
-				$(OPENCLD)/opencl_get_image.c
+				$(OPENCLD)/opencl_init2.c $(OPENCLD)/opencl_init_buffers.c \
+				$(OPENCLD)/opencl_update_buffers.c $(OPENCLD)/opencl_kernels.c \
+				$(OPENCLD)/opencl_errors.c $(OPENCLD)/opencl_get_image.c \
+				$(OPENCLD)/opencl_run.c
 FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))

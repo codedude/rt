@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opencl_kernel.c                                    :+:      :+:    :+:   */
+/*   opencl_kernels.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:12:47 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 19:47:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 14:57:51 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 #include "types.h"
 #include "opencl.h"
 #include "rt.h"
+
+int		opencl_kernel_set_object(t_opencl *ocl, t_rt *rt)
+{
+	cl_int	err;
+
+	err  = clSetKernelArg(ocl->kernels[1],  0, sizeof(cl_mem),
+		&ocl->buffers.objects);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[1],  3, sizeof(t_int),
+		&rt->objects.size);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	return (SUCCESS);
+}
 
 int		opencl_kernel_set(t_opencl *ocl, t_rt *rt)
 {

@@ -20,7 +20,7 @@ canvas
 
 camera
 {
-	origin = 0.0 10.0 -30.0
+	origin = 0.0 10.0 -40.0
 	ang = 0.0 0.0 0.0
 	fov = 45
 }

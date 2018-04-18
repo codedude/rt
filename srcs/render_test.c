@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 15:36:24 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 15:10:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,65 +23,6 @@
 #include "rt.h"
 #include "objects.h"
 #include "opencl.h"
-
-int			run_cl(t_env *env)
-{
-	cl_int		err;
-	size_t		global_work_size;
-	size_t		buffer_size;
-	cl_ulong	time_start;
-	cl_ulong	time_end;
-	cl_event	event;
-	double		nanoSeconds;
-
-	global_work_size = env->rt.canvas.size;
-	buffer_size = sizeof(t_ray) * global_work_size;
-	err = clEnqueueNDRangeKernel(env->opencl.cmd_queue, env->opencl.kernels[0],
-							1, NULL, &global_work_size, NULL, 0, NULL, &event);
-	
-	clWaitForEvents(1, &event);
-	clFinish(env->opencl.cmd_queue);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-
-	nanoSeconds = time_end-time_start;
-printf("Rays Execution time is: %0.3f milliseconds \n",nanoSeconds / 1000000.0);
-
-	if (err != CL_SUCCESS)
-	{
-		printf("err rays\n");
-		return (ERROR);
-	}
-	err = clEnqueueNDRangeKernel(env->opencl.cmd_queue, env->opencl.kernels[1],
-							1, NULL, &global_work_size, NULL, 0, NULL, &event);
-	clWaitForEvents(1, &event);
-	clFinish(env->opencl.cmd_queue);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-
-	nanoSeconds = time_end-time_start;
-printf("Inter Execution time is: %0.3f milliseconds \n\n",nanoSeconds / 1000000.0);
-
-	if (err != CL_SUCCESS)
-	{
-		switch (err) {
-			case CL_INVALID_WORK_ITEM_SIZE:
-				printf("args\n"); break ;
-			case CL_OUT_OF_RESOURCES:
-				printf("dim\n"); break ;
-			case CL_MEM_OBJECT_ALLOCATION_FAILURE :
-				printf("workgroup\n"); break ;
-			default:
-				break ;
-		}
-		printf("err intersect\n");
-		return (ERROR);
-	}
-
-	if (opencl_get_image(&env->opencl, &env->sdl) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
-}
 
 void		loop(t_env *env)
 {
@@ -101,7 +42,7 @@ void		loop(t_env *env)
 			loop = 0;
 		if (event.type == SDL_KEYDOWN)
 		{
-			cam_pos = camera_get_origin(&env->rt.camera);
+			cam_pos = camera_get_origin(&env->rt);
 			if (event.key.keysym.sym == SDLK_ESCAPE)
 				loop = 0;
 			else if (event.key.keysym.sym == SDLK_RIGHT)
@@ -114,13 +55,18 @@ void		loop(t_env *env)
 				cam_pos.s[1] -= 1.0;
 			else if (event.key.keysym.sym == SDLK_f)
 				show_fps = !show_fps;
-			camera_set_origin(&env->rt.camera, cam_pos);
-			opencl_update_camera(&env->opencl, &env->rt);
+			else if (event.key.keysym.sym == SDLK_d)
+			{
+				t_id id = env->rt.objects.objects_lst->object->id;
+				object_del(&(env->rt.objects), id);
+			}
+			camera_set_origin(&env->rt, cam_pos);
+			opencl_update_buffers(&env->opencl, &env->rt);
         	update = 1;
 		}
 		if (update == 1 || 1)
 		{
-			if (run_cl(env) == ERROR)
+			if (opencl_run_program(&env->opencl, &env->rt, &env->sdl) == ERROR)
 			{
 				printf("Rendering error\n");
 				break ;

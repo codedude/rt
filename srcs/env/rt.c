@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/17 14:51:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 14:20:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	set_ratio(t_rt *rt)
 		rt->canvas.ratio[0] = 1.0;
 		rt->canvas.ratio[1] = 1.0;
 	}
+	rt->canvas_update = 1;
 }
 
 /*

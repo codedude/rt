@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:52:20 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 14:42:32 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ int			main(int argc, char **argv)
 	}
 	if (env_init(&env, argv[1]) == ERROR)
 		return (EXIT_FAILURE);
-	if (opencl_init_buffers(&env.opencl, &env.rt) == ERROR)
-	{
-		ft_putstr("Error : can't init opencl\n");
-		return (ERROR);
-	}
-	if (opencl_kernel_set(&env.opencl, &env.rt) == ERROR)
-		return (ERROR);
 	loop(&env);
 	env_destroy(&env);
 	return (EXIT_SUCCESS);

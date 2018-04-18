@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 17:30:48 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 14:13:28 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void		print_kernel_error(t_opencl *env, cl_int err)
 	ft_putnbr((int)len);
 	ft_putstr("\n\n");
 	ft_putendl(logs);
-	exit(EXIT_FAILURE);
 }
 
 int				opencl_init_program(t_opencl *env, t_src_def *sources)
@@ -77,12 +76,16 @@ int				opencl_init_program(t_opencl *env, t_src_def *sources)
 		return (ERROR);
 	env->program = clCreateProgramWithSource(env->context, (cl_uint)count,
 		(const char **)program_srcs, NULL, &err);
-	assert(err == CL_SUCCESS);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	ft_strsplit_free(program_srcs);
 	err = clBuildProgram(env->program, 0, NULL, KERNEL_INCLUDES,
 		NULL, NULL);
 	if (err != CL_SUCCESS)
+	{
 		print_kernel_error(env, err);
+		return (ERROR);
+	}
 	return (SUCCESS);
 }
 
@@ -96,7 +99,8 @@ int				opencl_init_kernels(t_opencl *env, t_src_def *sources)
 	{
 		env->kernels[i] = clCreateKernel(env->program, sources[i].kernel,
 			&err);
-		assert(err == CL_SUCCESS);
+		if (err != CL_SUCCESS)
+			return (ERROR);
 		i++;
 	}
 	return (SUCCESS);

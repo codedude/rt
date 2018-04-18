@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:36:29 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 16:03:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 14:37:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int				opencl_init_device(t_opencl *env)
 	size_t		returned_size;
 
 	err = clGetDeviceIDs(NULL, CL_DEVICE_TYPE_CPU, 1, &env->cpu, NULL);
-	assert(err == CL_SUCCESS);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	err = clGetDeviceIDs(NULL, CL_DEVICE_TYPE_GPU, 1, &env->device, NULL);
 	if (err != CL_SUCCESS)
 		env->device = env->cpu;
@@ -47,7 +48,8 @@ int				opencl_init_device(t_opencl *env)
 						sizeof(vendor_name), vendor_name, &returned_size);
 	err |= clGetDeviceInfo(env->device, CL_DEVICE_NAME, sizeof(device_name),
 						device_name, &returned_size);
-	assert(err == CL_SUCCESS);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	print_infos(vendor_name, device_name);
 	return (SUCCESS);
 }
@@ -57,9 +59,11 @@ int				opencl_init_context(t_opencl *env)
 	cl_int		err;
 
 	env->context = clCreateContext(0, 1, &env->device, NULL, NULL, &err);
-	assert(err == CL_SUCCESS);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	env->cmd_queue = clCreateCommandQueue(env->context, env->device,
 										CL_QUEUE_PROFILING_ENABLE, &err);
-	assert(err == CL_SUCCESS);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	return (SUCCESS);
 }
