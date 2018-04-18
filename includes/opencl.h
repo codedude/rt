@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:37:23 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 15:07:49 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 23:18:56 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "sdl_m.h"
 
 # define KERNEL_NUMBERS		2
-# define KERNEL_INCLUDES	"-I kernel/includes"
+# define KERNEL_INCLUDES	"-I kernel/includes -ffloat-store"
 
 typedef struct			s_src_def {
 	const char			*file;
