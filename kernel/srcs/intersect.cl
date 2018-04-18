@@ -216,11 +216,13 @@ unsigned int	get_color(t_vec color)
 
 __kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
 {
-	int		gid;
+	int		x;
+	int		y;
 	t_inter	interi;
 
-	gid = get_global_id(0);
-	closest_inter(rays[gid], T_MIN, LONG_MAX, obj, n, &interi);
-	inter[gid] = interi;
-	screen[gid] = get_color(interi.color);
+	x = get_global_id(1);
+	y = get_global_id(0);
+	closest_inter(rays[x + y * 1024], T_MIN, LONG_MAX, obj, n, &interi);
+	inter[x + y * 1024] = interi;
+	screen[x + y * 1024] = get_color(interi.color);
 }

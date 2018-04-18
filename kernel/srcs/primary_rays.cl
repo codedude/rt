@@ -28,18 +28,16 @@ t_vec			pixel_to_dir(__constant t_canvas *canvas,
 }
 
 __kernel void	primary_rays(__constant t_canvas *canvas,
-							__constant t_camera *camera, __global t_ray *rays)
+							__constant t_camera *camera,
+							__global t_ray *rays)
 {
-	int		gid;
-	int		x;
-	int		y;
+	int		x, y;
 	t_ray	ray;
 
-	gid = get_global_id(0);
-	x = gid % canvas->width;
-	y = gid / canvas->width;
+	x = get_global_id(1);
+	y = get_global_id(0);
 	ray.origin = camera->origin;
 	ray.refraction = 1.0;
 	ray.dir = pixel_to_dir(canvas, camera->fov, x, y);
-	rays[gid] = ray;
+	rays[y * canvas->width + x] = ray;
 }

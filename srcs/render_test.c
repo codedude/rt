@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 15:10:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/18 16:13:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		loop(t_env *env)
 			opencl_update_buffers(&env->opencl, &env->rt);
         	update = 1;
 		}
-		if (update == 1 || 1)
+		if (update == 1)
 		{
 			if (opencl_run_program(&env->opencl, &env->rt, &env->sdl) == ERROR)
 			{
