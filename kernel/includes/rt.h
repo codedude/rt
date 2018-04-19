@@ -39,7 +39,7 @@ typedef struct			s_object {
 	t_vec				intensity;
 	t_float				radius;
 	t_float				radius2;
-	t_float				phong[PHONGS];
+	t_vec				phong;
 	t_float				reflexion;
 	t_float				transparency;
 	t_float				refraction;
@@ -53,6 +53,8 @@ typedef struct		s_inter {
 	t_int			id;
 	t_vec			color;
 	t_vec			point;
+	t_float			refraction;
+	t_vec			phong;
 	t_vec			normal;
 }					t_inter;
 
@@ -76,13 +78,12 @@ typedef struct		s_camera {
 	t_float			fov;
 }					t_camera;
 
-__kernel void		primary_rays(__constant t_canvas *canvas,
-						__constant t_camera *camera, __global t_ray *rays);
-t_vec				pixel_to_dir(__constant t_canvas *canvas,
-						t_float fov, t_int x, t_int y);
+__kernel void		primary_rays(__constant t_canvas *canvas, __constant t_camera *camera, __global t_ray *rays);
+t_vec				pixel_to_dir(__constant t_canvas *canvas, t_float fov, t_int x, t_int y);
+
 
 __kernel void		intersect(__constant t_object *obj, __global t_ray *rays,
-						__global t_inter *inter, int n, __global unsigned int *screen);
+						__global t_inter *inter, int n);
 __float2	quadratic(t_float a, t_float b, t_float c);
 t_float	r_inter_cone2(t_ray ray, t_object cone, t_vec axis, __float2 t);
 t_float	r_inter_cone(t_ray ray, t_object cone);
@@ -92,6 +93,23 @@ t_float	r_inter_sphere(t_ray ray, t_object sphere);
 t_float	r_inter_plan(__private t_ray ray, __private t_object plan);
 t_float inters(__private t_ray ray, __private t_object obj);
 void		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n, t_inter *interi);
+t_vec		compute_normal(t_vec point, t_object obj);
+t_vec		sphere_normal(t_vec center, t_vec point);
+t_vec		cyl_normal(t_vec bottom, t_vec top, t_vec point);
+t_vec		cone_normal(t_object cone, t_vec point);
 unsigned int	get_color(t_vec color);
+
+
+__kernel void	light(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, __global t_vec *intensity, int n);
+t_float		is_there_inter(t_ray ray, float t_min, float t_max, __constant t_object *obj, int n);
+__float2	light_quadratic(t_float a, t_float b, t_float c);
+t_float	light_r_inter_cone2(t_ray ray, t_object cone, t_vec axis, __float2 t);
+t_float	light_r_inter_cone(t_ray ray, t_object cone);
+t_float	light_r_inter_cylinder(t_ray ray, t_object cylinder);
+t_float	light_r_inter_cyl2(t_ray ray, t_object cylinder, t_vec axis, __float2 t);
+t_float	light_r_inter_sphere(t_ray ray, t_object sphere);
+t_float	light_r_inter_plan(__private t_ray ray, __private t_object plan);
+t_float light_inters(__private t_ray ray, __private t_object obj);
+__kernel void	compute_color(__global t_inter *inter, __global t_vec *intensity, __global unsigned int *screen);
 
 #endif

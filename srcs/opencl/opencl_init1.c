@@ -66,4 +66,5 @@ int				opencl_init_context(t_opencl *env)
 	if (err != CL_SUCCESS)
 		return (ERROR);
 	return (SUCCESS);
+
 }

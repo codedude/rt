@@ -55,5 +55,11 @@ int			opencl_init_buffers(t_opencl *ocl, t_rt *rt)
 	if (err != CL_SUCCESS || ocl->buffers.inters == NULL)
 		return (ERROR);
 
+	ocl->buffers.intensity = clCreateBuffer(ocl->context,
+		CL_MEM_READ_WRITE,
+		sizeof(t_vec) * rt->canvas.size, NULL, &err);
+	if (err != CL_SUCCESS || ocl->buffers.intensity == NULL)
+		return (ERROR);
+
 	return (SUCCESS);
 }

@@ -22,6 +22,8 @@ static t_src_def	*opencl_get_source_files(void)
 	static t_src_def	sources[] = {
 		{"kernel/srcs/primary_rays.cl", "primary_rays"},
 		{"kernel/srcs/intersect.cl", "intersect"},
+		{"kernel/srcs/light.cl", "light"},
+		{"kernel/srcs/compute_color.cl", "compute_color"},
 		{NULL, NULL}
 	};
 
@@ -75,6 +77,7 @@ int					opencl_destroy(t_opencl *ocl)
 	clReleaseMemObject(ocl->buffers.screen);
 	clReleaseMemObject(ocl->buffers.rays);
 	clReleaseMemObject(ocl->buffers.inters);
+	clReleaseMemObject(ocl->buffers.intensity);
 	clReleaseCommandQueue(ocl->cmd_queue);
 	clReleaseContext(ocl->context);
 	clReleaseProgram(ocl->program);

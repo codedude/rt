@@ -34,16 +34,77 @@ void		closest_inter(t_ray ray, float t_min, float t_max, __constant t_object *ob
 			interi->t = t;
 			interi->id = i;
 			interi->color = obj[i].color;
+			//interi->refraction = obj[i].refraction;
+			//interi->phong = obj[i].phong;
 		}
 		i++;
 	}
 	if (interi->id > -1)
 	{
 		interi->point = (interi->t * ray.dir) + ray.origin;
-//		inter.normal = compute_normal(inter.point, obj[inter.id]);
+		//interi->normal = compute_normal(interi->point, obj[interi->id]);
+		//if (dot(ray.dir, interi->normal) > 0)
+		//	interi->normal *= -1;
 	}
 
 }
+
+t_vec		compute_normal(t_vec point, t_object obj)
+{
+	t_vec	normal;
+
+	normal = (t_vec)(0.0f, 0.0f, 0.0f, 0.0f);
+	if (obj.type == PLANE)
+		normal = obj.dir;
+	if (obj.type == SPHERE)
+		normal = sphere_normal(obj.pos, point);
+	/*if (obj.type == CYLINDER)
+		normal = cyl_normal(shp->shape->cyl.bottom,
+				shp->shape->cyl.top, intersection);
+	if (obj.type == CONE)
+		normal = cone_normal(shp->shape->cone, intersection);*/
+	return (normal);
+}
+
+
+t_vec		sphere_normal(t_vec center, t_vec point)
+{
+	t_vec	ret;
+
+	ret = point - center;
+	ret = normalize(ret);
+	return (ret);
+}
+
+/*t_vec		cyl_normal(t_vec bottom, t_vec top, t_vec point)
+{
+	t_vec	ret;
+	t_vec	axis;
+	t_vec	pt_dir;
+	t_vec	bot_dir;
+
+	bot_dir = from_to(point, bottom);
+	axis = vec3_normalize(from_to(bottom, top));
+	pt_dir = from_to(bottom, point);
+	pt_dir = mat3_mult_vec3(rot_around_vec(axis, M_PI), pt_dir);
+	pt_dir = vec_add(bottom, pt_dir);
+	ret = vec3_normalize(from_to(pt_dir, point));
+	return (ret);
+}
+
+t_vec		cone_normal(t_cone c, t_vec point)
+{
+	t_vec	ret;
+	t_vec	v;
+	t_vec	ap;
+
+	v = vec3_normalize(from_to(c.bottom, c.apex));
+	ap = from_to(c.apex, point);
+	ret = scaling(v, ((1 + pow(tan(c.angle), 2)) * dot(vec3_opposite(ap), v)));
+	ret = vec_add(ap, ret);
+	ret = vec3_normalize(ret);
+	return (ret);
+}*/
 
 
 t_float inters(__private t_ray ray, __private t_object obj)
@@ -196,25 +257,9 @@ __float2	quadratic(t_float a, t_float b, t_float c)
 	return (ret);
 }
 
-unsigned int	get_color(t_vec color)
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	c;
 
-	b = (unsigned int)(color.z * 255.0);
-	g = (unsigned int)(color.y * 255.0);
-	r = (unsigned int)(color.x * 255.0);
 
-	c = 0;
-	c |= (b & 0xFF);
-	c |= (g & 0xFF) << 8;
-	c |= (r & 0xFF) << 16;
-	return (c);
-}
-
-__kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n, __global unsigned int *screen)
+__kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global t_inter *inter, int n)
 {
 	int		x;
 	int		y;
@@ -224,5 +269,4 @@ __kernel void intersect(__constant t_object *obj, __global t_ray *rays, __global
 	y = get_global_id(0);
 	closest_inter(rays[x + y * 1024], T_MIN, LONG_MAX, obj, n, &interi);
 	inter[x + y * 1024] = interi;
-	screen[x + y * 1024] = get_color(interi.color);
 }

@@ -30,6 +30,15 @@ int		opencl_kernel_set_object(t_opencl *ocl, t_rt *rt)
 		&rt->objects.size);
 	if (err != CL_SUCCESS)
 		return (ERROR);
+
+		err  = clSetKernelArg(ocl->kernels[2],  0, sizeof(cl_mem),
+		&ocl->buffers.objects);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[2],  4, sizeof(t_int),
+		&rt->objects.size);
+	if (err != CL_SUCCESS)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -66,7 +75,37 @@ int		opencl_kernel_set(t_opencl *ocl, t_rt *rt)
 		&rt->objects.size);
 	if (err != CL_SUCCESS)
 		return (ERROR);
-	err  = clSetKernelArg(ocl->kernels[1],  4, sizeof(cl_mem),
+
+	err  = clSetKernelArg(ocl->kernels[2],  0, sizeof(cl_mem),
+		&ocl->buffers.objects);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[2],  1, sizeof(cl_mem),
+		&ocl->buffers.rays);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[2],  2, sizeof(cl_mem),
+		&ocl->buffers.inters);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[2],  3, sizeof(cl_mem),
+		&ocl->buffers.intensity);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[2],  4, sizeof(t_int),
+		&rt->objects.size);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+
+	err  = clSetKernelArg(ocl->kernels[3],  0, sizeof(cl_mem),
+		&ocl->buffers.inters);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[3],  1, sizeof(cl_mem),
+		&ocl->buffers.intensity);
+	if (err != CL_SUCCESS)
+		return (ERROR);
+	err  = clSetKernelArg(ocl->kernels[3],  2, sizeof(cl_mem),
 		&ocl->buffers.screen);
 	if (err != CL_SUCCESS)
 		return (ERROR);

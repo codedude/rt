@@ -79,10 +79,10 @@ int				opencl_init_program(t_opencl *env, t_src_def *sources)
 	if (err != CL_SUCCESS)
 		return (ERROR);
 	ft_strsplit_free(program_srcs);
-	err = clBuildProgram(env->program, 0, NULL, KERNEL_INCLUDES,
-		NULL, NULL);
+	err = clBuildProgram(env->program, 0, NULL, KERNEL_INCLUDES, NULL, NULL);
 	if (err != CL_SUCCESS)
 	{
+		opencl_err_enqueue("Probleme dans build programme", err);
 		print_kernel_error(env, err);
 		return (ERROR);
 	}

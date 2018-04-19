@@ -18,8 +18,8 @@
 # include "rt.h"
 # include "sdl_m.h"
 
-# define KERNEL_NUMBERS		2
-# define KERNEL_INCLUDES	"-I kernel/includes -ffloat-store"
+# define KERNEL_NUMBERS		4
+# define KERNEL_INCLUDES	"-I kernel/includes"
 
 typedef struct			s_src_def {
 	const char			*file;
@@ -33,6 +33,7 @@ typedef struct			s_opencl_buffer {
 	cl_mem				screen;
 	cl_mem				rays;
 	cl_mem				inters;
+	cl_mem 				intensity;
 }						t_opencl_buffer;
 
 typedef struct			s_opencl {
