@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/18 15:08:50 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/20 17:20:17 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ LIBFTD		=	libft
 ENVD		=	env
 OBJECTSD	=	objects
 PARSERD		=	parser
+RENDERD		=	render
 UTILSD		=	utils
-OPENCLD		=	opencl
+LIBTPOOLD	=	libtpool
 SDLD		=	sdl
 SDLLIBD		=	$(HOME)/.brew/lib
 SDLINCD		=	$(HOME)/.brew/include/SDL2
@@ -39,20 +40,18 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
-FILES		+=	$(OPENCLD)/opencl.c $(OPENCLD)/opencl_init1.c \
-				$(OPENCLD)/opencl_init2.c $(OPENCLD)/opencl_init_buffers.c \
-				$(OPENCLD)/opencl_update_buffers.c $(OPENCLD)/opencl_kernels.c \
-				$(OPENCLD)/opencl_errors.c $(OPENCLD)/opencl_get_image.c \
-				$(OPENCLD)/opencl_run.c
+FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
+				$(RENDERD)/render_update.c
 FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-O3 -flto -march=native -std=c11 -pedantic \
-				-I$(LIBFTD)/includes -I$(INCD) -I$(SDLINCD)
+				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
+				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
-LDLIBS		+=	-L$(LIBFTD) -lft -lm -framework OpenCL \
+LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
 				-L$(SDLLIBD) -lsdl2
 
 .PHONY: clean fclean re
@@ -62,10 +61,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFTD)
 	$(CC) $(CFLAGS) -o $(NAME) $^ $(LDLIBS)
-	@echo "rtv1 - compiled"
+	@echo "rt - compiled"
 
 libs:
 	make -C $(LIBFTD)
+	make -C $(LIBTPOOLD)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $<

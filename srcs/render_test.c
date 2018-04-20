@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 16:13:53 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 17:18:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <math.h>
-#include <OpenCL/OpenCL.h>
-#include <assert.h>
 #include "libft.h"
 #include "env.h"
 #include "rt.h"
 #include "objects.h"
-#include "opencl.h"
+#include "render.h"
 
 void		loop(t_env *env)
 {
@@ -46,13 +44,13 @@ void		loop(t_env *env)
 			if (event.key.keysym.sym == SDLK_ESCAPE)
 				loop = 0;
 			else if (event.key.keysym.sym == SDLK_RIGHT)
-				cam_pos.s[0] += 1.0;
+				cam_pos[0] += 1.0;
 			else if (event.key.keysym.sym == SDLK_LEFT)
-				cam_pos.s[0] -= 1.0;
+				cam_pos[0] -= 1.0;
         	else if (event.key.keysym.sym == SDLK_UP)
-				cam_pos.s[1] += 1.0;
+				cam_pos[1] += 1.0;
         	else if (event.key.keysym.sym == SDLK_DOWN)
-				cam_pos.s[1] -= 1.0;
+				cam_pos[1] -= 1.0;
 			else if (event.key.keysym.sym == SDLK_f)
 				show_fps = !show_fps;
 			else if (event.key.keysym.sym == SDLK_d)
@@ -61,16 +59,12 @@ void		loop(t_env *env)
 				object_del(&(env->rt.objects), id);
 			}
 			camera_set_origin(&env->rt, cam_pos);
-			opencl_update_buffers(&env->opencl, &env->rt);
+			render_update(env);
         	update = 1;
 		}
 		if (update == 1)
 		{
-			if (opencl_run_program(&env->opencl, &env->rt, &env->sdl) == ERROR)
-			{
-				printf("Rendering error\n");
-				break ;
-			}
+			render_compute(env);
 			sdl_render(&env->sdl);
 			get_fps(show_fps, 1);
 			update = 0;

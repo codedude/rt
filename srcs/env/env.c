@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:54:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 14:46:02 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 15:58:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <time.h>
 #include "libft.h"
 #include "env.h"
-#include "opencl.h"
+
 #include "sdl_m.h"
 
 int		env_init(t_env *env, char *filename)
@@ -32,17 +32,14 @@ int		env_init(t_env *env, char *filename)
 		ft_putstr("Error : can't init sdl\n");
 		return (ERROR);
 	}
-	if (opencl_init(&env->opencl, &env->rt) == ERROR)
-	{
-		ft_putstr("Error : can't init opencl\n");
+	if ((env->tp = tp_create(TP_AUTO_THREADS, TP_ON_START)) == NULL)
 		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
 void	env_destroy(t_env *env)
 {
 	rt_destroy(&env->rt);
-	opencl_destroy(&env->opencl);
 	sdl_destroy(&env->sdl);
+	tp_destroy(&env->tp);
 }

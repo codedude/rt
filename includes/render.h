@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec.c                                              :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 16:01:41 by vparis           ###   ########.fr       */
+/*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/20 17:18:25 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "types.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-t_float		vec_dot(t_vec v1, t_vec v2)
-{
-	t_vec	r;
+typedef struct	s_algo {
+	t_env		*env;
+	int			start;
+	int			end;
+}				t_algo;
 
-	r = v1 * v2;
-	return (r[0] + r[1] + r[2]);
-}
+void			render_compute(t_env *env);
+int				render_update(t_env *env);
 
-t_float		vec_len(t_vec v1)
-{
-	return (sqrt(vec_dot(v1, v1)));
-}
+int				rt(void *data);
 
-void		vec_norm(t_vec v1)
-{
-	t_float	len;
-
-	len = vec_len(v1);
-	if (len > 0.0)
-	{
-		len = 1.0 / len;
-		v1[0] *= len;
-		v1[1] *= len;
-		v1[2] *= len;
-	}
-}
+#endif

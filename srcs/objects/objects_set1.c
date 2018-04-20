@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/10 18:15:30 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 15:51:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ int		object_set_dir(t_object *obj, t_vec dir)
 
 int		object_set_intensity(t_object *obj, t_vec intensity)
 {
-	obj->intensity = (t_vec){{
-		clamp_f32(intensity.s[0], 0.0, 10.0),
-		clamp_f32(intensity.s[1], 0.0, 10.0),
-		clamp_f32(intensity.s[2], 0.0, 10.0),
-		0.0}};
+	obj->intensity = (t_vec){
+		clamp_f32(intensity[0], 0.0, 10.0),
+		clamp_f32(intensity[1], 0.0, 10.0),
+		clamp_f32(intensity[2], 0.0, 10.0),
+		0.0};
 	return (SUCCESS);
 }
 
 int		object_set_color(t_object *obj, t_vec color)
 {
-	obj->color = (t_vec){{
-		(t_float)clamp_i32(color.s[0], 0, 255) / 255.,
-		(t_float)clamp_i32(color.s[1], 0, 255) / 255.,
-		(t_float)clamp_i32(color.s[2], 0, 255) / 255.,
-		0.0}};
+	obj->color = (t_vec){
+		(t_float)clamp_i32(color[0], 0, 255) / 255.,
+		(t_float)clamp_i32(color[1], 0, 255) / 255.,
+		(t_float)clamp_i32(color[2], 0, 255) / 255.,
+		0.0};
 	return (SUCCESS);
 }
 

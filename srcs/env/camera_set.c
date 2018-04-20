@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/18 14:18:11 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 15:48:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int		camera_set_origin(t_rt *rt, t_vec v)
 int		camera_set_angle(t_rt *rt, t_vec v)
 {
 	rt->camera_update = 1;
-	rt->camera.angle = (t_vec){{
-		fmodf(v.s[0], 360.0),
-		fmodf(v.s[1], 360.0),
-		fmodf(v.s[1], 360.0)}};
+	rt->camera.angle = (t_vec){
+		fmodf(v[0], 360.0),
+		fmodf(v[1], 360.0),
+		fmodf(v[1], 360.0)};
 	return (SUCCESS);
 }
 

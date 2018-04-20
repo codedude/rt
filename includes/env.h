@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 14:52:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 15:55:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 # include "types.h"
 # include "objects.h"
 # include "rt.h"
-# include "opencl.h"
+# include "ft_tpool.h"
+
 # include "sdl_m.h"
 
+# define THREADS		8
+# define TASKS			32
+
 typedef struct		s_env {
-	t_opencl		opencl;
+	t_tpool			*tp;
 	t_sdl			sdl;
 	t_rt			rt;
 }					t_env;

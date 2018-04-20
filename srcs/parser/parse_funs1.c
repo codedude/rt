@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:30:20 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 14:21:24 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/20 15:51:39 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		parse_t_ang(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_angle(env, (t_vec){{n[0], n[1], n[2], 0.0}}));
+	return (camera_set_angle(env, (t_vec){n[0], n[1], n[2], 0.0}));
 }
 
 int		parse_t_fov(void *data, char **strs)
