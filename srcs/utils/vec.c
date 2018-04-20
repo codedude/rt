@@ -39,3 +39,23 @@ void		vec_norm(t_vec v1)
 		v1[2] *= len;
 	}
 }
+
+t_vec		vec3_add(t_vec a, t_vec b)
+{
+	t_vec	ret;
+
+	ret.x = a.x + b.x;
+	ret.y = a.y + b.y;
+	ret.z = a.z + b.z;
+	return (ret);
+}
+
+t_vec		from_to(t_vec from, t_vec to)
+{
+	t_vec	ret;
+
+	ret.x = to.x - from.x;
+	ret.y = to.y - from.y;
+	ret.z = to.z - from.z;
+	return (ret);
+}

@@ -13,6 +13,9 @@
 #ifndef RT_H
 # define RT_H
 
+# define DEPTH	5
+# define REFRACTION_INDEX 1.0f
+
 # include "types.h"
 # include "objects.h"
 
