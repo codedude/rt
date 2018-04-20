@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/20 17:20:17 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/20 18:26:21 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,25 +60,24 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFTD)
+	make -C $(LIBTPOOLD)
 	$(CC) $(CFLAGS) -o $(NAME) $^ $(LDLIBS)
 	@echo "rt - compiled"
-
-libs:
-	make -C $(LIBFTD)
-	make -C $(LIBTPOOLD)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $<
 
 clean:
 	make -C $(LIBFTD) clean
+	make -C $(LIBTPOOLD) clean
 	@rm -f $(OBJS)
-	@echo "rtv1 - cleaned"
+	@echo "rt - cleaned"
 
 fclean: clean
 	make -C $(LIBFTD) __fclean
+	make -C $(LIBTPOOLD) __fclean
 	@rm -f $(NAME)
-	@echo "rtv1 - lib cleaned"
+	@echo "rt - lib cleaned"
 
 re: fclean all
 
