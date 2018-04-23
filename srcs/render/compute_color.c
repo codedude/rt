@@ -22,26 +22,26 @@
 t_uint			compute_color(t_ray ray, int depth, t_rt *rt)
 {
 	t_inter		inter;
-	t_uint local;
-	t_vec	intensity;
+	t_uint		local;
+	t_vec		intensity;
 	
 
-	inter = closest_intersect(ray, 0.00000001, LONG_MAX, rt->objects);
+	closest_intersect(ray, LONG_MAX, rt->objects, &inter);
 	local = BACKGROUND;
-	if (inter.id < 0)
+	/*if (inter.obj == NULL)
 		return (BACKGROUND);
-	intensity = light(inter, vec3_opposite(ray.dir), rt);
-	local = color_intensity(intensity, rt->objects.object_array[inter.id].color);
-	if (rt->objects.object_array[inter.id].reflexion > 0)
+	intensity = light(inter, vec_opposite(ray.dir), rt);
+	local = color_intensity(intensity, inter.obj->color);
+	if (inter.obj->reflexion > 0)
 	{
-		local = calc_color((1.0 - rt->objects.object_array[inter.id].reflexion), local)
-		+ calc_color(rt->objects.object_array[inter.id].reflexion, reflect(ray, rt, depth, inter));
+		local = calc_color((1.0 - inter.obj->reflexion), local)
+		+ calc_color(inter.obj->reflexion, reflect(ray, rt, depth, inter));
 		if (local > COLOR_MAX)
 			return (COLOR_MAX);
 	}
-	if (rt->objects.object_array[inter.id].transparency > 0 &&
-		rt->objects.object_array[inter.id].refraction >= 1.0)
-		local = transmitted_light(ray, inter, depth, rt, local);
+	if (inter.obj->transparency > 0 &&
+		inter.obj->refraction >= 1.0)
+		local = transmitted_light(ray, inter, depth, rt, local);*/
 	return (local);
 }
 
@@ -52,25 +52,27 @@ t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color
 	t_uint		reflected_color;
 
 	kr = fresnel(ray, inter);
+	refraction_color = 0;
+	reflected_color = 0;
 	if (kr < 1)
 	{
-		refraction_color = refract(ray, env, depth, inter);
+		refraction_color = refract(ray, rt, depth, inter);
 	}
-	reflected_color = reflect(ray, env, depth, inter);
+	reflected_color = reflect(ray, rt, depth, inter);
 	refraction_color = calc_color(1.0 - kr, refraction_color) + calc_color(kr, reflected_color);
 	if (refraction_color > COLOR_MAX)
 		refraction_color = COLOR_MAX;
-	local = calc_color(1.0 - inter.shp->transp, local_color) + calc_color(inter.shp->transp, refraction_color);
-	if (local_color > COLOR_MAX)
+	local = calc_color(1.0 - inter.obj->transparency, local) + calc_color(inter.obj->transparency, refraction_color);
+	if (local > COLOR_MAX)
 		return (COLOR_MAX);
-	return (local)
+	return (local);
 }
 
 t_uint		color_intensity(t_vec intensity, t_vec color)
 {
 	t_uint	ret;
 
-	ret = rgb_to_color(color.x * intensity.x, color.y * intensity.y, color.z * intensity.z);
+	ret = rgb_to_color(color[0] * intensity[0], color[1] * intensity[1], color[2] * intensity[2]);
 	return (ret);
 }
 
@@ -98,5 +100,5 @@ t_uint		calc_color(t_float i, t_uint color)
 		b = 255.0;
 	if (b < 0)
 		b = 0;
-	return ((t_uint)(RGB((int)r, (int)g, (int)b));
+	return ((t_uint)(RGB((int)r, (int)g, (int)b)));
 }

@@ -19,44 +19,17 @@
 #include "render.h"
 #include "rt.h"
 
-t_vec		scaling(t_vec vec, float a)
+t_vec		vec_scalar(t_vec vec, t_float a)
 {
 	t_vec	ret;
 
-	ret.x = vec.x * a;
-	ret.y = vec.y * a;
-	ret.z = vec.z * a;
+	ret[0] = vec[0] * a;
+	ret[1] = vec[1] * a;
+	ret[2] = vec[2] * a;
 	return (ret);
 }
 
-t_vec		vec3_sub(t_vec a, t_vec b)
+t_vec		vec_opposite(t_vec a)
 {
-	t_vec	ret;
-
-	ret.x = a.x - b.x;
-	ret.y = a.y - b.y;
-	ret.z = a.z - b.z;
-	return (ret);
-}
-
-t_vec		vec3_opposite(t_vec a)
-{
-	a.x *= -1.0;
-	a.y *= -1.0;
-	a.z *= -1.0;
-	return (a);
-}
-
-
-t_vec		vec3_normalize(t_vec v)
-{
-	double	length;
-
-	if ((length = 1.0 / vec_len(v)))
-	{
-		v.x *= length;
-		v.y *= length;
-		v.z *= length;
-	}
-	return (v);
+	return (vec_scalar(a, -1.0));
 }

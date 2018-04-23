@@ -23,20 +23,6 @@
 # include "objects.h"
 # include <limits.h>
 
-typedef struct		s_inter {
-	t_float			t;
-	t_int			id;
-	t_vec			color;
-	t_vec			point;
-	t_vec			normal;
-}					t_inter;
-
-typedef struct		s_ray {
-	t_vec			origin;
-	t_vec			dir;
-	t_float			refraction;
-}					t_ray;
-
 /*
 ** Canvas : the physical window, can change
 */
