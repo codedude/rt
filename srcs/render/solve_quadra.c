@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve_quadra.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:38:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 17:54:59 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 22:59:22 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_float		solve_quadra(t_float abc[3], t_float *t)
 		return (ERROR);
 	if (s[0] < FLOAT_MIN)
 		s[0] = s[1];
-	else if (s[1] >= FLOAT_MIN && s[1] < s[0])
+	else if (s[1] > FLOAT_MIN && s[1] < s[0])
 		s[0] = s[1];
 	*t = s[0];
 	return (SUCCESS);
