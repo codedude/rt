@@ -60,7 +60,7 @@ t_ray 	compute_primary_rays(int x, int y, t_canvas canvas, t_camera)
 	ray.dir.x = (2.0 * ray.dir.x - 1.0) * canvas->ratio[0];
 	ray.dir.y = (1.0 - 2.0 * ray.dir.y) * canvas->ratio[1];
 	ray.dir.z = 1.0;
-	normalize(ray.dir);
+	vec_norm(ray.dir);
 	ray.origin = camera.origin;
 	ray.ref_index = REFRACTION_INDEX;
 	return (ray);

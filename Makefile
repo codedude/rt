@@ -41,7 +41,11 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
-				$(RENDERD)/render_update.c
+				$(RENDERD)/compute_color.c \
+				$(RENDERD)/compute_intersection.c \
+				$(RENDERD)/light.c \
+				$(RENDERD)/light_effect.c \
+				$(RENDERD)/normal.c 
 FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))

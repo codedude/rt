@@ -15,9 +15,13 @@
 
 # define DEPTH	5
 # define REFRACTION_INDEX 1.0f
+# define RGB(r, g, b) (256 * 256 * (int)(r) + 256 * (int)(g) + (int)(b))
+# define BACKGROUND RGB(77, 167, 238)
+# define COLOR_MAX 16777215
 
 # include "types.h"
 # include "objects.h"
+# include <limits.h>
 
 typedef struct		s_inter {
 	t_float			t;

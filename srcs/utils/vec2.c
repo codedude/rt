@@ -19,16 +19,6 @@
 #include "render.h"
 #include "rt.h"
 
-t_vec		from_to(t_vec from, t_vec to)
-{
-	t_vec	ret;
-
-	ret.x = to.x - from.x;
-	ret.y = to.y - from.y;
-	ret.z = to.z - from.z;
-	return (ret);
-}
-
 t_vec		scaling(t_vec vec, float a)
 {
 	t_vec	ret;
@@ -37,14 +27,6 @@ t_vec		scaling(t_vec vec, float a)
 	ret.y = vec.y * a;
 	ret.z = vec.z * a;
 	return (ret);
-}
-
-t_vec		translation(t_vec vec, t_vec trans)
-{
-	vec.x += trans.x;
-	vec.y += trans.y;
-	vec.z += trans.z;
-	return (vec);
 }
 
 t_vec		vec3_sub(t_vec a, t_vec b)
@@ -63,4 +45,18 @@ t_vec		vec3_opposite(t_vec a)
 	a.y *= -1.0;
 	a.z *= -1.0;
 	return (a);
+}
+
+
+t_vec		vec3_normalize(t_vec v)
+{
+	double	length;
+
+	if ((length = 1.0 / vec_len(v)))
+	{
+		v.x *= length;
+		v.y *= length;
+		v.z *= length;
+	}
+	return (v);
 }

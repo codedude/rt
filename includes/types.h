@@ -28,7 +28,7 @@ typedef t_double		t_vec_d __attribute__((vector_size(32),aligned(32)));
 */
 
 t_id					gen_id(void);
-t_color					rgb_to_color(int r, int g, int b);
+t_uint					rgb_to_color(int r, int g, int b);
 void					get_fps(int show_fps, int refresh);
 
 #endif

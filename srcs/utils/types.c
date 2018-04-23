@@ -15,9 +15,9 @@
 #include "types.h"
 #include "libft.h"
 
-t_color		rgb_to_color(int r, int g, int b)
+t_uint		rgb_to_color(int r, int g, int b)
 {
-	t_color	c;
+	t_uint	c;
 
 	c = 0;
 	c |= (b & 0xFF);
@@ -25,6 +25,8 @@ t_color		rgb_to_color(int r, int g, int b)
 	c |= (r & 0xFF) << 16;
 	return (c);
 }
+
+
 
 /*
 ** Takes the array id, return unique ID
