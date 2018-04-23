@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.c                                               :+:      :+:    :+:   */
+/*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 17:21:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 18:53:14 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_uint			compute_color(t_ray ray, int depth, t_rt *rt)
 
 	closest_intersect(ray, LONG_MAX, rt->objects, &inter);
 	local = BACKGROUND;
-	/*if (inter.obj == NULL)
+	if (inter.obj == NULL)
 		return (BACKGROUND);
 	intensity = light(inter, vec_opposite(ray.dir), rt);
 	local = color_intensity(intensity, inter.obj->color);
@@ -41,7 +41,7 @@ t_uint			compute_color(t_ray ray, int depth, t_rt *rt)
 	}
 	if (inter.obj->transparency > 0 &&
 		inter.obj->refraction >= 1.0)
-		local = transmitted_light(ray, inter, depth, rt, local);*/
+		local = transmitted_light(ray, inter, depth, rt, local);
 	return (local);
 }
 

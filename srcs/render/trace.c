@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 18:23:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 18:54:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include "render.h"
 #include "rt.h"
 
-void		compute_hit_normal(t_ray *ray, t_object *obj, t_inter *inter)
+void		compute_hit_normal(t_ray *ray, t_inter *inter)
 {
-	if (obj->type == PLANE)
-		norm_plane(ray, obj, inter);
-	else if (obj->type == SPHERE)
-		norm_sphere(ray, obj, inter);
+	if (inter->obj->type == PLANE)
+		norm_plane(ray, inter->obj, inter);
+	else if (inter->obj->type == SPHERE)
+		norm_sphere(ray, inter->obj, inter);
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
@@ -37,7 +37,7 @@ t_float		intersect(t_ray *ray, t_object *obj)
 	return (t);
 }
 
-int		trace(t_rt *rt, t_ray *ray, t_inter *inter, t_float max_inter)
+int			trace(t_rt *rt, t_ray *ray, t_inter *inter, t_float max_inter)
 {
 	t_object	*objs;
 	int			i;

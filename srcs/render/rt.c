@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 18:29:38 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 19:11:30 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,20 @@ static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 	ray->refraction = REFRACTION_INDEX;
 }
 
+void		compute_hit_biais(t_inter *inter)
+{
+	inter->point_biais = inter->point + vec_scalar(inter->normal, BIAIS);
+}
+
 static void	put_pixel(int pixel, t_uint color, t_uint *image)
 {
 	image[pixel] = color;
 }
+
+/*
+** ray = camera ray
+** inter = contains ray_hit
+*/
 
 static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 {
@@ -43,9 +53,12 @@ static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 	t_inter	inter;
 
 	compute_primary_ray(x, y, rt, &ray);
-	//Apply rotation on camera HERE
 	if (trace(rt, &ray, &inter, FLOAT_MAX) == SUCCESS)
 	{
+		compute_hit_normal(&ray, &inter);
+		compute_hit_biais(&inter);
+		if (vec_dot(ray.dir, inter.normal) > FLOAT_ZERO)
+			vec_opposite(inter.normal);
 		//color = compute_color(ray, MAX_DEPTH, rt);
 		color = vec_to_color(inter.obj->color);
 	}

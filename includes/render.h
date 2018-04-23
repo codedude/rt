@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 17:55:55 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 19:06:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_inter {
 	t_object		*obj;
 	t_vec			color;
 	t_vec			point;
+	t_vec			point_biais;
 	t_vec			normal;
 }					t_inter;
 
@@ -52,8 +53,8 @@ int					rt(void *data);
 */
 int					trace(t_rt *rt, t_ray *ray, t_inter *inter,
 						t_float max_inter);
-void				compute_hit_normal(t_ray *ray, t_object *obj,
-						t_inter *inter);
+void				compute_hit_normal(t_ray *ray, t_inter *inter);
+void				compute_hit_biais(t_inter *inter);
 
 t_float				solve_quadra(t_float abc[3], t_float *t);
 
