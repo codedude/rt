@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 15:46:57 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 16:15:01 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ enum {
 	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
 };
 
-# define PHONGS			4
+# define PHONGS			3
 # define PHONG_SHINI	0
-# define PHONG_KA		1
-# define PHONG_KD		2
-# define PHONG_KS		3
+# define PHONG_KD		1
+# define PHONG_KS		2
 
 /*
 ** type : int of object

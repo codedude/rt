@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/20 15:51:08 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 16:14:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		object_set_phong(t_object *obj, t_float phong[PHONGS])
 {
 	obj->phong[PHONG_SHINI] = round(
 								clamp_f32(phong[PHONG_SHINI], 0.0, 1200.0));
-	obj->phong[PHONG_KA] = clamp_f32(phong[PHONG_KA], 0.0, 1.0);
 	obj->phong[PHONG_KD] = clamp_f32(phong[PHONG_KD], 0.0, 1.0);
 	obj->phong[PHONG_KS] = clamp_f32(phong[PHONG_KS], 0.0, 1.0);
 	return (SUCCESS);

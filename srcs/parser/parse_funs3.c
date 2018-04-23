@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 15:51:58 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 16:15:32 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ int		parse_t_phong(void *data, char **strs)
 
 	obj = (t_object *)data;
 	if (ft_atoi_s(strs[0], &shini) == ERROR
-		|| ft_atof_s(strs[1], &phong[PHONG_KA]) == ERROR
-		|| ft_atof_s(strs[2], &phong[PHONG_KD]) == ERROR
-		|| ft_atof_s(strs[3], &phong[PHONG_KS]) == ERROR)
+		|| ft_atof_s(strs[1], &phong[PHONG_KD]) == ERROR
+		|| ft_atof_s(strs[2], &phong[PHONG_KS]) == ERROR)
 		return (ERROR);
 	phong[PHONG_SHINI] = (t_float)shini;
 	object_set_phong(obj, phong);

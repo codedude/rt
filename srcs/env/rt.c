@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/21 22:20:28 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:13:26 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "ft_math.h"
 #include "libft.h"
 #include "rt.h"
 #include "parser.h"
@@ -34,8 +35,8 @@ static void	set_ratio(t_rt *rt)
 		rt->canvas.ratio[0] = 1.0;
 		rt->canvas.ratio[1] = 1.0;
 	}
-	rt->canvas.ratio[0] *= rt->camera.fov;
-	rt->canvas.ratio[1] *= rt->camera.fov;
+	rt->canvas.ratio[0] *= ft_tan(rt->camera.fov / 2.0);
+	rt->canvas.ratio[1] *= ft_tan(rt->camera.fov / 2.0);
 	rt->canvas_update = 1;
 }
 

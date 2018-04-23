@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/20 15:48:48 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 16:12:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int		camera_set_fov(t_rt *rt, t_float fov)
 	if (fov < 30.0 || fov > 120.0)
 		return (ERROR);
 	rt->camera_update = 1;
-	rt->camera.fov = ft_tan(fov / 2.0);
+	rt->camera.fov = fov;
 	return (SUCCESS);
 }
