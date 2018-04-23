@@ -24,7 +24,7 @@ static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 	t_ray	ray;
 	t_uint	color;
 
-	ray = compute_primary_rays(x, y, rt->canvas);
+	ray = compute_primary_rays(x, y, rt->canvas, rt->camera);
 	color = compute_color(ray, DEPTH, rt);
 	ft_put_pixel(x, y, color, image, rt);
 	return (SUCCESS);
@@ -51,18 +51,18 @@ int			rt(void *data)
 	return (SUCCESS);
 }
 
-t_ray 	compute_primary_rays(int x, int y, t_canvas canvas, t_camera)
+t_ray 	compute_primary_rays(int x, int y, t_canvas canvas, t_camera camera)
 {
 	t_ray	ray;
 
-	ray.dir.x = ((t_float)x + 0.5) / (t_float)canvas->width;
-	ray.dir.y = ((t_float)y + 0.5) / (t_float)canvas->height;
-	ray.dir.x = (2.0 * ray.dir.x - 1.0) * canvas->ratio[0];
-	ray.dir.y = (1.0 - 2.0 * ray.dir.y) * canvas->ratio[1];
-	ray.dir.z = 1.0;
+	ray.dir[0] = ((t_float)x + 0.5) / (t_float)canvas.width;
+	ray.dir[1] = ((t_float)y + 0.5) / (t_float)canvas.height;
+	ray.dir[0] = (2.0 * ray.dir[0] - 1.0) * canvas.ratio[0];
+	ray.dir[1] = (1.0 - 2.0 * ray.dir[1]) * canvas.ratio[1];
+	ray.dir[2] = 1.0;
 	vec_norm(ray.dir);
 	ray.origin = camera.origin;
-	ray.ref_index = REFRACTION_INDEX;
+	ray.refraction = REFRACTION_INDEX;
 	return (ray);
 }
 

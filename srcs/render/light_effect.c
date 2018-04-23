@@ -15,9 +15,9 @@ t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter)
 	reflected_color = 0;
 	if (depth > 0)
 	{
-		refl_ray = reflected_ray(inter, vec3_opposite(ray.dir));
-		refl_ray.ref_index = ray.ref_index;
-		reflected_color = rt(refl_ray, depth - 1, env);
+		refl_ray = reflected_ray(inter, vec_opposite(ray.dir));
+		refl_ray.refraction = ray.refraction;
+		reflected_color = compute_color(refl_ray, depth - 1, rt);
 	}
 	return (reflected_color);
 }
@@ -27,22 +27,21 @@ t_ray				reflected_ray(t_inter inter, t_vec ray)
 	t_ray	ret;
 
 	ret.origin = inter.point;
-	ret.dir = scaling(inter.normal, 2 * dot(inter.normal, ray));
-	ret.dir = vec3_sub(ret.dir, ray);
+	ret.dir = vec_scalar(inter.normal, 2 * vec_dot(inter.normal, ray));
+	ret.dir = ret.dir - ray;
 	return (ret);
 }
 
-t_uint		refract(t_ray ray, t_env *env, int depth, t_inter inter)
+t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter)
 {
 	t_uint	refracted_color;
 	t_ray refracted_ray;
 
 	refracted_color = 0;
-	if (inter.shp->ref_index >= 1.0 || inter.shp->transp > 0)
+	if (inter.obj->refraction >= 1.0 || inter.obj->transparency > 0)
 	{
 		refracted_ray = refract_ray(ray, inter);
-
-		refracted_color = rt(refracted_ray, depth - 1, env);
+		refracted_color = compute_color(refracted_ray, depth - 1, rt);
 	}
 	return (refracted_color);
 }
@@ -54,19 +53,20 @@ t_ray				refract_ray(t_ray ray, t_inter inter)
 	t_float	c2;
 	t_ray	ret;
 
-	n = ray.ref_index / inter.shp->ref_index;
-	c1 = dot(vec3_opposite(vec3_normalize(ray.dir)), inter.normal);
+	n = ray.refraction / inter.obj->refraction;
+	vec_norm(ray.dir);
+	c1 = vec_dot(vec_opposite(ray.dir), inter.normal);
 	c2 = 1.0 - (n * n * (1.0 - (c1 * c1)));
 	if (c2 < 0)
 	{
-		ret.origin = (VEC3){nan(0), nan(0), nan(0)};
+		ret.origin = (t_vec){0.0, 0.0, 0.0, 0.0};
 		return (ret);
 	}
 	c2 = sqrt(c2);
-	ret.dir = scaling(vec3_normalize(ray.dir), n);
-	ret.dir = vec3_add(ret.dir, scaling(inter.normal, (n * c1 - c2)));
+	ret.dir = vec_scalar(ray.dir, n);
+	ret.dir = ret.dir + vec_scalar(inter.normal, (n * c1 - c2));
 	ret.origin = inter.point;
-	ret.ref_index = inter.shp->ref_index;
+	ret.refraction = inter.obj->refraction;
 	return (ret);
 }
 
@@ -79,18 +79,17 @@ t_float			fresnel(t_ray ray, t_inter inter)
 	t_float	rs;
 	t_float	rp;
 	t_float	kr;
-	t_ray	ret;
 
-	n = ray.ref_index / inter.shp->ref_index;
-	cosi = dot(vec3_opposite(vec3_normalize(ray.dir)), inter.normal);
+	n = ray.refraction / inter.obj->refraction;
+	cosi = vec_dot(vec_opposite(ray.dir), inter.normal);
 	sint = n * sqrt(1 - cosi * cosi);
 	if (sint >= 1) //total internal reflexion
 		kr = 1;
 	else
 	{
 		cost = sqrt(1 - sint * sint);
-		rs = ((inter.shp->ref_index * cosi) - (ray.ref_index * cost)) / ((inter.shp->ref_index * cosi) + (ray.ref_index * cost));
-		rp = ((ray.ref_index * cost) - (inter.shp->ref_index * cosi)) / ((ray.ref_index * cost) + (inter.shp->ref_index * cosi));
+		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost)) / ((inter.obj->refraction * cosi) + (ray.refraction * cost));
+		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi)) / ((ray.refraction * cost) + (inter.obj->refraction * cosi));
 		kr = (rs * rs + rp * rp) / 2;
 	}	
 	return (kr);

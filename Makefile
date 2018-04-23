@@ -30,7 +30,7 @@ FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
-FILES		+=	$(UTILSD)/vec.c $(UTILSD)/types.c
+FILES		+=	$(UTILSD)/vec.c $(UTILSD)/types.c $(UTILSD)/vec2.c
 FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
 				$(OBJECTSD)/objects_format.c \
 				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \
@@ -40,7 +40,7 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
-FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
+FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/render_update.c \
 				$(RENDERD)/compute_color.c \
 				$(RENDERD)/compute_intersection.c \
 				$(RENDERD)/light.c \
