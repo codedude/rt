@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 14:19:51 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:17:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 18:17:16 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void	object_fill_array(t_objects *objects, t_object *tmp)
 	{
 		if (object_is_light(iter->object))
 		{
-			ft_memcpy(tmp + i, iter->object, sizeof(t_object));
+			ft_memcpy(&tmp[i], iter->object, sizeof(t_object));
 			i++;
 		}
 		else
 		{
-			ft_memcpy(tmp + j, iter->object, sizeof(t_object));
+			ft_memcpy(&tmp[j], iter->object, sizeof(t_object));
 			j--;
 		}
 		iter = iter->next;
@@ -51,7 +51,7 @@ int			objects_gen_array(t_objects *objects)
 	if (objects->objects_array != NULL)
 		free(objects->objects_array);
 	if ((objects->objects_array =
-		(t_object *)malloc(objects->size * sizeof(t_object ))) == NULL)
+		(t_object *)malloc(objects->size * sizeof(t_object))) == NULL)
 		return (ERROR);
 	object_fill_array(objects, objects->objects_array);
 	objects->last_size = objects->size;

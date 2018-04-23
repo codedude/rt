@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcaillau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 18:10:20 by hcaillau          #+#    #+#             */
-/*   Updated: 2018/04/11 16:25:50 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:59:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,15 @@ t_vec				light(t_inter it, t_vec v, t_rt *rt)
 	while (j < rt->objects.size)
 	{
 		i[3][0] = 1.0;
-		if (rt->objects.objects_array[j].type == LIGHT_AMBIENT)
-			i[0] += vec_scalar(rt->objects.objects_array[j].intensity, rt->objects.objects_array[j].phong[PHONG_KA]);
-		else
-		{
-			i[3][0] = diffuse_light(&r, it, &j, rt);
-			if (i[3][0] < 0.000001)
-				continue;
-			if (vec_dot(r.dir, it.normal) < 0
-				&& it.obj->transparency > 0)
-				it.normal = vec_opposite(it.normal);
-			i[1][0] = vec_dot(it.normal, r.dir);
-			i[2] = vec_scalar(rt->objects.objects_array[j].intensity, it.obj->phong[PHONG_KD]);
-			i[0] = i[0] + vec_scalar(light_specular(it, i, v, &r), i[3][0]);
-		}
+		i[3][0] = diffuse_light(&r, it, &j, rt);
+		if (i[3][0] < 0.000001)
+			continue;
+		if (vec_dot(r.dir, it.normal) < 0
+			&& it.obj->transparency > 0)
+			it.normal = vec_opposite(it.normal);
+		i[1][0] = vec_dot(it.normal, r.dir);
+		i[2] = vec_scalar(rt->objects.objects_array[j].intensity, it.obj->phong[PHONG_KD]);
+		i[0] = i[0] + vec_scalar(light_specular(it, i, v, &r), i[3][0]);
 		j++;
 	}
 	return (i[0]);

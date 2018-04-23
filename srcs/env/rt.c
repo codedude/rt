@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/23 16:13:26 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 18:12:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			rt_init(t_rt *rt, char *filename)
 		return (ERROR);
 	}
 	set_ratio(rt);
+	objects_gen_array(&rt->objects);
 	ft_strsplit_free(file);
 	return (SUCCESS);
 }

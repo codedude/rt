@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 17:18:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 17:55:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 # include "types.h"
 # include "env.h"
 
-typedef struct	s_algo {
-	t_env		*env;
-	int			start;
-	int			end;
-}				t_algo;
+# define FLOAT_ZERO		0.0f
+# define FLOAT_MAX		1e6f
+# define FLOAT_MIN		1e-5f
+# define BIAIS			1e-5f
+# define MAX_DEPTH		4
+
+typedef struct		s_algo {
+	t_env			*env;
+	int				start;
+	int				end;
+}					t_algo;
 
 typedef struct		s_inter {
 	t_float			t;
@@ -37,15 +43,29 @@ typedef struct		s_ray {
 }					t_ray;
 
 
-void		render_compute(t_env *env);
-int			render_update(t_env *env);
+void				render_compute(t_env *env);
+int					render_update(t_env *env);
+int					rt(void *data);
 
-int			rt(void *data);
-t_ray		compute_primary_rays(int x, int y, t_canvas canvas, t_camera camera);
+/*
+** inter
+*/
+int					trace(t_rt *rt, t_ray *ray, t_inter *inter,
+						t_float max_inter);
+void				compute_hit_normal(t_ray *ray, t_object *obj,
+						t_inter *inter);
+
+t_float				solve_quadra(t_float abc[3], t_float *t);
+
+t_float				intersect_sphere(t_ray *ray, t_object *obj, t_float *t);
+void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
+
+t_float				intersect_plane(t_ray *ray, t_object *obj, t_float *t);
+void				norm_plane(t_ray *ray, t_object *obj, t_inter *inter);
+
+
 t_uint		compute_color(t_ray ray, int depth, t_rt *rt);
 t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color local);
-void		ft_put_pixel(int x, int y, t_uint color, t_uint *image, t_rt *rt);
-
 t_uint		color_intensity(t_vec intensity, t_vec color);
 t_uint		calc_color(t_float i, t_uint color);
 

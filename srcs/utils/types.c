@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:47:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/17 15:29:32 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/23 18:24:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "types.h"
 #include "libft.h"
 
-t_uint		rgb_to_color(int r, int g, int b)
+t_color		rgb_to_color(t_uint r, t_uint g, t_uint b)
 {
-	t_uint	c;
+	t_color	c;
 
 	c = 0;
 	c |= (b & 0xFF);
@@ -26,7 +26,17 @@ t_uint		rgb_to_color(int r, int g, int b)
 	return (c);
 }
 
+t_color		vec_to_color(t_vec color)
+{
+	t_uint	x;
+	t_uint	y;
+	t_uint	z;
 
+	x = (unsigned char)(color[0] * 255.);
+	y = (unsigned char)(color[1] * 255.);
+	z = (unsigned char)(color[2] * 255.);
+	return (rgb_to_color(x, y, z));
+}
 
 /*
 ** Takes the array id, return unique ID

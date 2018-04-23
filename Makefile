@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/20 18:26:21 by valentin         ###   ########.fr        #
+#    Updated: 2018/04/23 17:45:32 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,15 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
-FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/render_update.c \
+FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
+				$(RENDERD)/render_update.c \
 				$(RENDERD)/compute_color.c \
 				$(RENDERD)/compute_intersection.c \
 				$(RENDERD)/light.c \
 				$(RENDERD)/light_effect.c \
 				$(RENDERD)/normal.c 
+FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
+				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
 FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))

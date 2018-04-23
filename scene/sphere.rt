@@ -27,7 +27,13 @@ camera
 
 light_ambient
 {
-	intensity = 1.0 1.2 1.1
+	intensity = 0.10 0.10 0.10
+}
+
+light_point
+{
+	pos = 0.0 30.0 -10.0
+	intensity = 1.10 1.10 1.10
 }
 
 plane
@@ -36,7 +42,7 @@ plane
 	dir = 0.0 1.0 0.0
 	radius = 1.0
 	color = 180 140 100
-	phong = 0 0.12 0.95 0.0
+	phong = 0 0.95 0.0
 }
 
 sphere
@@ -45,7 +51,7 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 80.0
 	color = 170 170 170
-	phong = 4 0.12 0.90 0.33
+	phong = 4 0.90 0.33
 }
 
 sphere
@@ -54,7 +60,7 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 5.0
 	color = 255 82 90
-	phong = 10 0.12 0.90 0.33
+	phong = 10 0.90 0.33
 }
 
 sphere
@@ -63,7 +69,7 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 3.0
 	color = 127 220 127
-	phong = 0 0.12 0.90 0.33
+	phong = 0 0.90 0.33
 }
 
 sphere
@@ -72,5 +78,5 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 148 198 250
-	phong = 40 0.12 0.90 0.33
+	phong = 40 0.90 0.33
 }
