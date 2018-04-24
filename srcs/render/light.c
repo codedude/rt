@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 18:10:20 by hcaillau          #+#    #+#             */
-/*   Updated: 2018/04/23 16:59:48 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:50:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_vec				light(t_inter it, t_vec v, t_rt *rt)
 		i[3][0] = diffuse_light(&r, it, &j, rt);
 		if (i[3][0] < 0.000001)
 			continue;
+
+		
 		if (vec_dot(r.dir, it.normal) < 0
 			&& it.obj->transparency > 0)
 			it.normal = vec_opposite(it.normal);
