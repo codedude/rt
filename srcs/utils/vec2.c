@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 19:11:01 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:37:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ t_vec		vec_scalar(t_vec v1, t_float n)
 	return (r);
 }
 
-void		vec_opposite(t_vec v1)
+t_vec		vec_opposite(t_vec v1)
 {
-	v1[0] *= -1.0;
-	v1[1] *= -1.0;
-	v1[2] *= -1.0;
+	return (vec_scalar(v1, -1.0));
 }

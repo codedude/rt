@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:33:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 17:52:41 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:42:49 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 	abc[0] = vec_dot(d, d);
 	abc[1] = 2.0 * vec_dot(co, d);
 	abc[2] = vec_dot(co, co) - obj->radius2;
-	return (solve_quadra(abc, t));
+	return ((*t = solve_quadra(abc)));
 }
 
 void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 {
-	inter->normal = ray->origin - obj->pos;
-	vec_norm(inter->normal);
+	inter->normal = vec_norm(inter->point - obj->pos);
 }

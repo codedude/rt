@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 18:13:58 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:26:58 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		loop(t_env *env)
 		{
 			cam_pos = camera_get_origin(&env->rt);
 			if (event.key.keysym.sym == SDLK_ESCAPE)
-				loop = 0;
+				break ;
 			else if (event.key.keysym.sym == SDLK_RIGHT)
 				cam_pos[0] += 1.0;
 			else if (event.key.keysym.sym == SDLK_LEFT)

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 19:06:18 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 17:40:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct		s_ray {
 	t_float			refraction;
 }					t_ray;
 
+typedef struct		s_hit {
+	t_ray			ray;
+	t_inter			inter;
+}					t_hit;
+
 
 void				render_compute(t_env *env);
 int					render_update(t_env *env);
@@ -56,7 +61,7 @@ int					trace(t_rt *rt, t_ray *ray, t_inter *inter,
 void				compute_hit_normal(t_ray *ray, t_inter *inter);
 void				compute_hit_biais(t_inter *inter);
 
-t_float				solve_quadra(t_float abc[3], t_float *t);
+t_float				solve_quadra(t_float abc[3]);
 
 t_float				intersect_sphere(t_ray *ray, t_object *obj, t_float *t);
 void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
@@ -64,8 +69,9 @@ void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
 t_float				intersect_plane(t_ray *ray, t_object *obj, t_float *t);
 void				norm_plane(t_ray *ray, t_object *obj, t_inter *inter);
 
+t_color				compute_color(t_rt *rt, t_hit *hit, int depth);
 
-t_uint		compute_color(t_ray ray, int depth, t_rt *rt);
+
 t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color local);
 t_uint		color_intensity(t_vec intensity, t_vec color);
 t_uint		calc_color(t_float i, t_uint color);

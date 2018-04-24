@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec.c                                              :+:      :+:    :+:   */
+/*   vec1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 16:01:41 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:37:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_float		vec_len(t_vec v1)
 	return (sqrt(vec_dot(v1, v1)));
 }
 
-void		vec_norm(t_vec v1)
+t_vec		vec_norm(t_vec v1)
 {
 	t_float	len;
 
@@ -38,4 +38,10 @@ void		vec_norm(t_vec v1)
 		v1[1] *= len;
 		v1[2] *= len;
 	}
+	return (v1);
+}
+
+void		vec_print(t_vec v, char *name)
+{
+	printf("%s : %f, %f, %f\n", name, v[0], v[1], v[2]);
 }

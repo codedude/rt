@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:54:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 15:58:24 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 18:08:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		env_init(t_env *env, char *filename)
 	if (rt_init(&env->rt, filename) == ERROR)
 	{
 		ft_putstr("Error : can't init rt\n");
-		return (EXIT_FAILURE);
+		return (ERROR);
 	}
 	if (sdl_init(&env->sdl, env->rt.canvas.width, env->rt.canvas.height)
 		== ERROR)

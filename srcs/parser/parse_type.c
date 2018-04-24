@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 16:15:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 18:23:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_parse_type	*get_parse_funs(void)
 		ADD_TYPE(width, 1, "0"), ADD_TYPE(height, 1, "0"),
 		ADD_TYPE(background, 3, "0"), ADD_TYPE(fov, 1, "1"),
 		ADD_TYPE(ang, 3, "1"), ADD_TYPE(origin, 3, "1"),
-		ADD_TYPE(pos, 3, "2 3 4 5 15 16 17"),
-		ADD_TYPE(dir, 3, "2 3 4 5"),
+		ADD_TYPE(pos, 3, "2 3 4 5 15 16"),
+		ADD_TYPE(dir, 3, "2 3 4 5 17"),
 		ADD_TYPE(radius, 1, "2 3 4 5"),
 		ADD_TYPE(color, 3, "2 3 4 5"),
 		ADD_TYPE(intensity, 3, "14 15 16 17"),

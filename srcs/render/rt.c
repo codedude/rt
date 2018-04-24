@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 22:58:03 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:40:56 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,11 @@ static void	put_pixel(int pixel, t_uint color, t_uint *image)
 
 static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 {
-	t_ray	ray;
+	t_hit	cam;
 	t_color	color;
-	t_inter	inter;
 
-	compute_primary_ray(x, y, rt, &ray);
-	if (trace(rt, &ray, &inter, FLOAT_MAX) == SUCCESS)
-	{
-		compute_hit_normal(&ray, &inter);
-		compute_hit_biais(&inter);
-		if (vec_dot(ray.dir, inter.normal) > FLOAT_ZERO)
-			vec_opposite(inter.normal);
-		//color = compute_color(ray, MAX_DEPTH, rt);
-		color = vec_to_color(inter.obj->color);
-	}
-	else
-		color = rt->canvas.bg_color;
+	compute_primary_ray(x, y, rt, &cam.ray);
+	color = compute_color(rt, &cam, MAX_DEPTH);
 	put_pixel(x + (y * rt->canvas.width), color, image);
 	return (SUCCESS);
 }

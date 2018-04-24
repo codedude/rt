@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:47:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 18:24:53 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 17:56:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_color		vec_to_color(t_vec color)
 	t_uint	y;
 	t_uint	z;
 
-	x = (unsigned char)(color[0] * 255.);
-	y = (unsigned char)(color[1] * 255.);
-	z = (unsigned char)(color[2] * 255.);
+	x = (unsigned char)(clamp_f32(color[0], 0.0, 1.0) * 255.);
+	y = (unsigned char)(clamp_f32(color[1], 0.0, 1.0) * 255.);
+	z = (unsigned char)(clamp_f32(color[2], 0.0, 1.0) * 255.);
 	return (rgb_to_color(x, y, z));
 }
 

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 15:46:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 19:39:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "rt.h"
 #include "objects.h"
 #include "parser.h"
+#include "vec.h"
 
 void		loop(t_env *env);
 
