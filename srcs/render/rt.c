@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 17:40:56 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 22:50:17 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 	ray->dir[2] = 1.0;
 	vec_norm(ray->dir);
 	ray->origin = rt->camera.origin;
-	ray->refraction = REFRACTION_INDEX;
+	ray->refraction = REFRACTION_DEFAULT;
 }
 
 void		compute_hit_biais(t_inter *inter)

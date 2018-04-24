@@ -20,9 +20,9 @@ canvas
 
 camera
 {
-	origin = 0.0 10.0 -40.0
+	origin = 0.0 10.0 -30.0
 	ang = 0.0 0.0 0.0
-	fov = 45
+	fov = 60
 }
 
 light_ambient
@@ -32,16 +32,21 @@ light_ambient
 
 light_point
 {
-	pos = -30.0 30.0 0.0
+	pos = -30.0 40.0 0.0
 	intensity = 0.4 0.4 0.4
+}
+
+light_par
+{
+	dir = 0.0 -1.0 0.0
+	intensity = 0.2 0.2 0.2
 }
 
 light_point
 {
-	pos = 30.0 30.0 0.0
+	pos = 30.0 40.0 0.0
 	intensity = 0.4 0.4 0.4
 }
-
 
 plane
 {
@@ -67,7 +72,7 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 5.0
 	color = 255 82 90
-	phong = 0 0.90 0.33
+	phong = 12 0.90 0.5
 }
 
 sphere

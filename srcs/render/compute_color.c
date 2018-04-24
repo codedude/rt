@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 19:47:12 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 23:42:32 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void		init_ray_light(t_ray *ray_light, t_float *max_dist, t_object *obj,
 	}
 	else if (obj->type == LIGHT_PAR)
 	{
-		ray_light->dir = vec_scalar(obj->dir, -1.0);
-		ray_light->dir = vec_norm(ray_light->dir);
+		ray_light->dir = vec_norm(vec_scalar(obj->dir, -1.0));
 		*max_dist = FLOAT_MAX;
 	}
 	ray_light->origin = inter->point_biais;
@@ -43,10 +42,10 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 	t_ray		ray_refract;
 	t_inter		inter_refract;
 
-	intensity = (t_vec){0.0, 0.0, 0.0, 0.0};
 	init_ray_light(&light_hit->ray, &max_dist, obj, inter);
 	if (trace(rt, &light_hit->ray, &light_hit->inter, max_dist) == SUCCESS)
 	{
+		intensity = (t_vec){0.0, 0.0, 0.0, 0.0};
 		/*if (light_hit->inter.obj->refraction >= 1.0
 			&& light_hit->inter.obj->transparency > 0.0)
 		{
@@ -60,7 +59,7 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 	}
 	else
 	{
-		intensity += obj->intensity;
+		intensity = obj->intensity;
 	}
 	if (obj->type == LIGHT_POINT)
 		light_hit->ray.dir = vec_norm(light_hit->ray.dir);
@@ -70,23 +69,33 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 t_vec		local(t_rt *rt, t_object *obj, t_hit *hit)
 {
 	t_hit	light_hit;
+	t_vec	intensity_local;
 	t_vec	intensity;
 	t_float	dot;
+	t_vec	reflect_ray;
 
-
-	intensity = diffuse(rt, obj, &hit->inter, &light_hit);
-	if (intensity[0] != 0.0)
+	intensity = (t_vec){0.0, 0.0, 0.0, 0.0};
+	intensity_local = diffuse(rt, obj, &hit->inter, &light_hit);
+	if (intensity_local[0] != 0.0 || intensity_local[1] != 0.0
+		|| intensity_local[2] != 0.0)
 	{
 		dot = vec_dot(hit->inter.normal, light_hit.ray.dir);
-		if (dot < FLOAT_MIN)
-			intensity = (t_vec){0.0, 0.0, 0.0, 0.0};
-		else if (hit->inter.obj->phong[PHONG_SHINI] > 0.0)
+		if (dot > FLOAT_ZERO)
 		{
-			intensity = vec_scalar(intensity,
+			intensity += vec_scalar(intensity_local,
 				dot * hit->inter.obj->phong[PHONG_KD]);
-			intensity += vec_scalar(intensity,
-				pow(dot, hit->inter.obj->phong[PHONG_SHINI])
-				* hit->inter.obj->phong[PHONG_KS]);
+			if (hit->inter.obj->phong[PHONG_SHINI] > 0.0)
+			{
+				reflect_ray = vec_norm(vec_scalar(hit->inter.normal, -2.0 * dot)
+					+ light_hit.ray.dir);
+				dot = vec_dot(reflect_ray, hit->ray.dir);
+				if (dot > FLOAT_ZERO)
+				{
+					intensity += vec_scalar(intensity_local,
+						pow(dot, hit->inter.obj->phong[PHONG_SHINI])
+						* hit->inter.obj->phong[PHONG_KS]);
+				}
+			}
 		}
 	}
 	return (intensity);

@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 14:18:29 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 22:49:36 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
-# define DEPTH	5
-# define REFRACTION_INDEX 1.0f
-# define RGB(r, g, b) (256 * 256 * (int)(r) + 256 * (int)(g) + (int)(b))
-# define BACKGROUND RGB(77, 167, 238)
-# define COLOR_MAX 16777215
-
 # include "types.h"
 # include "objects.h"
-# include <limits.h>
 
 /*
 ** Canvas : the physical window, can change

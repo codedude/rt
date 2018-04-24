@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 17:40:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/24 22:58:20 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include "env.h"
 
 # define FLOAT_ZERO		0.0f
-# define FLOAT_MAX		1e6f
-# define FLOAT_MIN		1e-5f
-# define BIAIS			1e-5f
+# define FLOAT_MAX		1e4f
+# define FLOAT_MIN		1e-3f
+# define BIAIS			1e-4f
 # define MAX_DEPTH		4
+# define REFRACTION_DEFAULT	1.0f
 
 typedef struct		s_algo {
 	t_env			*env;
@@ -94,7 +95,7 @@ t_float		fresnel(t_ray ray, t_inter inter);
 ** Compute intersections
 */
 
-int				closest_intersect(t_ray ray, 
+int				closest_intersect(t_ray ray,
 		t_float t_max, t_objects objects, t_inter *inter);
 t_float		inters(t_ray ray, t_object *obj);
 t_float		r_inter_plan(t_ray ray, t_object *plan);
