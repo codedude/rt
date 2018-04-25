@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:31:31 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 02:53:19 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:18:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		parse_t_color(void *data, char **strs)
 		|| ft_atoi_s(strs[1], &n[1]) == ERROR
 		|| ft_atoi_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	pos = (t_vec){(t_float)n[0], (t_float)n[1], (t_float)n[2]};
+	pos = (t_vec){(t_float)n[0], (t_float)n[1], (t_float)n[2], 0.0};
 	object_set_color(obj, pos);
 	return (SUCCESS);
 }
@@ -89,7 +89,7 @@ int		parse_t_intensity(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	pos = (t_vec){n[0], n[1], n[2]};
+	pos = (t_vec){n[0], n[1], n[2], 0.0};
 	object_set_intensity(obj, pos);
 	return (SUCCESS);
 }

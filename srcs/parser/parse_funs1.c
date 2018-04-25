@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:30:20 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 02:53:00 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:18:03 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		parse_t_ang(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_angle(env, (t_vec){n[0], n[1], n[2]}));
+	return (camera_set_angle(env, (t_vec){n[0], n[1], n[2], 0.0}));
 }
 
 int		parse_t_fov(void *data, char **strs)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 11:12:35 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:26:12 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 
 void		compute_hit_biais(t_inter *inter)
 {
-	inter->point_biais = inter->point + (inter->normal * BIAIS);
+	inter->point_biais = (inter->normal * BIAIS) + inter->point;
 }
 
 static void	put_pixel(int pixel, t_uint color, t_uint *image)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 02:53:25 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:18:32 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		parse_t_origin(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_origin(env, (t_vec){n[0], n[1], n[2]}));
+	return (camera_set_origin(env, (t_vec){n[0], n[1], n[2], 0.0}));
 }
 
 int		parse_t_phong(void *data, char **strs)

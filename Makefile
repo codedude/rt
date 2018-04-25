@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/25 03:30:14 by valentin         ###   ########.fr        #
+#    Updated: 2018/04/25 20:44:00 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ FILES		+=	$(SDLD)/sdl.c
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-O3 -flto -mavx2 -march=native -std=c11 -pedantic \
+CFLAGS		+=	-O3 -flto -march=native -mtune=native -std=c11 -pedantic \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result

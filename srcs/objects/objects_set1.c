@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_set1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/25 11:13:33 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:17:45 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int		object_set_intensity(t_object *obj, t_vec intensity)
 	obj->intensity = (t_vec){
 		clamp_f64(intensity[0], 0.0, 10.0),
 		clamp_f64(intensity[1], 0.0, 10.0),
-		clamp_f64(intensity[2], 0.0, 10.0)};
+		clamp_f64(intensity[2], 0.0, 10.0),
+		0.0};
 	return (SUCCESS);
 }
 
@@ -44,7 +45,8 @@ int		object_set_color(t_object *obj, t_vec color)
 	obj->color = (t_vec){
 		(t_float)clamp_i32(color[0], 0, 255) / 255.0,
 		(t_float)clamp_i32(color[1], 0, 255) / 255.0,
-		(t_float)clamp_i32(color[2], 0, 255) / 255.0};
+		(t_float)clamp_i32(color[2], 0, 255) / 255.0,
+		0.0};
 	return (SUCCESS);
 }
 
