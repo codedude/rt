@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vec1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 19:37:19 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/25 02:48:59 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <math.h>
 #include "types.h"
 

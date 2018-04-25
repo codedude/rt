@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_set1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/24 19:38:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/25 02:50:26 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ int		object_set_dir(t_object *obj, t_vec dir)
 int		object_set_intensity(t_object *obj, t_vec intensity)
 {
 	obj->intensity = (t_vec){
-		clamp_f32(intensity[0], 0.0, 10.0),
-		clamp_f32(intensity[1], 0.0, 10.0),
-		clamp_f32(intensity[2], 0.0, 10.0),
-		0.0};
+		clamp_f64(intensity[0], 0.0, 10.0),
+		clamp_f64(intensity[1], 0.0, 10.0),
+		clamp_f64(intensity[2], 0.0, 10.0)};
 	return (SUCCESS);
 }
 
@@ -45,16 +44,15 @@ int		object_set_color(t_object *obj, t_vec color)
 	obj->color = (t_vec){
 		(t_float)clamp_i32(color[0], 0, 255) / 255.,
 		(t_float)clamp_i32(color[1], 0, 255) / 255.,
-		(t_float)clamp_i32(color[2], 0, 255) / 255.,
-		0.0};
+		(t_float)clamp_i32(color[2], 0, 255) / 255.};
 	return (SUCCESS);
 }
 
 int		object_set_phong(t_object *obj, t_float phong[PHONGS])
 {
 	obj->phong[PHONG_SHINI] = round(
-								clamp_f32(phong[PHONG_SHINI], 0.0, 1200.0));
-	obj->phong[PHONG_KD] = clamp_f32(phong[PHONG_KD], 0.0, 1.0);
-	obj->phong[PHONG_KS] = clamp_f32(phong[PHONG_KS], 0.0, 1.0);
+								clamp_f64(phong[PHONG_SHINI], 0.0, 1200.0));
+	obj->phong[PHONG_KD] = clamp_f64(phong[PHONG_KD], 0.0, 1.0);
+	obj->phong[PHONG_KS] = clamp_f64(phong[PHONG_KS], 0.0, 1.0);
 	return (SUCCESS);
 }

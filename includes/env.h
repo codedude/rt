@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/20 15:55:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/25 02:56:52 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "sdl_m.h"
 
-# define THREADS		8
+# define THREADS		4
 # define TASKS			32
 
 typedef struct		s_env {

@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 22:58:20 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 02:48:05 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include "types.h"
 # include "env.h"
 
-# define FLOAT_ZERO		0.0f
-# define FLOAT_MAX		1e4f
-# define FLOAT_MIN		1e-3f
-# define BIAIS			1e-4f
+# define FLOAT_ZERO		0.0
+# define FLOAT_MAX		1e6
+# define FLOAT_MIN		1e-6
+# define BIAIS			1e-5
 # define MAX_DEPTH		4
-# define REFRACTION_DEFAULT	1.0f
+# define REFRACTION_DEFAULT	1.0
 
 typedef struct		s_algo {
 	t_env			*env;
