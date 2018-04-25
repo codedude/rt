@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 02:43:17 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 11:12:35 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 {
-	ray->dir[0] = ((t_float)x + 0.5f) / (t_float)rt->canvas.width;
-	ray->dir[1] = ((t_float)y + 0.5f) / (t_float)rt->canvas.height;
-	ray->dir[0] = (2.0f * ray->dir[0] - 1.0f) * rt->canvas.ratio[0];
-	ray->dir[1] = (1.0f - 2.0f * ray->dir[1]) * rt->canvas.ratio[1];
-	ray->dir[2] = 1.0f;
+	ray->dir[0] = ((t_float)x + 0.5) / (t_float)rt->canvas.width;
+	ray->dir[1] = ((t_float)y + 0.5) / (t_float)rt->canvas.height;
+	ray->dir[0] = (2.0 * ray->dir[0] - 1.0) * rt->canvas.ratio[0];
+	ray->dir[1] = (1.0 - 2.0 * ray->dir[1]) * rt->canvas.ratio[1];
+	ray->dir[2] = 1.0;
 	ray->dir = vec_norm(ray->dir);
 	ray->origin = rt->camera.origin;
 	ray->refraction = REFRACTION_DEFAULT;

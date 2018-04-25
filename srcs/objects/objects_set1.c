@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/25 02:50:26 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/25 11:13:33 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int		object_set_intensity(t_object *obj, t_vec intensity)
 int		object_set_color(t_object *obj, t_vec color)
 {
 	obj->color = (t_vec){
-		(t_float)clamp_i32(color[0], 0, 255) / 255.,
-		(t_float)clamp_i32(color[1], 0, 255) / 255.,
-		(t_float)clamp_i32(color[2], 0, 255) / 255.};
+		(t_float)clamp_i32(color[0], 0, 255) / 255.0,
+		(t_float)clamp_i32(color[1], 0, 255) / 255.0,
+		(t_float)clamp_i32(color[2], 0, 255) / 255.0};
 	return (SUCCESS);
 }
 
