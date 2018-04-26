@@ -44,17 +44,18 @@ int		parse_t_background(void *data, char **strs)
 {
 	t_rt	*env;
 	int		n[3];
-	t_color	color;
+	t_vec	color;
 
 	env = (t_rt *)data;
 	if (ft_atoi_s(strs[0], &n[0]) == ERROR
 		|| ft_atoi_s(strs[1], &n[1]) == ERROR
 		|| ft_atoi_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	color = rgb_to_color(
-		clamp_i32(n[0], 0, 255),
-		clamp_i32(n[1], 0, 255),
-		clamp_i32(n[2], 0, 255));
+	color = VEC_INIT(
+		(t_float)clamp_i32(n[0], 0, 255) / 255.0,
+		(t_float)clamp_i32(n[1], 0, 255) / 255.0,
+		(t_float)clamp_i32(n[2], 0, 255) / 255.0
+		);
 	return (canvas_set_bg_color(env, color));
 }
 

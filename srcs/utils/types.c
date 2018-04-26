@@ -38,6 +38,33 @@ t_color		vec_to_color(t_vec color)
 	return (rgb_to_color(x, y, z));
 }
 
+t_color		calc_color(double i, t_color color)
+{
+	double	r;
+	double	g;
+	double	b;
+
+	b = (color % 256);
+	r = (color / (256 * 256));
+	g = ((color / 256) - r * 256);
+	b = b * i;
+	r = r * i;
+	g = g * i;
+	if (r > 255)
+		r = 255.0;
+	if (r < 0)
+		r = 0;
+	if (g > 255)
+		g = 255.0;
+	if (g < 0)
+		g = 0;
+	if (b > 255)
+		b = 255.0;
+	if (b < 0)
+		b = 0;
+	return (rgb_to_color((t_uint)r, (t_uint)g, (t_uint)b));
+}
+
 /*
 ** Takes the array id, return unique ID
 */

@@ -25,7 +25,7 @@ typedef struct		s_canvas {
 	t_int			height;
 	t_int			size;
 	t_float			ratio[2];
-	t_color			bg_color;
+	t_vec			bg_color;
 }					t_canvas;
 
 /*
@@ -62,9 +62,9 @@ t_float				camera_get_fov(t_rt *rt);
 
 int					canvas_set_width(t_rt *rt, int width);
 int					canvas_set_height(t_rt *rt, int height);
-int					canvas_set_bg_color(t_rt *rt, t_color color);
+int					canvas_set_bg_color(t_rt *rt, t_vec color);
 int					canvas_get_width(t_rt *rt);
 int					canvas_get_height(t_rt *rt);
-t_color				canvas_get_bg_color(t_rt *rt);
+t_vec				canvas_get_bg_color(t_rt *rt);
 
 #endif

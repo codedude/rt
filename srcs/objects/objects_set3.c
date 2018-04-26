@@ -25,7 +25,7 @@ int		object_set_reflexion(t_object *obj, t_float n)
 
 int		object_set_refraction(t_object *obj, t_float n)
 {
-	obj->refraction = clamp_f64(n, 1.0, 10.0);
+	obj->refraction = clamp_f64(n, 0.0, 10.0);
 	return (SUCCESS);
 }
 

@@ -23,7 +23,7 @@ int		canvas_get_height(t_rt *rt)
 	return (rt->canvas.height);
 }
 
-t_color	canvas_get_bg_color(t_rt *rt)
+t_vec	canvas_get_bg_color(t_rt *rt)
 {
 	return (rt->canvas.bg_color);
 }

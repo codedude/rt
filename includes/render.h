@@ -20,7 +20,7 @@
 # define FLOAT_MAX		1e6
 # define FLOAT_MIN		1e-6
 # define BIAIS			1e-6
-# define MAX_DEPTH		4
+# define MAX_DEPTH		20
 # define REFRACTION_DEFAULT	1.0
 
 typedef struct		s_algo {
@@ -76,8 +76,15 @@ void				norm_cone(t_ray *ray, t_object *obj, t_inter *inter);
 t_float				intersect_cylinder(t_ray *ray, t_object *obj, t_float *t);
 void				norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter);
 
-t_color				compute_color(t_rt *rt, t_hit *hit, int depth);
+t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 
+
+/*
+** Light effect : reflexion and refraction 
+*/
+
+t_ray				reflected_ray(t_inter inter, t_vec ray);
+t_vec				reflexion(t_rt *rt, t_hit *hit, int depth, t_vec color);
 
 t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color local);
 t_uint		color_intensity(t_vec intensity, t_vec color);
