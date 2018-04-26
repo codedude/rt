@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 typedef double			t_float;
-typedef double			t_vec __attribute__((ext_vector_type(4),aligned(8)));
+typedef double			t_vec __attribute__((ext_vector_type(4),aligned(32)));
 
 void	test(t_vec *v)
 {

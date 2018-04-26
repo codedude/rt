@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:01:46 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 20:52:58 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 14:23:07 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef unsigned int	t_color;
 typedef int				t_int;
 typedef unsigned int	t_uint;
 typedef double			t_float;
-typedef t_float			t_vec __attribute__((vector_size(32),aligned(32)));
+typedef t_float			t_vec __attribute__((ext_vector_type(4),aligned(32)));
 
 /*
 ** types.c

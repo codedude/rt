@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 22:57:10 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/26 14:43:34 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void		loop(t_env *env)
 				cam_pos[1] += 1.0;
         	else if (event.key.keysym.sym == SDLK_DOWN)
 				cam_pos[1] -= 1.0;
-			else if (event.key.keysym.sym == SDLK_w)
-				cam_pos[2] += 3.0;
-			else if (event.key.keysym.sym == SDLK_x)
+			else if (event.key.keysym.sym == SDLK_z)
 				cam_pos[2] -= 3.0;
+			else if (event.key.keysym.sym == SDLK_x)
+				cam_pos[2] += 3.0;
 			else if (event.key.keysym.sym == SDLK_f)
 				show_fps = !show_fps;
 			else if (event.key.keysym.sym == SDLK_d)

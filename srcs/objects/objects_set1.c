@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/25 20:17:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 14:35:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@ int		object_set_pos(t_object *obj, t_vec pos)
 int		object_set_dir(t_object *obj, t_vec dir)
 {
 	obj->dir = dir;
-	obj->dir = vec_norm(obj->dir);
+	vec_norm(&obj->dir);
 	return (SUCCESS);
 }
 
 int		object_set_intensity(t_object *obj, t_vec intensity)
 {
-	obj->intensity = (t_vec){
+	obj->intensity = VEC_INIT(
 		clamp_f64(intensity[0], 0.0, 10.0),
 		clamp_f64(intensity[1], 0.0, 10.0),
-		clamp_f64(intensity[2], 0.0, 10.0),
-		0.0};
+		clamp_f64(intensity[2], 0.0, 10.0)
+		);
 	return (SUCCESS);
 }
 
 int		object_set_color(t_object *obj, t_vec color)
 {
-	obj->color = (t_vec){
+	obj->color = VEC_INIT(
 		(t_float)clamp_i32(color[0], 0, 255) / 255.0,
 		(t_float)clamp_i32(color[1], 0, 255) / 255.0,
-		(t_float)clamp_i32(color[2], 0, 255) / 255.0,
-		0.0};
+		(t_float)clamp_i32(color[2], 0, 255) / 255.0
+		);
 	return (SUCCESS);
 }
 

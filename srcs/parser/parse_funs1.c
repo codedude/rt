@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:30:20 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 20:18:03 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 14:36:58 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parser.h"
 #include "ft_math.h"
 #include "types.h"
+#include "vec.h"
 
 int		parse_t_width(void *data, char **strs)
 {
@@ -67,7 +68,7 @@ int		parse_t_ang(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_angle(env, (t_vec){n[0], n[1], n[2], 0.0}));
+	return (camera_set_angle(env, VEC_INIT(n[0], n[1], n[2])));
 }
 
 int		parse_t_fov(void *data, char **strs)

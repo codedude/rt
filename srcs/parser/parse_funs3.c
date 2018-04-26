@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 20:18:32 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 14:36:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "rt.h"
 #include "objects.h"
 #include "types.h"
+#include "vec.h"
 
 int		parse_t_origin(void *data, char **strs)
 {
@@ -28,7 +29,7 @@ int		parse_t_origin(void *data, char **strs)
 		|| ft_atof_s(strs[1], &n[1]) == ERROR
 		|| ft_atof_s(strs[2], &n[2]) == ERROR)
 		return (ERROR);
-	return (camera_set_origin(env, (t_vec){n[0], n[1], n[2], 0.0}));
+	return (camera_set_origin(env, VEC_INIT(n[0], n[1], n[2])));
 }
 
 int		parse_t_phong(void *data, char **strs)
