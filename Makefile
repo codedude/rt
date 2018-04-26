@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/26 16:27:33 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/26 18:38:27 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
-FILES		+=	$(UTILSD)/vec1.c $(UTILSD)/types.c $(UTILSD)/vec2.c
+FILES		+=	$(UTILSD)/vec1.c $(UTILSD)/types.c $(UTILSD)/vec2.c \
+				$(UTILSD)/matrix.c
 FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
 				$(OBJECTSD)/objects_format.c \
 				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \
@@ -43,7 +44,7 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
-				$(RENDERD)/intersect_cone.c \
+				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
 FILES		+=	$(SDLD)/sdl.c
 

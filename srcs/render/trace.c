@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 16:33:24 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 18:09:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_plane(ray, inter->obj, inter);
 	else if (inter->obj->type == SPHERE)
 		norm_sphere(ray, inter->obj, inter);
+	else if (inter->obj->type == CYLINDER)
+		norm_cylinder(ray, inter->obj, inter);
+	else if (inter->obj->type == CONE)
+		norm_cone(ray, inter->obj, inter);
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
@@ -34,6 +38,10 @@ t_float		intersect(t_ray *ray, t_object *obj)
 		intersect_plane(ray, obj, &t);
 	else if (obj->type == SPHERE)
 		intersect_sphere(ray, obj, &t);
+	else if (obj->type == CYLINDER)
+		intersect_cylinder(ray, obj, &t);
+	else if (obj->type == CONE)
+		intersect_cone(ray, obj, &t);
 	return (t);
 }
 
