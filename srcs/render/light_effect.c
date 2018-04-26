@@ -7,6 +7,16 @@
 #include "render.h"
 #include "rt.h"
 
+t_ray				reflected_ray(t_inter inter, t_vec ray)
+{
+	t_ray	ret;
+
+	ret.origin = inter.point;
+	ret.dir = vec_scalar(inter.normal, 2 * vec_dot(inter.normal, ray));
+	ret.dir = ret.dir - ray;
+	return (ret);
+}
+
 t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter)
 {
 	t_uint	reflected_color;
@@ -20,16 +30,6 @@ t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter)
 		reflected_color = compute_color(refl_ray, depth - 1, rt);
 	}
 	return (reflected_color);
-}
-
-t_ray				reflected_ray(t_inter inter, t_vec ray)
-{
-	t_ray	ret;
-
-	ret.origin = inter.point;
-	ret.dir = vec_scalar(inter.normal, 2 * vec_dot(inter.normal, ray));
-	ret.dir = ret.dir - ray;
-	return (ret);
 }
 
 t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter)

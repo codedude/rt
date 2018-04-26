@@ -30,9 +30,9 @@ t_parse_type	*get_parse_funs(void)
 		ADD_TYPE(phong, 3, "2 3 4 5"),
 		ADD_TYPE(angle, 1, ""),
 		ADD_TYPE(size, 1, ""),
-		ADD_TYPE(reflexion, 1, ""),
-		ADD_TYPE(refraction, 1, ""),
-		ADD_TYPE(transparency, 1, ""),
+		ADD_TYPE(reflexion, 1, "2 3 4 5"),
+		ADD_TYPE(refraction, 1, "2 3 4 5"),
+		ADD_TYPE(transparency, 1, "2 3 4 5"),
 		ADD_TYPE(perturbation, 1, ""),
 		{NULL, NULL, NULL, 0}};
 

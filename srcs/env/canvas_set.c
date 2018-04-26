@@ -34,7 +34,7 @@ int		canvas_set_height(t_rt *rt, int height)
 	return (SUCCESS);
 }
 
-int		canvas_set_bg_color(t_rt *rt, t_color color)
+int		canvas_set_bg_color(t_rt *rt, t_vec color)
 {
 	rt->canvas_update = 1;
 	rt->canvas.bg_color = color;

@@ -52,7 +52,7 @@ static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 	t_color	color;
 
 	compute_primary_ray(x, y, rt, &cam.ray);
-	color = compute_color(rt, &cam, MAX_DEPTH);
+	color = vec_to_color(compute_color(rt, &cam, MAX_DEPTH));
 	put_pixel(x + (y * rt->canvas.width), color, image);
 	return (SUCCESS);
 }

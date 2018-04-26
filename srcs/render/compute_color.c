@@ -126,10 +126,10 @@ t_vec		compute_local_light(t_rt *rt, t_hit *hit)
 	return (intensity);
 }
 
-t_color		compute_color(t_rt *rt, t_hit *hit, int depth)
+t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec		intensity;
-	t_color		color;
+	t_vec		color;
 
 	if (trace(rt, &hit->ray, &hit->inter, FLOAT_MAX) == SUCCESS)
 	{
@@ -140,7 +140,10 @@ t_color		compute_color(t_rt *rt, t_hit *hit, int depth)
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;
 		intensity = compute_local_light(rt, hit);
-		color = vec_to_color(intensity * hit->inter.obj->color);
+		color = intensity * hit->inter.obj->color;
+		if (hit->inter.obj->reflexion > 0 && depth > 0)
+			color = (1.0 - hit->inter.obj->reflexion) * color
+					+ reflexion(rt, hit, depth, color)  * hit->inter.obj->reflexion;
 	}
 	else
 		color = rt->canvas.bg_color;
