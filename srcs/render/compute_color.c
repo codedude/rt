@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 16:23:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 17:09:29 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ t_vec		local(t_rt *rt, t_object *obj, t_hit *hit)
 
 	intensity = VEC_ZERO;
 	intensity_local = diffuse(rt, obj, &hit->inter, &light_hit);
-	if (intensity_local[0] != 0.0 || intensity_local[1] != 0.0
-		|| intensity_local[2] != 0.0)
+	if (intensity_local[0] > 0.0 || intensity_local[1] > 0.0
+		|| intensity_local[2] > 0.0)
 	{
-		dot = vec_dot(hit->inter.normal, light_hit.ray.dir);
+		dot = vec_dot(light_hit.ray.dir, hit->inter.normal);
 		if (dot > FLOAT_ZERO)
 		{
-			intensity += intensity_local
+			intensity = intensity_local
 				* (dot * hit->inter.obj->phong[PHONG_KD]);
 			if (hit->inter.obj->phong[PHONG_SHINI] > 0.0)
 			{
@@ -133,9 +133,9 @@ t_color		compute_color(t_rt *rt, t_hit *hit, int depth)
 
 	if (trace(rt, &hit->ray, &hit->inter, FLOAT_MAX) == SUCCESS)
 	{
-		compute_hit_normal(&hit->ray, &hit->inter);
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
 			+ hit->ray.origin;
+		compute_hit_normal(&hit->ray, &hit->inter);
 		compute_hit_biais(&hit->inter);
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;
