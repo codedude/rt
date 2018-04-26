@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/26 14:43:19 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/26 15:50:14 by mcasubol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c \
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
+				$(RENDERD)/intersect_cone.c \
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
 FILES		+=	$(SDLD)/sdl.c
 

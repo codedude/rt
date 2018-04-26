@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 14:49:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 15:51:30 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
 
 t_float				intersect_plane(t_ray *ray, t_object *obj, t_float *t);
 void				norm_plane(t_ray *ray, t_object *obj, t_inter *inter);
+
+t_float				intersect_cone(t_ray *ray, t_object *obj, t_float *t);
+void				norm_cone(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_color				compute_color(t_rt *rt, t_hit *hit, int depth);
 
