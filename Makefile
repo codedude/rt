@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/26 14:43:19 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/26 15:02:49 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-O3 -flto -march=native -mtune=native -std=c11 -pedantic \
-				\
+				-g\
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result

@@ -13,8 +13,8 @@
 
 canvas
 {
-	width = 1024
-	height = 768
+	width = 800
+	height = 600
 	background = 250 250 250
 }
 
@@ -27,7 +27,7 @@ camera
 
 light_ambient
 {
-	intensity = 0.1 0.1 0.1
+	intensity = 0.0 0.0 0.0
 }
 
 light_point
@@ -36,11 +36,11 @@ light_point
 	intensity = 0.4 0.4 0.4
 }
 
-light_par
-{
-	dir = 0.0 -1.0 0.0
-	intensity = 0.2 0.2 0.2
-}
+#light_par
+#{
+#	dir = 0.0 -1.0 0.0
+#	intensity = 0.2 0.2 0.2
+#}
 
 light_point
 {

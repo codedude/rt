@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 14:49:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 16:26:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "env.h"
 
 # define FLOAT_ZERO		0.0
-# define FLOAT_MAX		1e8
-# define FLOAT_MIN		1e-8
+# define FLOAT_MAX		1e6
+# define FLOAT_MIN		1e-6
 # define BIAIS			1e-6
 # define MAX_DEPTH		4
 # define REFRACTION_DEFAULT	1.0

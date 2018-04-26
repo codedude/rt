@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 14:40:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 16:23:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void		init_ray_light(t_ray *ray_light, t_float *max_dist, t_object *obj,
 	}
 	else if (obj->type == LIGHT_PAR)
 	{
-		ray_light->dir = obj->dir * -1.0;
-		vec_norm(&ray_light->dir);
+		ray_light->dir = vec_norm(obj->dir * -1.0);
 		*max_dist = FLOAT_MAX;
 	}
 	ray_light->origin = inter->point_biais;
@@ -63,7 +62,7 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 		intensity = obj->intensity;
 	}
 	if (obj->type == LIGHT_POINT)
-		vec_norm(&light_hit->ray.dir);
+		light_hit->ray.dir = vec_norm(light_hit->ray.dir);
 	return (intensity);
 }
 
@@ -87,9 +86,8 @@ t_vec		local(t_rt *rt, t_object *obj, t_hit *hit)
 				* (dot * hit->inter.obj->phong[PHONG_KD]);
 			if (hit->inter.obj->phong[PHONG_SHINI] > 0.0)
 			{
-				reflect_ray = (hit->inter.normal * (-2.0 * dot))
-					+ light_hit.ray.dir;
-				vec_norm(&reflect_ray);
+				reflect_ray = vec_norm((hit->inter.normal * (-2.0 * dot))
+					+ light_hit.ray.dir);
 				dot = vec_dot(reflect_ray, hit->ray.dir);
 				if (dot > FLOAT_ZERO)
 				{

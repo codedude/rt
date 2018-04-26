@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:54:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 02:56:55 by valentin         ###   ########.fr       */
+/*   Updated: 2018/04/26 15:59:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		env_init(t_env *env, char *filename)
 
 void	env_destroy(t_env *env)
 {
-	rt_destroy(&env->rt);
-	sdl_destroy(&env->sdl);
 	tp_destroy(&env->tp);
+	sdl_destroy(&env->sdl);
+	rt_destroy(&env->rt);
 }

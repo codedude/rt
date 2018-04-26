@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:33:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 14:42:01 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 16:24:11 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 
 void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 {
-	inter->normal = inter->point - obj->pos;
-	vec_norm(&inter->normal);
+	inter->normal = vec_norm(inter->point - obj->pos);
 }

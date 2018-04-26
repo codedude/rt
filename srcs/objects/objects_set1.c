@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/26 14:35:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/26 16:15:06 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		object_set_pos(t_object *obj, t_vec pos)
 int		object_set_dir(t_object *obj, t_vec dir)
 {
 	obj->dir = dir;
-	vec_norm(&obj->dir);
+	obj->dir = vec_norm(obj->dir);
 	return (SUCCESS);
 }
 
