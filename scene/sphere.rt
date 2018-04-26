@@ -104,18 +104,24 @@ sphere
 
 cone
 {
-	pos = 30.0 30.0 40.0
+	pos = 50.0 30.0 50.0
 	dir = 0.0 1.0 0.2
 	radius = 8.0
 	color = 148 198 250
 	phong = 12 0.90 0.70
+	reflexion = 0.2
+	transparency = 0.0
+	refraction = 0.0
 }
 
 cylinder
 {
-	pos = -20.0 20.0 30.0
+	pos = -40.0 20.0 40.0
 	dir = 0.0 1.0 -0.3
 	radius = 5.0
 	color = 200 198 250
 	phong = 12 0.90 0.70
+	reflexion = 0.2
+	transparency = 0.0
+	refraction = 0.0
 }
