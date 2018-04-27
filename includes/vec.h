@@ -17,6 +17,7 @@
 
 # define VEC_ZERO			(t_vec){0.0, 0.0, 0.0, 0.0}
 # define VEC_INIT(a, b, c)	(t_vec){(a), (b), (c), 0.0}
+# define MAT_ID	(t_vec[3]){VEC_INIT(1.0, 0.0, 0.0), VEC_INIT(0.0, 1.0, 0.0), VEC_INIT(0.0, 0.0, 1.0)}
 
 t_vec			vec_norm(t_vec v1);
 t_float			vec_dot(t_vec v1, t_vec v2);

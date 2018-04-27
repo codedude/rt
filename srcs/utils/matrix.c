@@ -49,3 +49,64 @@ t_vec			matrix_mul_vec(t_vec matrix[3], t_vec v)
 {
 	return (matrix[0] * v[0] + matrix[1] * v[1] + matrix[2] * v[2]);
 }
+
+void			matrix_mul_matrix(t_vec m1[3], t_vec m2[3], t_vec ret[3])
+{
+	ret[0] = VEC_INIT(
+		m1[0][0] * m2[0][0] + m1[1][0] * m2[0][1] + m1[2][0] * m2[0][2],
+		m1[0][0] * m2[1][0] + m.m[1][0] * m2[1][1] + m1[2][0] * m2[1][2],
+		m1[0][0] * m2[2][0] + m1[1][0] * m2[2][1] + m1[2][0] * m2[2][2],
+						)
+	ret[1] = VEC_INIT(
+		m1[0][1] * m2[0][0] + m1[1][1] * m2[0][1] + m1[2][1] * m2[0][2],
+		m1[0][1] * m2[1][0] + m1[1][1] * m2[1][1] + m1[2][1] * m2[1][2],
+		m1[0][1] * m2[2][0] + m1[1][1] * m2[2][1] + m1[2][1] * m2[2][2],
+						)
+	ret[2] = VEC_INIT(
+		m1[0][2] * m2[0][0] + m1[1][2] * m2[0][1] + m1[2][2] * m2[0][2],
+		m1[0][2] * m2[1][0] + m1[1][2] * m2[1][1] + m1[2][2] * m2[1][2],
+		m1[0][2] * m2[2][0] + m1[1][2] * m2[2][1] + m1[2][2] * m2[2][2],
+						)
+}
+
+void	matrix_rotx(t_vec m[3], double teta)
+{
+	MAT3	ret;
+	double	angle;
+
+	angle = ft_torad(teta);
+	ret = (MAT3){ .m = {
+		1, 0, 0,
+		0, cos(angle), -sin(angle),
+		0, sin(angle), cos(angle)
+	}};
+	return (ret);
+}
+
+void	matrix_roty(double teta)
+{
+	MAT3	ret;
+	double	angle;
+
+	angle = ft_torad(teta);
+	ret = (MAT3){ .m = {
+		cos(angle), 0, sin(angle),
+		0, 1, 0,
+		-sin(angle), 0, cos(angle)
+	}};
+	return (ret);
+}
+
+void	matrix_rotz(double teta)
+{
+	MAT3	ret;
+	double	angle;
+
+	angle = ft_torad(teta);
+	ret = (MAT3){ .m = {
+		cos(angle), -sin(angle), 0,
+		sin(angle), cos(angle), 0,
+		0, 0, 1
+	}};
+	return (ret);
+}
