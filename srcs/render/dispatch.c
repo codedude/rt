@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:04:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 15:57:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 15:34:11 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void			render_compute(t_env *env)
 		tp_add_task(env->tp, &rt, &pack[i]);
 		i++;
 	}
-	//Apply rotation on camera HERE
 	tp_wait_for_queue(env->tp);
 }

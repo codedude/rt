@@ -7,7 +7,7 @@
 #include "render.h"
 #include "rt.h"
 
-t_ray				reflected_ray(t_inter inter, t_vec ray)
+t_ray		reflected_ray(t_inter inter, t_vec ray)
 {
 	t_ray	ret;
 
@@ -46,7 +46,7 @@ t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter)
 	return (refracted_color);
 }
 
-t_ray				refract_ray(t_ray ray, t_inter inter)
+t_ray		refract_ray(t_ray ray, t_inter inter)
 {
 	t_float	n;
 	t_float	c1;
@@ -70,7 +70,7 @@ t_ray				refract_ray(t_ray ray, t_inter inter)
 	return (ret);
 }
 
-t_float			fresnel(t_ray ray, t_inter inter)
+t_float		fresnel(t_ray ray, t_inter inter)
 {
 	t_float	n;
 	t_float	cosi;
@@ -91,6 +91,6 @@ t_float			fresnel(t_ray ray, t_inter inter)
 		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost)) / ((inter.obj->refraction * cosi) + (ray.refraction * cost));
 		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi)) / ((ray.refraction * cost) + (inter.obj->refraction * cosi));
 		kr = (rs * rs + rp * rp) / 2;
-	}	
+	}
 	return (kr);
 }

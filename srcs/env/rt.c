@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/26 16:01:06 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 14:25:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "rt.h"
 #include "parser.h"
+#include "vec.h"
 
 static void	set_ratio(t_rt *rt)
 {
@@ -58,6 +59,7 @@ int			rt_init(t_rt *rt, char *filename)
 		return (ERROR);
 	}
 	set_ratio(rt);
+	matrix_init_value();
 	objects_gen_array(&rt->objects);
 	ft_strsplit_free(file);
 	return (SUCCESS);
