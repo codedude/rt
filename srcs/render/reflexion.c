@@ -22,7 +22,7 @@ t_vec				reflexion(t_rt *rt, t_hit *hit, int depth)
 	t_hit 	reflect;
 
 	reflected_color = VEC_ZERO;
-	if (hit->inter.obj->reflexion > 0 && depth > 0)
+	if (depth > 0)
 	{
 		reflect.ray = reflected_ray(hit->inter, -1.0 * hit->ray.dir);
 		reflect.ray.refraction = hit->ray.refraction;

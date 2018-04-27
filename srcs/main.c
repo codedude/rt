@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/27 15:41:12 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 17:52:06 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			main(int argc, char **argv)
 	}
 	if (env_init(&env, argv[1]) == ERROR)
 		return (EXIT_FAILURE);
-	loop_gtk(&env);
+	loop(&env);
 	env_destroy(&env);
 	return (EXIT_SUCCESS);
 }
