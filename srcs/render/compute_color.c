@@ -33,6 +33,7 @@ void		init_ray_light(t_ray *ray_light, t_float *max_dist, t_object *obj,
 		*max_dist = FLOAT_MAX;
 	}
 	ray_light->origin = inter->point_biais;
+	ray_light->refraction = inter->obj->refraction;
 }
 
 t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
@@ -74,27 +75,32 @@ t_vec		local(t_rt *rt, t_object *obj, t_hit *hit)
 	t_vec	intensity;
 	t_float	dot;
 	t_vec	reflect_ray;
+	t_inter	inter;
 
+	inter = hit->inter;
 	intensity = VEC_ZERO;
 	intensity_local = diffuse(rt, obj, &hit->inter, &light_hit);
 	if (intensity_local[0] > 0.0 || intensity_local[1] > 0.0
 		|| intensity_local[2] > 0.0)
 	{
-		dot = vec_dot(light_hit.ray.dir, hit->inter.normal);
+		if (vec_dot(vec_norm(light_hit.ray.dir), inter.normal) < FLOAT_ZERO
+			&& inter.obj->transparency > 0)
+			inter.normal *= -1;
+		dot = vec_dot(vec_norm(light_hit.ray.dir), inter.normal);
 		if (dot > FLOAT_ZERO)
 		{
 			intensity = intensity_local
-				* (dot * hit->inter.obj->phong[PHONG_KD]);
-			if (hit->inter.obj->phong[PHONG_SHINI] > 0.0)
+				* (dot * inter.obj->phong[PHONG_KD]);
+			if (inter.obj->phong[PHONG_SHINI] > 0.0)
 			{
-				reflect_ray = vec_norm((hit->inter.normal * (-2.0 * dot))
+				reflect_ray = vec_norm((inter.normal * (-2.0 * dot))
 					+ light_hit.ray.dir);
 				dot = vec_dot(reflect_ray, hit->ray.dir);
 				if (dot > FLOAT_ZERO)
 				{
 					intensity += intensity_local
-						* (pow(dot, hit->inter.obj->phong[PHONG_SHINI])
-						* hit->inter.obj->phong[PHONG_KS]);
+						* (pow(dot, inter.obj->phong[PHONG_SHINI])
+						* inter.obj->phong[PHONG_KS]);
 				}
 			}
 		}
@@ -132,11 +138,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 	t_vec		intensity;
 	t_vec		color;
 	t_vec		refract_color;
-	t_vec		reflect_color;
 	t_float		kr;
 
 	refract_color = VEC_ZERO;
-	reflect_color = VEC_ZERO;
 	if (trace(rt, &hit->ray, &hit->inter, FLOAT_MAX) == SUCCESS)
 	{
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
@@ -156,8 +160,8 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 			kr = fresnel(hit->ray, hit->inter);
 			if (kr < 1)
 				refract_color = refract(rt, hit, depth);
-			reflect_color = reflexion(rt, hit, depth);
-			refract_color = (1.0 - kr) * refract_color + kr * reflect_color;
+			refract_color = (1.0 - kr) * refract_color
+								+ kr * reflexion(rt, hit, depth);
 			color = (1.0 - hit->inter.obj->transparency) * color
 					+ refract_color * hit->inter.obj->transparency;
 		}

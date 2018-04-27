@@ -21,7 +21,7 @@
 # define FLOAT_MIN			1e-5
 # define BIAIS				1e-6
 # define MAX_DEPTH			4
-# define REFRACTION_DEFAULT	1.333333
+# define REFRACTION_DEFAULT	1.0
 
 typedef struct		s_algo {
 	t_env			*env;
