@@ -26,9 +26,9 @@ static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 	ray->dir[0] = (2.0 * ray->dir[0] - 1.0) * rt->canvas.ratio[0];
 	ray->dir[1] = (1.0 - 2.0 * ray->dir[1]) * rt->canvas.ratio[1];
 	ray->dir[2] = 1.0;
-	ray->dir = matrix_mul_vec(rt->cam.rot, ray.dir) + rt->camera.origin;
+	//ray->dir = matrix_mul_vec(rt->cam.rot, ray.dir) + rt->camera.origin;
 	ray->origin = rt->camera.origin;
-	ray->dir = ray->dir - ray.origin;
+	//ray->dir = ray->dir - ray.origin;
 	ray->dir = vec_norm(ray->dir);
 	ray->refraction = REFRACTION_DEFAULT;
 }

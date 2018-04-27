@@ -28,4 +28,9 @@ void			matrix_rot_vec(t_vec matrix[3], t_vec v);
 t_vec			matrix_mul_vec(t_vec matrix[3], t_vec v);
 void			matrix_init_value(void);
 
+void			matrix_mul_matrix(t_vec m1[3], t_vec m2[3], t_vec ret[3]);
+void			matrix_rotx(t_vec ret[3], double teta);
+void			matrix_roty(t_vec ret[3], double teta);
+void			matrix_rotz(t_vec ret[3], double teta);
+
 #endif
