@@ -51,12 +51,12 @@ plane
 	phong = 0 0.95 0.0
 	reflexion = 0.0
 	transparency = 0.5
-	refraction = 1.333333
+	refraction = 1.0
 }
 
 sphere
 {
-	pos = 0.0 12.5 30.0
+	pos = 0.0 -6.5 30.0
 	dir = 0.0 0.0 0.0
 	radius = 5.0
 	color = 255 82 90
@@ -95,7 +95,7 @@ cone
 	pos = 30.0 30.0 100.0
 	dir = 0.0 1.0 0.2
 	radius = 8.0
-	color = 148 198 250
+	color = 200 87 0
 	phong = 12 0.90 0.70
 	reflexion = 0.0
 	transparency = 0.0

@@ -46,16 +46,17 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 	if (trace(rt, &light_hit->ray, &light_hit->inter, max_dist) == SUCCESS)
 	{
 		intensity = VEC_ZERO;
-		/*if (light_hit->inter.obj->refraction >= 1.0
+		if (light_hit->inter.obj->refraction >= 1.0
 			&& light_hit->inter.obj->transparency > 0.0)
 		{
-			refract_ray(&light_hit->ray, inter);
+			inter_refract = *inter;
+			ray_refract = refract_ray(light_hit->ray, *inter);
 			if (trace(rt, &ray_refract, &inter_refract, FLOAT_MAX) == ERROR)
 			{
 				intensity += obj->intensity
-					* light_hit->inter.obj->transparency);
+					* light_hit->inter.obj->transparency;
 			}
-		}*/
+		}
 	}
 	else
 	{
