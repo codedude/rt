@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/26 14:44:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 15:29:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int		camera_set_angle(t_rt *rt, t_vec v)
 	rt->camera.angle = VEC_INIT(
 		fmod(v[0], 360.0),
 		fmod(v[1], 360.0),
-		fmod(v[1], 360.0)
-		);
+		fmod(v[1], 360.0));
 	return (SUCCESS);
 }
 

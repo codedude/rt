@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:30:20 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 14:36:58 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 15:28:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int		parse_t_background(void *data, char **strs)
 	color = VEC_INIT(
 		(t_float)clamp_i32(n[0], 0, 255) / 255.0,
 		(t_float)clamp_i32(n[1], 0, 255) / 255.0,
-		(t_float)clamp_i32(n[2], 0, 255) / 255.0
-		);
+		(t_float)clamp_i32(n[2], 0, 255) / 255.0);
 	return (canvas_set_bg_color(env, color));
 }
 

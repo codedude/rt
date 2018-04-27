@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 19:45:03 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 15:28:15 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include "types.h"
 # include "env.h"
 
-# define FLOAT_ZERO		0.0
-# define FLOAT_MAX		1e6
-# define FLOAT_MIN		1e-6
-# define BIAIS			1e-6
-# define MAX_DEPTH		4
+# define FLOAT_ZERO			0.0
+# define FLOAT_MAX			1e6
+# define FLOAT_MIN			1e-5
+# define BIAIS				1e-6
+# define MAX_DEPTH			4
 # define REFRACTION_DEFAULT	1.0
 
 typedef struct		s_algo {
@@ -48,7 +48,6 @@ typedef struct		s_hit {
 	t_ray			ray;
 	t_inter			inter;
 }					t_hit;
-
 
 void				render_compute(t_env *env);
 int					render_update(t_env *env);
@@ -78,51 +77,23 @@ void				norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 
-
 /*
-** Light effect : reflexion and refraction 
+** Light effect : reflexion and refraction
 */
 
 t_ray				reflected_ray(t_inter inter, t_vec ray);
-t_vec				reflexion(t_rt *rt, t_hit *hit, int depth, t_vec color);
+t_vec				reflexion(t_rt *rt, t_hit *hit, int depth);
 
-t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color local);
-t_uint		color_intensity(t_vec intensity, t_vec color);
-t_uint		calc_color(t_float i, t_uint color);
+t_vec				refract(t_rt *rt, t_hit *hit, int depth);
+t_ray				refract_ray(t_ray ray, t_inter inter);
+t_float				fresnel(t_ray ray, t_inter inter);
 
 /*
 ** Compute light intensity
 */
 
-t_vec		light(t_inter it, t_vec v, t_rt *rt);
-t_float		diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
-t_vec		light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
-t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter);
-t_ray		reflected_ray(t_inter inter, t_vec ray);
-t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter);
-t_ray		refract_ray(t_ray ray, t_inter inter);
-t_float		fresnel(t_ray ray, t_inter inter);
-
-
-/*
-** Compute intersections
-*/
-
-int				closest_intersect(t_ray ray,
-		t_float t_max, t_objects objects, t_inter *inter);
-t_float		inters(t_ray ray, t_object *obj);
-t_float		r_inter_plan(t_ray ray, t_object *plan);
-t_float		r_inter_sphere(t_ray ray, t_object *obj);
-
-/*
-** Compute shape's normal
-*/
-
-t_vec		point_normal(t_object *obj, t_vec intersection, t_ray ray);
-t_vec		point_ray_intersect(double t, t_ray ray);
-t_vec		sphere_normal(t_vec center, t_vec point);
-t_vec		cyl_normal(t_vec bottom, t_vec top, t_vec point);
-t_vec		cone_normal(t_object cone, t_vec point);
-
+t_vec				light(t_inter it, t_vec v, t_rt *rt);
+t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
+t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 
 #endif
