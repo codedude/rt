@@ -16,7 +16,7 @@ t_ray				reflected_ray(t_inter inter, t_vec ray)
 	return (ret);
 }
 
-t_vec				reflexion(t_rt *rt, t_hit *hit, int depth, t_vec color)
+t_vec				reflexion(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec	reflected_color;
 	t_hit 	reflect;

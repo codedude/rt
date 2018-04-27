@@ -84,11 +84,11 @@ t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 */
 
 t_ray				reflected_ray(t_inter inter, t_vec ray);
-t_vec				reflexion(t_rt *rt, t_hit *hit, int depth, t_vec color);
+t_vec				reflexion(t_rt *rt, t_hit *hit, int depth);
 
-t_uint		transmitted_light(t_ray ray, t_inter inter, int depth, t_rt *rt, t_color local);
-t_uint		color_intensity(t_vec intensity, t_vec color);
-t_uint		calc_color(t_float i, t_uint color);
+t_vec				refract(t_rt *rt, t_hit *hit, int depth);
+t_ray				refract_ray(t_ray ray, t_inter inter);
+t_float				fresnel(t_ray ray, t_inter inter);
 
 /*
 ** Compute light intensity
@@ -97,11 +97,6 @@ t_uint		calc_color(t_float i, t_uint color);
 t_vec		light(t_inter it, t_vec v, t_rt *rt);
 t_float		diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec		light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
-t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter);
-t_ray		reflected_ray(t_inter inter, t_vec ray);
-t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter);
-t_ray		refract_ray(t_ray ray, t_inter inter);
-t_float		fresnel(t_ray ray, t_inter inter);
 
 
 /*

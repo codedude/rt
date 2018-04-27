@@ -130,7 +130,12 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec		intensity;
 	t_vec		color;
+	t_vec		refract_color;
+	t_vec		reflect_color;
+	t_float		kr;
 
+	refract_color = VEC_ZERO;
+	reflect_color = VEC_ZERO;
 	if (trace(rt, &hit->ray, &hit->inter, FLOAT_MAX) == SUCCESS)
 	{
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
@@ -143,7 +148,18 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		color = intensity * hit->inter.obj->color;
 		if (hit->inter.obj->reflexion > 0 && depth > 0)
 			color = (1.0 - hit->inter.obj->reflexion) * color
-					+ reflexion(rt, hit, depth, color)  * hit->inter.obj->reflexion;
+				+ reflexion(rt, hit, depth) * hit->inter.obj->reflexion;
+		if (hit->inter.obj->transparency > 0.0 && depth > 0
+			&& hit->inter.obj->refraction >= 1.0)
+		{
+			kr = fresnel(hit->ray, hit->inter);
+			if (kr < 1)
+				refract_color = refract(rt, hit, depth);
+			reflect_color = reflexion(rt, hit, depth);
+			refract_color = (1.0 - kr) * refract_color + kr * reflect_color;
+			color = (1.0 - hit->inter.obj->transparency) * color
+					+ refract_color * hit->inter.obj->transparency;
+		}
 	}
 	else
 		color = rt->canvas.bg_color;
