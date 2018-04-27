@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:51:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 19:37:12 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 14:25:28 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter)
 	t_vec		matrix[3];
 
 	(void)ray;
-	matrix_rot_vec(matrix, obj->dir, 180.0);
+	matrix_rot_vec(matrix, obj->dir);
 	inter->normal = vec_norm(inter->normal
 		- (matrix_mul_vec(matrix, inter->point - obj->pos) + obj->pos));
 }
