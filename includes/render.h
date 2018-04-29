@@ -75,6 +75,9 @@ void				norm_cone(t_ray *ray, t_object *obj, t_inter *inter);
 t_float				intersect_cylinder(t_ray *ray, t_object *obj, t_float *t);
 void				norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter);
 
+t_float				intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t);
+void				paraboloid_normal(t_ray *ray, t_object *obj, t_inter *inter);
+
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 
 /*
@@ -95,5 +98,12 @@ t_float				fresnel(t_ray ray, t_inter inter);
 t_vec				light(t_inter it, t_vec v, t_rt *rt);
 t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
+
+t_vec		color_perturbation(t_inter inter);
+double 		noise3(double vec[3]);
+t_vec		marble(t_float t, t_inter inter);
+t_vec		normal_perturbation(t_vec	normal);
+t_vec		chess(t_inter inter);
+
 
 #endif

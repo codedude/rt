@@ -28,6 +28,10 @@ enum {
 	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
 };
 
+enum {
+	NONE, MARBLE, WOOD
+};
+
 # define PHONGS			3
 # define PHONG_SHINI	0
 # define PHONG_KD		1
@@ -46,6 +50,7 @@ enum {
 typedef struct			s_object {
 	t_id				id;
 	t_int				type;
+	t_int				perturbation;
 	t_vec				pos;
 	t_vec				dir;
 	t_vec				color;
@@ -56,7 +61,6 @@ typedef struct			s_object {
 	t_float				reflexion;
 	t_float				transparency;
 	t_float				refraction;
-	t_float				perturbation;
 	t_float				angle;
 	t_float				size;
 }						t_object;
@@ -120,7 +124,7 @@ int						object_set_phong(t_object *obj, t_float phong[PHONGS]);
 int						object_set_reflexion(t_object *obj, t_float n);
 int						object_set_transparency(t_object *obj, t_float n);
 int						object_set_refraction(t_object *obj, t_float n);
-int						object_set_perturbation(t_object *obj, t_float n);
+int						object_set_perturbation(t_object *obj, int n);
 int						object_set_angle(t_object *obj, t_float n);
 int						object_set_size(t_object *obj, t_float n);
 

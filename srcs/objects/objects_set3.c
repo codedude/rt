@@ -35,8 +35,10 @@ int		object_set_transparency(t_object *obj, t_float n)
 	return (SUCCESS);
 }
 
-int		object_set_perturbation(t_object *obj, t_float n)
+int		object_set_perturbation(t_object *obj, int n)
 {
-	obj->perturbation = clamp_f64(n, 0.0, 100.0);
+	if (n < 0 || n > 3)
+		return (ERROR);
+	obj->perturbation = n;
 	return (SUCCESS);
 }

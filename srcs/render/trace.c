@@ -27,6 +27,8 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_cylinder(ray, inter->obj, inter);
 	else if (inter->obj->type == CONE)
 		norm_cone(ray, inter->obj, inter);
+	else if (inter->obj->type == PARABOLOID)
+		norm_cone(ray, inter->obj, inter);
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
@@ -42,6 +44,8 @@ t_float		intersect(t_ray *ray, t_object *obj)
 		intersect_cylinder(ray, obj, &t);
 	else if (obj->type == CONE)
 		intersect_cone(ray, obj, &t);
+	else if (obj->type == PARABOLOID)
+		intersect_paraboloid(ray, obj, &t);
 	return (t);
 }
 
