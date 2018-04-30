@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   bmp.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 16:54:59 by vparis           ###   ########.fr       */
+/*   Created: 2018/04/30 16:43:13 by vparis            #+#    #+#             */
+/*   Updated: 2018/04/30 16:46:34 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef BMP_H
+# define BMP_H
 
 # include "types.h"
-# include "objects.h"
-# include "rt.h"
-# include "ft_tpool.h"
-# include "sdl_m.h"
+/*
+** Max map filsize : 4Mo
+*/
 
-# define THREADS		4
-# define TASKS			32
+# define BMP_BUFF		4096
+# define FILE_NAME		"saved_img/rt_XXX.bmp"
 
-typedef struct		s_env {
-	t_tpool			*tp;
-	t_sdl			sdl;
-	t_rt			rt;
-	int				show_fps;
-}					t_env;
-
-int					env_init(t_env *env, char *filename);
-void				env_destroy(t_env *env);
+int				write_header(int fd, int size[2]);
+int				write_dibheader(int fd, int size[2]);
+int				write_img(int fd, int size[2], t_color *map);
+void			write_int(int fd, int n, int bytes);
+int				save_img(t_color *image, int width, int height);
 
 #endif
