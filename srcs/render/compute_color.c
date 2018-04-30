@@ -152,9 +152,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;
 		intensity = compute_local_light(rt, hit);
-	//	color = color_perturbation(hit->inter);
-	//	color = intensity * color;
-		color = intensity * hit->inter.obj->color;
+		color = color_perturbation(hit->inter);
+		color = intensity * color;
+	//	color = intensity * hit->inter.obj->color;
 		if (hit->inter.obj->reflexion > 0 && depth > 0)
 			color = (1.0 - hit->inter.obj->reflexion) * color
 				+ reflexion(rt, hit, depth) * hit->inter.obj->reflexion;

@@ -63,6 +63,8 @@ typedef struct			s_object {
 	t_float				refraction;
 	t_float				angle;
 	t_float				size;
+	t_vec				obj_to_w[3];
+	t_vec				w_to_obj[3];
 }						t_object;
 
 /*
@@ -127,5 +129,6 @@ int						object_set_refraction(t_object *obj, t_float n);
 int						object_set_perturbation(t_object *obj, int n);
 int						object_set_angle(t_object *obj, t_float n);
 int						object_set_size(t_object *obj, t_float n);
+int						object_set_matrix(t_object *obj, t_vec rot);
 
 #endif

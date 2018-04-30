@@ -114,5 +114,6 @@ int				parse_t_reflexion(void *data, char **strs);
 int				parse_t_refraction(void *data, char **strs);
 int				parse_t_transparency(void *data, char **strs);
 int				parse_t_perturbation(void *data, char **strs);
+int				parse_t_rot(void *data, char **strs);
 
 #endif

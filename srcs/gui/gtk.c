@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <gtk/gtk.h>
+//#include <gtk/gtk.h>
 //#include <gdk/gdkx.h>
 #include "libft.h"
 #include "gtk_m.h"

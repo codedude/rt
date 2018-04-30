@@ -29,7 +29,7 @@ t_vec		color_perturbation(t_inter inter)
 t_vec		chess(t_inter inter)
 {
 
-	if ((inter.point.x < 0 && inter.point.y < 0) || (inter.point.x > 0 && inter.point.y > 0))
+/*	if ((inter.point.x < 0 && inter.point.y < 0) || (inter.point.x > 0 && inter.point.y > 0))
         {    
             if ((int)fabs(inter.point.x) % 10 < 5 && ((int)fabs(inter.point.y) % 10 < 5))
                 return (VEC_INIT(0.0, 0.0, 0.0));
@@ -44,9 +44,25 @@ t_vec		chess(t_inter inter)
                 return(VEC_INIT(0.0, 0.0, 0.0));
         }
     return (inter.obj->color);
+*/
+    if ((inter.point.x * inter.point.z / inter.point.y  < 0 && inter.point.z < 0) || (inter.point.x * inter.point.z / inter.point.y  > 0 && inter.point.z > 0))
+        {
+            if ((int)fabs(inter.point.x * inter.point.z / inter.point.y) % 10 < 5 && ((int)fabs(inter.point.z)) % 10 < 5)
+                return (VEC_INIT(0.0, 0.0, 0.0));
+            if (!((int)fabs(inter.point.x * inter.point.z / inter.point.y) % 10 < 5 || ((int)fabs(inter.point.z)) % 10 < 5))
+                return(VEC_INIT(0.0, 0.0, 0.0));
+        }
+        if ((inter.point.x * inter.point.z / inter.point.y > 0 && inter.point.z < 0) || (inter.point.x * inter.point.z / inter.point.y < 0 && inter.point.z > 0))
+        {
+            if ((int)fabs(inter.point.x * inter.point.z / inter.point.y) % 10 >= 5 && ((int)fabs(inter.point.z)) % 10 < 5)
+                return (VEC_INIT(0.0, 0.0, 0.0));
+            if ((int)fabs(inter.point.x * inter.point.z / inter.point.y) % 10 < 5 && ((int)fabs(inter.point.z)) % 10 >= 5)
+                return(VEC_INIT(0.0, 0.0, 0.0));
+        }
+        return (inter.obj->color);
 }
 
-t_vec		marble(t_float t, t_inter inter)
+t_vec		marble1(t_float t, t_inter inter)
 {
 	t_float x;
 	t_vec color;
@@ -59,30 +75,31 @@ t_vec		marble(t_float t, t_inter inter)
   	x = sqrt(x);
   	color.x = (0.7 + 0.3 * x) * inter.obj->color.x;
   	color.z = (0.3 + 0.8 * x) * inter.obj->color.z;
+  	return(color);
+}
 
+t_vec		marble2(t_float t, t_inter inter)
+{
+	t_float x;
+	t_vec color;
 
-  	/*x = sin(inter.point[0] + 3.0 * t * M_PI);
+  	x = sin(inter.point[0] + 3.0 * t * M_PI);
  	x = sqrt(x+1) * 0.7071;
  	color.y = (0.7 + 0.7 * x) * inter.obj->color.y;
   	x = sqrt(x);
   	color.x = (0.7 + 0.3 * x) * inter.obj->color.x;
-  	color.z = (0.3 + 0.8 * x) * inter.obj->color.z;*/
-
-  	return(color);
+  	color.z = (0.3 + 0.8 * x) * inter.obj->color.z;
+  	  	return(color);
 }
 
-t_vec		normal_perturbation(t_inter	inter)
+t_vec		normal_perturbation(t_inter	inter) // water effect for horizontal plan
 {
 	t_vec	tmp1;
 	t_vec	tmp2;
 	t_vec	ret;
 	t_float	v[3];
 	t_float	epsi;
-	t_float x;
-	t_float t;
 
-//	x = sin(normal[0] + cos(normal[1] + 8.0 * t * M_PI) + 6.0 * t * M_PI);
- //	x = sqrt(x+1) * 0.7071;
 	epsi = 1.0;
 	v[0] = inter.normal.x + inter.point.x + epsi;
 	v[1] = inter.normal.y * 50 + 100 * inter.point.y;
