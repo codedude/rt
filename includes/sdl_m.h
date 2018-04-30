@@ -14,7 +14,8 @@
 # define SDL_M_H
 
 # include <stdlib.h>
-# include "SDL.h"
+//# include "SDL.h"
+# include "/usr/local/include/SDL2/SDL.h"
 # include "types.h"
 
 typedef struct		s_sdl {

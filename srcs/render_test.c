@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SDL.h"
+//#include "SDL.h"
+# include "/usr/local/include/SDL2/SDL.h"
 #include "sdl_m.h"
 #include <stdlib.h>
 #include <stdio.h>

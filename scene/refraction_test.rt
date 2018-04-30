@@ -46,6 +46,7 @@ plane
 	reflexion = 0.0
 	transparency = 0.5
 	refraction = 1.333333
+	perturbation = 1
 }
 
 sphere
@@ -58,6 +59,7 @@ sphere
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
+	perturbation = 1
 }
 
 sphere
@@ -70,6 +72,7 @@ sphere
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
+	perturbation = 1
 }
 
 cone
@@ -82,6 +85,7 @@ cone
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
+	perturbation = 1
 }
 
 cylinder
@@ -94,4 +98,5 @@ cylinder
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
+	perturbation = 1
 }

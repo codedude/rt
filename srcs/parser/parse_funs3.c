@@ -54,7 +54,7 @@ int		parse_t_perturbation(void *data, char **strs)
 	t_float		n;
 
 	obj = (t_object *)data;
-	if (ft_atof_s(strs[0], &n) == ERROR)
+	if (ft_atoi_s(strs[0], &n) == ERROR)
 		return (ERROR);
 	object_set_perturbation(obj, n);
 	return (SUCCESS);
