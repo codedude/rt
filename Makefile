@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/30 11:47:50 by valentin         ###   ########.fr        #
+#    Updated: 2018/04/30 16:23:03 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,9 @@ RENDERD		=	render
 UTILSD		=	utils
 LIBTPOOLD	=	libtpool
 SDLD		=	sdl
-<<<<<<< HEAD
+GUID		=	gui
 SDLLIBD		=	$(HOME)/.brew/lib
 SDLINCD		=	$(HOME)/.brew/include/SDL2
-=======
-GUID		=	gui
-SDLLIBD		=	$(HOME)/.brew/lib -lSDL2
-SDLINCD		=	$(HOME)/.brew/include/SDL2 -D_THREAD_SAFE
->>>>>>> 91a7223881abfc5863a1b27d6c68ea4611082fd7
 
 FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
@@ -54,20 +49,18 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
-FILES		+=	$(SDLD)/sdl.c $(GUID)/gtk.c
+FILES		+=	$(SDLD)/sdl.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-GTK_CFLAGS	=	$(shell pkg-config --cflags gtk+-3.0)
-GTK_LDFLAGS	=	$(shell pkg-config --libs gtk+-3.0)
 CFLAGS		+=	-O3 -flto -march=native -mtune=native -std=c11 -pedantic \
-				-g $(GTK_CFLAGS) \
+				-g \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
-				-L$(SDLLIBD) -lsdl2 $(GTK_LDFLAGS)
+				-L$(SDLLIBD) -lsdl2
 
 .PHONY: clean fclean re
 

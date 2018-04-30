@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 16:07:24 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/30 14:01:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		parse_t_phong(void *data, char **strs)
 int		parse_t_perturbation(void *data, char **strs)
 {
 	t_object	*obj;
-	t_float		n;
+	int			n;
 
 	obj = (t_object *)data;
 	if (ft_atoi_s(strs[0], &n) == ERROR)
