@@ -25,7 +25,7 @@ t_float		intersect_cylinder(t_ray *ray, t_object *obj, t_float *t)
 	t_vec	tmp;
 	t_float	abc[3];
 
-	delta_p = ray->origin - obj->pos;
+	delta_p = ray->origin;
 	vva = obj->dir * vec_dot(ray->dir, obj->dir);
 	dpva = obj->dir * vec_dot(delta_p, obj->dir);
 	delta_p -= dpva;
@@ -41,7 +41,7 @@ void		norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter)
 	t_vec		matrix[3];
 
 	(void)ray;
-	matrix_rot_vec(matrix, obj->dir);
+	matrix_roty(matrix, 180);
 	inter->normal = vec_norm(inter->point
 		- (matrix_mul_vec(matrix, inter->point - obj->pos) + obj->pos));
 }

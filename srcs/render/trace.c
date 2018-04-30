@@ -29,23 +29,29 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_cone(ray, inter->obj, inter);
 	else if (inter->obj->type == PARABOLOID)
 		norm_cone(ray, inter->obj, inter);
+	inter->normal = matrix_mul_vec(inter->obj->obj_to_w, inter->normal);
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
 {
 	t_float		t;
+	t_ray		tmp;
 
 	t = FLOAT_ZERO;
+	tmp = *ray;
+	tmp.origin -= obj->pos;
+	tmp.origin = matrix_mul_vec(obj->w_to_obj, tmp.origin);
+	tmp.dir = matrix_mul_vec(obj->w_to_obj, tmp.dir);
 	if (obj->type == PLANE)
-		intersect_plane(ray, obj, &t);
+		intersect_plane(&tmp, obj, &t);
 	else if (obj->type == SPHERE)
-		intersect_sphere(ray, obj, &t);
+		intersect_sphere(&tmp, obj, &t);
 	else if (obj->type == CYLINDER)
-		intersect_cylinder(ray, obj, &t);
+		intersect_cylinder(&tmp, obj, &t);
 	else if (obj->type == CONE)
-		intersect_cone(ray, obj, &t);
+		intersect_cone(&tmp, obj, &t);
 	else if (obj->type == PARABOLOID)
-		intersect_paraboloid(ray, obj, &t);
+		intersect_paraboloid(&tmp, obj, &t);
 	return (t);
 }
 

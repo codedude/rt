@@ -19,7 +19,7 @@
 
 t_float		intersect_plane(t_ray *ray, t_object *obj, t_float *t)
 {
-	t_float	denom;
+	/*t_float	denom;
 	t_vec	diff;
 
 	denom = vec_dot(obj->dir, ray->dir);
@@ -29,11 +29,15 @@ t_float		intersect_plane(t_ray *ray, t_object *obj, t_float *t)
 		*t = vec_dot(diff, obj->dir) / denom;
 		return (SUCCESS);
 	}
-	return (ERROR);
+	return (ERROR);*/
+
+	*t = -(ray->origin.z / ray->dir.z);
+	return (SUCCESS);
+
 }
 
 void		norm_plane(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
-	inter->normal = obj->dir;
+	inter->normal = VEC_INIT(0.0, 0.0, -1.0);
 }

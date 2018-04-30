@@ -54,7 +54,7 @@ FILES		+=	$(SDLD)/sdl.c
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-O3 -flto -march=native -mtune=native -std=c11 -pedantic \
+CFLAGS		+=	-O3 -flto -std=c11 -pedantic \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
