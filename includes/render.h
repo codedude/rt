@@ -101,7 +101,8 @@ t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 
 t_vec		color_perturbation(t_inter inter);
 double 		noise3(double vec[3]);
-t_vec		marble(t_float t, t_inter inter);
+t_vec		marble1(t_float t, t_inter inter);
+t_vec		marble2(t_float t, t_inter inter);
 t_vec		normal_perturbation(t_inter	inter);
 t_vec		chess(t_inter inter);
 

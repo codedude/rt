@@ -59,3 +59,16 @@ int		parse_t_perturbation(void *data, char **strs)
 	object_set_perturbation(obj, n);
 	return (SUCCESS);
 }
+
+int		parse_t_rot(void *data, char **strs)
+{
+	t_rt	*env;
+	t_float	n[3];
+
+	env = (t_rt *)data;
+	if (ft_atof_s(strs[0], &n[0]) == ERROR
+		|| ft_atof_s(strs[1], &n[1]) == ERROR
+		|| ft_atof_s(strs[2], &n[2]) == ERROR)
+		return (ERROR);
+	return (object_set_matrix(env, VEC_INIT(n[0], n[1], n[2])));
+}
