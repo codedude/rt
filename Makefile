@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/26 18:38:27 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/30 11:47:50 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ RENDERD		=	render
 UTILSD		=	utils
 LIBTPOOLD	=	libtpool
 SDLD		=	sdl
-SDLLIBD		=	$(HOME)/usr/local/lib -lSDL2
-SDLINCD		=	$(HOME)/usr/local/include/SDL2 -D_THREAD_SAFE
+GUID		=	gui
+SDLLIBD		=	$(HOME)/.brew/lib -lSDL2
+SDLINCD		=	$(HOME)/.brew/include/SDL2 -D_THREAD_SAFE
 
 FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
@@ -48,18 +49,20 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
-FILES		+=	$(SDLD)/sdl.c
+FILES		+=	$(SDLD)/sdl.c $(GUID)/gtk.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
+GTK_CFLAGS	=	$(shell pkg-config --cflags gtk+-3.0)
+GTK_LDFLAGS	=	$(shell pkg-config --libs gtk+-3.0)
 CFLAGS		+=	-O3 -flto -march=native -mtune=native -std=c11 -pedantic \
-				-g\
+				-g $(GTK_CFLAGS) \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
-				-L$(SDLLIBD) -lsdl2
+				-L$(SDLLIBD) -lsdl2 $(GTK_LDFLAGS)
 
 .PHONY: clean fclean re
 
