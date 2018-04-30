@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/30 16:23:03 by vparis           ###   ########.fr        #
+#    Updated: 2018/04/30 16:48:01 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
 FILES		+=	$(UTILSD)/vec1.c $(UTILSD)/types.c $(UTILSD)/vec2.c \
-				$(UTILSD)/matrix.c
+				$(UTILSD)/matrix.c $(UTILSD)/export_bmp.c \
+				$(UTILSD)/export_bmp2.c
 FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
 				$(OBJECTSD)/objects_format.c \
 				$(OBJECTSD)/objects_set1.c $(OBJECTSD)/objects_set2.c \

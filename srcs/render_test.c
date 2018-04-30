@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 14:03:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/30 16:55:12 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@
 #include "rt.h"
 #include "objects.h"
 #include "render.h"
+#include "bmp.h"
 
 void		loop(t_env *env)
 {
 	int			loop;
 	int			update;
-	int			show_fps;
 	SDL_Event	event;
 	t_vec		cam_pos;
 
 	loop = 1;
 	update = 1;
-	show_fps = 0;
 	while (loop == 1)
 	{
 		SDL_PollEvent(&event);
@@ -56,7 +55,10 @@ void		loop(t_env *env)
 			else if (event.key.keysym.sym == SDLK_x)
 				cam_pos[2] += 3.0;
 			else if (event.key.keysym.sym == SDLK_f)
-				show_fps = !show_fps;
+				env->show_fps = !env->show_fps;
+			else if (event.key.keysym.sym == SDLK_s)
+				save_img(env->sdl.image, env->rt.canvas.width,
+					env->rt.canvas.height);
 			else if (event.key.keysym.sym == SDLK_d)
 			{
 				t_id id = env->rt.objects.objects_lst->object->id;
@@ -70,7 +72,7 @@ void		loop(t_env *env)
 		{
 			render_compute(env);
 			sdl_render(&env->sdl);
-			get_fps(show_fps, 1);
+			get_fps(env->show_fps, 1);
 			update = 0;
 		}
 	}

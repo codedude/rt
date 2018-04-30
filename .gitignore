@@ -1,5 +1,7 @@
 rt
 *.swp
+*.bmp
+saved_img/*.bmp
 
 # Prerequisites
 *.d
