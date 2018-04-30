@@ -34,6 +34,7 @@ t_parse_type	*get_parse_funs(void)
 		ADD_TYPE(refraction, 1, "2 3 4 5 10"),
 		ADD_TYPE(transparency, 1, "2 3 4 5 10"),
 		ADD_TYPE(perturbation, 1, "2 3 4 5 10"),
+		ADD_TYPE(rot, 3, "2 3 4 5"),
 		{NULL, NULL, NULL, 0}};
 
 	return (parse_type);

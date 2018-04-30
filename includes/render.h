@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -32,8 +33,8 @@ typedef struct		s_algo {
 typedef struct		s_inter {
 	t_float			t;
 	t_object		*obj;
-	t_vec			color;
 	t_vec			point;
+	t_vec			obj_coord;
 	t_vec			point_biais;
 	t_vec			normal;
 }					t_inter;

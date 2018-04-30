@@ -24,7 +24,7 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 	t_vec	co;
 
 	d = ray->dir;
-	co = ray->origin - obj->pos;
+	co = ray->origin;
 	abc[0] = vec_dot(d, d);
 	abc[1] = 2.0 * vec_dot(co, d);
 	abc[2] = vec_dot(co, co) - obj->radius2;
@@ -34,5 +34,5 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
-	inter->normal = vec_norm(inter->point - obj->pos);
+	inter->normal = vec_norm(inter->point);
 }
