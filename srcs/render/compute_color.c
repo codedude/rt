@@ -146,7 +146,8 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
 			+ hit->ray.origin;
 		compute_hit_normal(&hit->ray, &hit->inter);
-		//hit->inter.normal = normal_perturbation(hit->inter.normal);
+		if (hit->inter.obj->type == PLANE)
+			hit->inter.normal = normal_perturbation(hit->inter);
 		compute_hit_biais(&hit->inter);
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;

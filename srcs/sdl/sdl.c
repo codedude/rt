@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "SDL.h"
-# include "/usr/local/include/SDL2/SDL.h"
+#include "SDL.h"
+//# include "/usr/local/include/SDL2/SDL.h"
 #include <stdlib.h>
 #include "libft.h"
 #include "sdl_m.h"

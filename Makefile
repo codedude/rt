@@ -23,8 +23,8 @@ RENDERD		=	render
 UTILSD		=	utils
 LIBTPOOLD	=	libtpool
 SDLD		=	sdl
-SDLLIBD		=	$(HOME)/usr/local/lib -lSDL2
-SDLINCD		=	$(HOME)/usr/local/include/SDL2 -D_THREAD_SAFE
+SDLLIBD		=	$(HOME)/.brew/lib
+SDLINCD		=	$(HOME)/.brew/include/SDL2
 
 FILES		=	main.c render_test.c
 FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \

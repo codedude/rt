@@ -71,39 +71,39 @@ t_vec		marble(t_float t, t_inter inter)
   	return(color);
 }
 
-t_vec		normal_perturbation(t_vec	normal)
+t_vec		normal_perturbation(t_inter	inter)
 {
-	t_vec	tmp;
+	t_vec	tmp1;
+	t_vec	tmp2;
 	t_vec	ret;
 	t_float	v[3];
+	t_float	epsi;
 	t_float x;
 	t_float t;
 
 //	x = sin(normal[0] + cos(normal[1] + 8.0 * t * M_PI) + 6.0 * t * M_PI);
  //	x = sqrt(x+1) * 0.7071;
-	v[0] = normal.x + 0.2;
-	v[1] = normal.y;
-	v[2] = normal.z;
-	//t = noise3(v);
-	//x = sin(normal[0] + cos(normal[1] + 8.0 * t * M_PI) + 6.0 * t * M_PI);
- 	//x = sqrt(x+1) * 0.7071;
-	tmp.x = noise3(v);
-	v[0] = normal.x - 0.4;
-	tmp.x = noise3(v) - tmp.x;
-	v[0] += 0.2;
+	epsi = 1.0;
+	v[0] = inter.normal.x + inter.point.x + epsi;
+	v[1] = inter.normal.y * 50 + 100 * inter.point.y;
+	v[2] = inter.normal.z + inter.point.z;
+	tmp1.x = noise3(v);
+	v[0] = inter.normal.x + inter.point.x - epsi;
+	tmp2.x = noise3(v);
 
-	v[1] = normal.y + 0.2;
-	tmp.y = noise3(v);
-	v[1] = normal.y - 0.4;
-	tmp.y = noise3(v) - tmp.y;
-	v[1] += 0.2;
+	v[0] = inter.normal.x + inter.point.x; 
+	v[1] = inter.normal.y * 50 + 100 * inter.point.y + epsi;
+	tmp1.y = noise3(v);
+	v[1] = inter.normal.y * 50 + 100 * inter.point.y - epsi;
+	tmp2.y = noise3(v);
+	
+	v[1] = inter.normal.y * 50 + 100 * inter.point.y;
+	v[2] = inter.normal.z + inter.point.z + epsi;
+	tmp1.z = noise3(v);
+	v[2] = inter.normal.z + inter.point.z - epsi;
+	tmp2.z = noise3(v);
 
-	v[2] = normal.z + 0.2;
-	tmp.z = noise3(v);
-	v[2] = normal.z - 0.4;
-	tmp.z = noise3(v) - tmp.z;
-	v[2] += 0.2;
-
-	ret = tmp + normal;
+	tmp1 = tmp2 - tmp1;
+	ret = tmp1 + inter.normal;
 	return (ret);
 }
