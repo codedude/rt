@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/27 15:33:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/27 22:06:21 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_vec			matrix_mul_vec(t_vec matrix[3], t_vec v)
 {
 	return (matrix[0] * v[0] + matrix[1] * v[1] + matrix[2] * v[2]);
 }
-
+/*
 void			matrix_mul_matrix(t_vec m1[3], t_vec m2[3], t_vec ret[3])
 {
 	ret[0] = VEC_INIT(
@@ -98,3 +98,4 @@ void	matrix_rotz(t_vec ret[3], double teta)
 	ret[1] = VEC_INIT(sin(angle), cos(angle), 0);
 	ret[2] = VEC_INIT(0, 0, 1);
 }
+*/
