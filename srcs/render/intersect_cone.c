@@ -20,26 +20,11 @@
 
 t_float		intersect_cone(t_ray *ray, t_object *obj, t_float *t)
 {
-	t_vec	vec[4];
 	t_float	abc[3];
-	t_float	cos2sin2[2];
-	t_float	dvpva[2];
-
-	cos2sin2[0] = (1. + ft_cos(2. * obj->radius)) / 2.;
-	cos2sin2[1] = (1. - ft_cos(2. * obj->radius)) / 2.;
-	vec[0] = ray->origin - obj->pos;
-	dvpva[0] = vec_dot(ray->dir, obj->dir);
-	vec[1] = obj->dir * dvpva[0];
-	dvpva[1] = vec_dot(vec[0], obj->dir);
-	vec[2] = obj->dir * dvpva[1];
-	vec[3] = ray->dir - vec[1];
-	vec[0] -= vec[2];
-	abc[0] = cos2sin2[0] * vec_dot(vec[3], vec[3])
-			- cos2sin2[1] * dvpva[0] * dvpva[0];
-	abc[1] = 2.0 * cos2sin2[0] * vec_dot(vec[3], vec[0])
-			- 2.0 * cos2sin2[1] * dvpva[0] * dvpva[1];
-	abc[2] = cos2sin2[0] * vec_dot(vec[0], vec[0])
-			- cos2sin2[1] * dvpva[1] * dvpva[1];
+	
+	abc[0] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z - obj->radius * ray->dir.y * ray->dir.y;
+	abc[1] = 2.0 * (ray->dir.x * ray->origin.x + ray->dir.z * ray->origin.z - obj->radius * ray->dir.y * ray->origin.y);
+	abc[2] = ray->origin.x * ray->origin.x + ray->origin.z * ray->origin.z - obj->radius * ray->origin.y * ray->origin.y;
 	return ((*t = solve_quadra(abc)));
 }
 
@@ -48,6 +33,8 @@ void		norm_cone(t_ray *ray, t_object *obj, t_inter *inter)
 	t_float	t;
 	t_vec	tmp;
 
+	if (inter->obj_coord.x > -1.0 && inter->obj_coord.x < 1.0 && inter->obj_coord.z > -1.0 && inter->obj_coord.z < 1.0)
+		vec_print(inter->obj_coord, "coord en 00");
 	(void)ray;
 	tmp = inter->point - obj->pos;
 	t = ft_cos(2.0 * obj->radius);

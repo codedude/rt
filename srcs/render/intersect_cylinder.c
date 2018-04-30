@@ -19,29 +19,18 @@
 
 t_float		intersect_cylinder(t_ray *ray, t_object *obj, t_float *t)
 {
-	t_vec	delta_p;
-	t_vec	vva;
-	t_vec	dpva;
-	t_vec	tmp;
 	t_float	abc[3];
 
-	delta_p = ray->origin;
-	vva = obj->dir * vec_dot(ray->dir, obj->dir);
-	dpva = obj->dir * vec_dot(delta_p, obj->dir);
-	delta_p -= dpva;
-	tmp = ray->dir - vva;
-	abc[0] = vec_dot(tmp, tmp);
-	abc[1] = 2.0 * vec_dot(tmp, delta_p);
-	abc[2] = vec_dot(delta_p, delta_p) - obj->radius2;
+	abc[0] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
+	abc[1] = 2.0 * ray->dir.x * ray->origin.x + 2.0 * ray->dir.z * ray->origin.z;
+	abc[2] = ray->origin.x * ray->origin.x + ray->origin.z * ray->origin.z - obj->radius * obj->radius;
 	return ((*t = solve_quadra(abc)));
 }
 
 void		norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter)
 {
-	t_vec		matrix[3];
-
 	(void)ray;
-	matrix_roty(matrix, 180);
-	inter->normal = vec_norm(inter->point
-		- (matrix_mul_vec(matrix, inter->point - obj->pos) + obj->pos));
+	if (inter->obj_coord.x > -1.0 && inter->obj_coord.x < 1.0)
+		vec_print(inter->obj_coord, "coord en 00");
+	inter->normal = vec_norm(VEC_INIT(inter->obj_coord.x, 0.0, inter->obj_coord.z));
 }

@@ -20,33 +20,27 @@ canvas
 
 camera
 {
-	origin = 0.0 20.0 -30.0
+	origin = 0.0 20.0 -200.0
 	ang = 0.0 0.0 0.0
 	fov = 60
 }
 
 light_ambient
 {
-	intensity = 0.1 0.1 0.1
+	intensity = 0.3 0.3 0.3
 }
 
 light_point
 {
-	pos = -50.0 40.0 0.0
+	pos = 10.0 0.0 -30.0
 	intensity = 0.6 0.6 0.6
-}
-
-light_par
-{
-	dir = -0.92 -0.33 0.0
-	intensity = 0.33 0.33 0.33
 }
 
 plane
 {
 	pos = 0.0 0.0 60.0
-	dir = 0.50 0.0 0.0
-	rot = -30.0 0.0 0.0
+	dir = 0.0 0.0 0.0
+	rot = 90.0 0.0 0.0
 	radius = 0.0
 	color = 170 170 170
 	phong = 0 0.90 0.33
@@ -59,9 +53,65 @@ plane
 cylinder
 {
 	pos = 0.0 0.0 30.0
-	dir = 0.0 1.0 0.0
+	dir = 0.0 0.0 0.0
 	rot = 0.0 0.0 0.0
+	radius = 1.0
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
+
+sphere
+{
+	pos = 10.0 10.0 30.0
+	dir = 3.0 1.0 2.0
+	rot = 5.0 8.0 9.0
 	radius = 5.0
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
+
+paraboloid
+{
+	pos = 25.0 30.0 30.0
+	dir = 0.0 0.0 0.0
+	rot = 0.0 0.0 0.0
+	radius = 1.0
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
+
+hyperboloid
+{
+	pos = 70.0 10.0 30.0
+	dir = 0.0 0.0 0.0
+	rot = 0.0 0.0 0.0
+	radius = 0.05
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
+
+cone
+{
+	pos = -20.0 0.0 30.0
+	dir = 0.0 0.0 0.0
+	rot = 0.0 0.0 -45.0
+	radius = 0.05
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0

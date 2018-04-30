@@ -28,54 +28,65 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 	else if (inter->obj->type == CONE)
 		norm_cone(ray, inter->obj, inter);
 	else if (inter->obj->type == PARABOLOID)
-		norm_cone(ray, inter->obj, inter);
+		norm_paraboloid(ray, inter->obj, inter);
+	else if (inter->obj->type == HYPERBOLOID)
+		norm_hyperboloid(ray, inter->obj, inter);
 	inter->normal = matrix_mul_vec(inter->obj->obj_to_w, inter->normal);
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
 {
 	t_float		t;
-	t_ray		tmp;
 
 	t = FLOAT_ZERO;
-	tmp = *ray;
-	tmp.origin -= obj->pos;
-	tmp.origin = matrix_mul_vec(obj->w_to_obj, tmp.origin);
-	tmp.dir = matrix_mul_vec(obj->w_to_obj, tmp.dir);
 	if (obj->type == PLANE)
-		intersect_plane(&tmp, obj, &t);
+		intersect_plane(ray, obj, &t);
 	else if (obj->type == SPHERE)
-		intersect_sphere(&tmp, obj, &t);
+		intersect_sphere(ray, obj, &t);
 	else if (obj->type == CYLINDER)
-		intersect_cylinder(&tmp, obj, &t);
+		intersect_cylinder(ray, obj, &t);
 	else if (obj->type == CONE)
-		intersect_cone(&tmp, obj, &t);
+		intersect_cone(ray, obj, &t);
 	else if (obj->type == PARABOLOID)
-		intersect_paraboloid(&tmp, obj, &t);
+		intersect_paraboloid(ray, obj, &t);
+	else if (obj->type == HYPERBOLOID)
+		intersect_hyperboloid(ray, obj, &t);
 	return (t);
 }
 
-int			trace(t_rt *rt, t_ray *ray, t_inter *inter, t_float max_inter)
+int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 {
 	t_object	*objs;
 	int			i;
 	t_float		t;
+	t_ray		tmp;
 
-	inter->t = FLOAT_MAX;
-	inter->obj = NULL;
+	hit->inter.t = FLOAT_MAX;
+	hit->inter.obj = NULL;
 	objs = rt->objects.objects_array;
 	i = 0;
 	while (i < rt->objects.size)
 	{
-		if ((t = intersect(ray, &objs[i])) > FLOAT_MIN)
+		tmp = hit->ray;
+		tmp.origin -= objs[i].pos;
+		tmp.origin = matrix_mul_vec(objs[i].w_to_obj, tmp.origin);
+		tmp.dir = matrix_mul_vec(objs[i].w_to_obj, tmp.dir);
+		if ((t = intersect(&tmp, &objs[i])) > FLOAT_MIN)
 		{
-			if (t < inter->t && t < max_inter)
+			if (t < hit->inter.t && t < max_inter)
 			{
-				inter->t = t;
-				inter->obj = &objs[i];
+				hit->inter.t = t;
+				hit->inter.obj = &objs[i];
 			}
 		}
 		i++;
 	}
-	return (inter->obj == NULL ? ERROR : SUCCESS);
+	if (hit->inter.obj != NULL)
+	{
+		hit->inter.point = (hit->ray.dir * hit->inter.t)
+						+ hit->ray.origin;
+		hit->inter.obj_coord = (tmp.dir * hit->inter.t)
+						+ tmp.origin;
+	}
+	return (hit->inter.obj == NULL ? ERROR : SUCCESS);
 }

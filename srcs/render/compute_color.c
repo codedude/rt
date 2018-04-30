@@ -42,17 +42,18 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 	t_vec		intensity;
 	t_ray		ray_refract;
 	t_inter		inter_refract;
+	t_hit		refract;
 
 	init_ray_light(&light_hit->ray, &max_dist, obj, inter);
-	if (trace(rt, &light_hit->ray, &light_hit->inter, max_dist) == SUCCESS)
+	if (trace(rt, light_hit, max_dist) == SUCCESS)
 	{
 		intensity = VEC_ZERO;
 		if (light_hit->inter.obj->refraction >= 1.0
 			&& light_hit->inter.obj->transparency > 0.0)
 		{
-			inter_refract = *inter;
-			ray_refract = refract_ray(light_hit->ray, *inter);
-			if (trace(rt, &ray_refract, &inter_refract, FLOAT_MAX) == ERROR)
+			refract.inter = *inter;
+			refract.ray = refract_ray(light_hit->ray, *inter);
+			if (trace(rt, &refract, FLOAT_MAX) == ERROR)
 			{
 				intensity += obj->intensity
 					* light_hit->inter.obj->transparency;
@@ -141,10 +142,10 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 	t_float		kr;
 
 	refract_color = VEC_ZERO;
-	if (trace(rt, &hit->ray, &hit->inter, FLOAT_MAX) == SUCCESS)
+	if (trace(rt, hit, FLOAT_MAX) == SUCCESS)
 	{
-		hit->inter.point = (hit->ray.dir * hit->inter.t)
-			+ hit->ray.origin;
+//		hit->inter.point = (hit->ray.dir * hit->inter.t)
+//			+ hit->ray.origin;
 		compute_hit_normal(&hit->ray, &hit->inter);
 		//if (hit->inter.obj->type == PLANE)
 		//	hit->inter.normal = normal_perturbation(hit->inter);
