@@ -49,7 +49,7 @@ int		object_set_matrix(t_object *obj, t_vec rot)
 	matrix_rotz(z, rot.z);
 	matrix_mul_matrix(x, y, tmp);
 	matrix_mul_matrix(tmp, z, matrix);
-	obj->obj_to_w = obj_to_w;
+	matrix_equal_matrix(obj->obj_to_w, matrix);
 	object_set_inverse_matrix(obj, (-1) * rot);
 	return (SUCCESS);
 }
@@ -67,6 +67,6 @@ int		object_set_inverse_matrix(t_object *obj, t_vec rot)
 	matrix_rotz(z, rot.z);
 	matrix_mul_matrix(x, y, tmp);
 	matrix_mul_matrix(tmp, z, matrix);
-	obj->w_to_obj = w_to_obj;
+	matrix_equal_matrix(obj->w_to_obj, matrix);
 	return (SUCCESS);
 }

@@ -6,12 +6,11 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 15:58:29 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/30 14:03:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL.h"
-//# include "/usr/local/include/SDL2/SDL.h"
 #include "sdl_m.h"
 #include <stdlib.h>
 #include <stdio.h>

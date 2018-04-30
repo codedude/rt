@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 16:15:01 by vparis           ###   ########.fr       */
+/*   Updated: 2018/04/30 14:03:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ enum {
 typedef struct			s_object {
 	t_id				id;
 	t_int				type;
-	t_int				perturbation;
 	t_vec				pos;
 	t_vec				dir;
 	t_vec				color;
@@ -61,6 +60,7 @@ typedef struct			s_object {
 	t_float				reflexion;
 	t_float				transparency;
 	t_float				refraction;
+	t_int				perturbation;
 	t_float				angle;
 	t_float				size;
 	t_vec				obj_to_w[3];
@@ -130,5 +130,6 @@ int						object_set_perturbation(t_object *obj, int n);
 int						object_set_angle(t_object *obj, t_float n);
 int						object_set_size(t_object *obj, t_float n);
 int						object_set_matrix(t_object *obj, t_vec rot);
+int						object_set_inverse_matrix(t_object *obj, t_vec rot);
 
 #endif
