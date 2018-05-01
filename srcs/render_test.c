@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 18:33:00 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 17:36:31 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ void		loop(t_env *env)
 
 	loop = 1;
 	update = 1;
+	render_compute(env);
+	sdl_render(&env->sdl);
 	while (loop == 1)
 	{
 		loop = manage_binds(&event, env, &update);
 		if (update == 1)
 		{
+			render_update(env);
 			render_compute(env);
 			sdl_render(&env->sdl);
 			get_fps(env->show_fps, 1);

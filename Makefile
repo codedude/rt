@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/01 16:45:10 by mcasubol         ###   ########.fr        #
+#    Updated: 2018/05/01 17:56:19 by mcasubol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RENDERD		=	render
 UTILSD		=	utils
 LIBTPOOLD	=	libtpool
 SDLD		=	sdl
-GUID		=	gui
+IMGD		=	saved_img
 SDLLIBD		=	$(HOME)/.brew/lib
 SDLINCD		=	$(HOME)/.brew/include/SDL2
 
@@ -52,7 +52,9 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
-FILES		+=	$(SDLD)/sdl.c $(SDLD)/bind.c
+FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/bind.c \
+				$(SDLD)/bind_mouse.c $(SDLD)/bind_keyup.c \
+				$(SDLD)/bind_keydown.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
@@ -64,7 +66,7 @@ LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
 				-L$(SDLLIBD) -lsdl2
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re rer clean_img
 
 all: $(NAME)
 
@@ -95,3 +97,6 @@ rer:
 	@rm -f $(NAME)
 	@rm -f $(OBJS)
 	make $(NAME)
+
+clean_img:
+	rm -vf $(IMGD)/*.bmp

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 18:34:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 17:39:06 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "objects.h"
 # include "rt.h"
 # include "ft_tpool.h"
+# include "SDL.h"
 # include "sdl_m.h"
 
 # define THREADS		4
@@ -27,13 +28,36 @@ typedef struct		s_env {
 	t_sdl			sdl;
 	t_rt			rt;
 	int				show_fps;
-	int				save_img;
+	int				mode;
 }					t_env;
 
 int					env_init(t_env *env, char *filename);
 void				env_destroy(t_env *env);
 
+/*
+** bind.c
+*/
 
 int					manage_binds(SDL_Event *event, t_env *env, int *update);
+
+/*
+** bind_keyup.c
+*/
+
+int					manage_binds_up(SDL_Event *event, t_env *env, int *update);
+
+/*
+** bind_keydown.c
+*/
+
+int					manage_binds_down(t_env *env, int *update,
+						const Uint8 *state);
+
+/*
+** bind_mouse.c
+*/
+
+int					manage_binds_mouse(SDL_Event *event, t_env *env,
+						int *update);
 
 #endif

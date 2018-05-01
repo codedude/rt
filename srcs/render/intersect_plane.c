@@ -29,5 +29,6 @@ t_float		intersect_plane(t_ray *ray, t_object *obj, t_float *t)
 void		norm_plane(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
+	(void)obj;
 	inter->normal = VEC_INIT(0.0, 0.0, 1.0);
 }

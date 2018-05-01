@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/27 14:25:05 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 17:33:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ static void	set_ratio(t_rt *rt)
 	rt->canvas_update = 1;
 }
 
+int			rt_reload(t_rt *rt)
+{
+	t_rt	tmp;
+
+	if (rt_init(&tmp, rt->filename) == ERROR)
+	{
+		ft_putstr("Error : can't reload rt\n");
+		return (ERROR);
+	}
+	rt_destroy(rt);
+	ft_memcpy(rt, &tmp, sizeof(t_rt));
+	return (SUCCESS);
+}
+
 /*
 ** Init all env at 0, init random, and parse file
 */
@@ -50,6 +64,8 @@ int			rt_init(t_rt *rt, char *filename)
 	char	**file;
 
 	ft_bzero(rt, sizeof(t_rt));
+	if ((rt->filename = ft_strdup(filename)) == NULL)
+		return (ERROR);
 	objects_init(&rt->objects);
 	if ((file = read_file(filename)) == NULL)
 		return (ERROR);
@@ -72,6 +88,7 @@ int			rt_init(t_rt *rt, char *filename)
 int			rt_destroy(t_rt *rt)
 {
 	objects_destroy(&rt->objects);
+	free(rt->filename);
 	ft_bzero(rt, sizeof(t_rt));
 	return (SUCCESS);
 }
