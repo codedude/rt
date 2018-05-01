@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/12 18:46:43 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/01 13:07:04 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int				parse_t_refraction(void *data, char **strs);
 int				parse_t_transparency(void *data, char **strs);
 int				parse_t_perturbation(void *data, char **strs);
 int				parse_t_rot(void *data, char **strs);
+int				parse_t_side(void *data, char **strs);
 
 #endif

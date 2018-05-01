@@ -42,6 +42,7 @@ plane
 	dir = 0.0 0.0 0.0
 	rot = 90.0 0.0 0.0
 	radius = 0.0
+	side = 0
 	color = 170 170 170
 	phong = 0 0.90 0.33
 	reflexion = 0.0
@@ -56,6 +57,7 @@ cylinder
 	dir = 0.0 0.0 0.0
 	rot = 20.0 10.0 33.0
 	radius = 1.0
+	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
@@ -70,6 +72,7 @@ sphere
 	dir = 3.0 1.0 2.0
 	rot = 5.0 8.0 9.0
 	radius = 5.0
+	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
@@ -84,6 +87,7 @@ paraboloid
 	dir = 0.0 0.0 0.0
 	rot = 0.0 0.0 0.0
 	radius = 1.0
+	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
@@ -98,6 +102,7 @@ hyperboloid
 	dir = 0.0 0.0 0.0
 	rot = 0.0 0.0 0.0
 	radius = 0.05
+	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
@@ -112,6 +117,7 @@ cone
 	dir = 0.0 0.0 0.0
 	rot = 0.0 90.0 45.0
 	radius = 0.05
+	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
