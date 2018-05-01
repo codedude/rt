@@ -12,7 +12,7 @@ t_float		intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t)
 	abc[0] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
 	abc[1] = 2.0 * (ray->origin.x * ray->dir.x + ray->dir.z * ray->origin.z) - obj->radius * ray->dir.y;
 	abc[2] = ray->origin.x * ray->origin.x + ray->origin.z * ray->origin.z - obj->radius * ray->origin.y;
-	return ((*t = solve_quadra(abc)));
+	return ((*t = solve_quadra(abc, obj)));
 }
 
 void	norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter)
