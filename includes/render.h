@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:40:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 18:59:33 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					trace(t_rt *rt, t_hit *hit, t_float max_inter);
 void				compute_hit_normal(t_ray *ray, t_inter *inter);
 void				compute_hit_biais(t_inter *inter);
 
-t_float				solve_quadra(t_float abc[3]);
+t_float				solve_quadra(t_float abc[3], t_object *obj);
 
 t_float				intersect_sphere(t_ray *ray, t_object *obj, t_float *t);
 void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
@@ -82,7 +82,12 @@ t_float				intersect_hyperboloid(t_ray *ray, t_object *obj,
 						t_float *t);
 void				norm_hyperboloid(t_ray *ray, t_object *obj, t_inter *inter);
 
+t_float				intersect_cube(t_ray *ray, t_object *obj, t_float *t);
+void				norm_cube(t_ray *ray, t_object *obj, t_inter *inter);
+
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
+
+int					is_cut(t_object obj, t_hit *hit, t_float t, t_ray simple);
 
 /*
 ** Light effect : reflexion and refraction

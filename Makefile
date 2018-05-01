@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/01 17:46:40 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/01 17:56:19 by mcasubol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,13 @@ FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
 FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_funs1.c $(PARSERD)/parse_funs2.c \
 				$(PARSERD)/parse_funs3.c $(PARSERD)/parse_funs4.c \
+				$(PARSERD)/parse_funs5.c\
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/perlin.c $(RENDERD)/perturbation.c \
 				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c\
+				$(RENDERD)/intersect_cube.c $(RENDERD)/limited_objects.c\
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c $(RENDERD)/reflexion.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\

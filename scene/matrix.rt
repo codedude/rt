@@ -36,12 +36,28 @@ light_point
 	intensity = 0.6 0.6 0.6
 }
 
-plane
+cube
 {
 	pos = 0.0 0.0 60.0
 	dir = 0.0 0.0 0.0
-	rot = 90.0 0.0 0.0
+	rot = 0.0 0.0 0.0
 	radius = 0.0
+	side = 100
+	color = 200 198 250
+	phong = 0 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	limited = 0 -10.0 +10.0 -10.0 +10.0 -10.0 +10.0
+}
+
+sphere
+{
+	pos = 0.0 -76.0 37.0
+	dir = 0.0 0.0 0.0
+	rot = 0.0 0.0 0.0
+	radius = 80.0
 	side = 0
 	color = 170 170 170
 	phong = 0 0.90 0.33
@@ -49,44 +65,31 @@ plane
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 1
-}
-
-cylinder
-{
-	pos = 0.0 0.0 30.0
-	dir = 0.0 0.0 0.0
-	rot = 20.0 10.0 33.0
-	radius = 1.0
-	side = 0
-	color = 200 198 250
-	phong = 12 0.90 0.70
-	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 1
+	limited = 1 -30.0 +30.0 -80.0 +80.0 -80.0 +80.0
 }
 
 sphere
 {
-	pos = 10.0 10.0 30.0
-	dir = 3.0 1.0 2.0
-	rot = 5.0 8.0 9.0
+	pos = 0.0 12.5 30.0
+	dir = 0.0 0.0 0.0
+	rot = 0.0 0.0 0.0
 	radius = 5.0
 	side = 0
-	color = 200 198 250
-	phong = 12 0.90 0.70
+	color = 255 82 90
+	phong = 12 0.90 0.5
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 1
+	limited = 0 -10.0 +10.0 -10.0 +10.0 -10.0 +10.0
 }
 
-paraboloid
+sphere
 {
-	pos = 25.0 30.0 30.0
+	pos = -10.0 21.0 40.0
 	dir = 0.0 0.0 0.0
 	rot = 0.0 0.0 0.0
-	radius = 1.0
+	radius = 3.0
 	side = 0
 	color = 200 198 250
 	phong = 12 0.90 0.70
@@ -94,21 +97,7 @@ paraboloid
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 1
-}
-
-hyperboloid
-{
-	pos = 70.0 10.0 30.0
-	dir = 0.0 0.0 0.0
-	rot = 0.0 0.0 0.0
-	radius = 0.05
-	side = 0
-	color = 200 198 250
-	phong = 12 0.90 0.70
-	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 1
+	limited = 0 -10.0 +10.0 -10.0 +10.0 -10.0 +10.0
 }
 
 cone
@@ -118,10 +107,11 @@ cone
 	rot = 0.0 90.0 45.0
 	radius = 0.05
 	side = 0
-	color = 200 198 250
-	phong = 12 0.90 0.70
+	color = 127 220 127
+	phong = 0 0.90 0.33
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 1
+	limited = 0 -10.0 +10.0 -10.0 +10.0 -10.0 +10.0
 }
