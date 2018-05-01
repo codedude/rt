@@ -59,28 +59,3 @@ int		object_set_matrix(t_object *obj, t_vec rot)
 	print_matrix(matrix, "identite ?");
 	return (SUCCESS);
 }
-
-int		object_set_inverse_matrix(t_object *obj, t_vec rot)
-{
-	t_vec	x[3];
-	t_vec	y[3];
-	t_vec	z[3];
-	t_vec	tmp[3];
-	t_vec	matrix[3];
-
-	matrix_id(matrix);
-	matrix_id(tmp);
-
-	matrix_rotz(z, rot.z);
-	matrix_roty(y, rot.y);
-	matrix_rotx(x, rot.x);
-	matrix_mul_matrix(z, y, tmp);
-	matrix_mul_matrix(x, tmp, matrix);
-	/*matrix_rotx(x, rot.x);
-	matrix_roty(y, rot.y);
-	matrix_rotz(z, rot.z);
-	matrix_mul_matrix(x, y, tmp);
-	matrix_mul_matrix(z, tmp, matrix);*/
-	matrix_equal_matrix(obj->w_to_obj, matrix);
-	return (SUCCESS);
-}

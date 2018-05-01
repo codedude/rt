@@ -20,8 +20,6 @@
 t_float		intersect_plane(t_ray *ray, t_object *obj, t_float *t)
 {
 	(void)obj;
-	if (ray->dir.z == 0.0)
-		return(-1.0);
 	*t = -(ray->origin.z / ray->dir.z);
 	return (SUCCESS);
 }
