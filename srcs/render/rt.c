@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 16:15:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 19:27:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 	ray->dir[0] = (2.0 * ray->dir[0] - 1.0) * rt->canvas.ratio[0];
 	ray->dir[1] = (1.0 - 2.0 * ray->dir[1]) * rt->canvas.ratio[1];
 	ray->dir[2] = 1.0;
-	//ray->dir = matrix_mul_vec(rt->cam.rot, ray.dir) + rt->camera.origin;
 	ray->origin = rt->camera.origin;
-	//ray->dir = ray->dir - ray.origin;
+	ray->dir = matrix_mul_vec(rt->camera.rot, ray->dir);
 	ray->dir = vec_norm(ray->dir);
 	ray->refraction = REFRACTION_DEFAULT;
 }

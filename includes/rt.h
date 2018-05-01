@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:03:31 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 19:14:45 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_camera {
 	t_vec			origin;
 	t_vec			angle;
 	t_float			fov;
+	t_vec			rot[3];
 }					t_camera;
 
 /*
@@ -63,6 +64,7 @@ int					camera_set_fov(t_rt *rt, t_float fov);
 t_vec				camera_get_origin(t_rt *rt);
 t_vec				camera_get_angle(t_rt *rt);
 t_float				camera_get_fov(t_rt *rt);
+void				camera_set_rot(t_camera *cam);
 
 int					canvas_set_width(t_rt *rt, int width);
 int					canvas_set_height(t_rt *rt, int height);
