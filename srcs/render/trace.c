@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 18:09:37 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 17:55:08 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_paraboloid(ray, inter->obj, inter);
 	else if (inter->obj->type == HYPERBOLOID)
 		norm_hyperboloid(ray, inter->obj, inter);
+	else if (inter->obj->type == CUBE)
+		norm_cube(ray, inter->obj, inter);
 	inter->normal = matrix_mul_vec(inter->obj->obj_to_w, inter->normal);
 }
 
@@ -51,6 +53,8 @@ t_float		intersect(t_ray *ray, t_object *obj)
 		intersect_paraboloid(ray, obj, &t);
 	else if (obj->type == HYPERBOLOID)
 		intersect_hyperboloid(ray, obj, &t);
+	else if (obj->type == CUBE)
+		intersect_cube(ray, obj, &t);
 	return (t);
 }
 
@@ -75,13 +79,17 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 		{
 			if (t < hit->inter.t && t < max_inter)
 			{
-				hit->inter.t = t;
-				hit->inter.obj = &objs[i];
+				if (is_cut(objs[i], hit, t, tmp) == 0)
+				{
+					hit->inter.t = t;
+					hit->inter.obj = &objs[i];
+				}
 			}
 		}
 		i++;
 	}
-	if (hit->inter.obj != NULL)
+	if (hit->inter.obj != NULL && hit->inter.obj->is_limited != 1
+								&& hit->inter.obj->is_limited != 2)
 	{
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
 						+ hit->ray.origin;

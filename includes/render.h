@@ -81,7 +81,12 @@ void				norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter);
 t_float				intersect_hyperboloid(t_ray *ray, t_object *obj, t_float *t);
 void				norm_hyperboloid(t_ray *ray, t_object *obj, t_inter *inter);
 
+t_float				intersect_cube(t_ray *ray, t_object *obj, t_float *t);
+void				norm_cube(t_ray *ray, t_object *obj, t_inter *inter);
+
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
+
+int					is_cut(t_object obj, t_hit *hit, t_float t, t_ray simple);
 
 /*
 ** Light effect : reflexion and refraction
