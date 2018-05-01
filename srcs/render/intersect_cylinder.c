@@ -30,7 +30,6 @@ t_float		intersect_cylinder(t_ray *ray, t_object *obj, t_float *t)
 void		norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
-	if (inter->obj_coord.x > -1.0 && inter->obj_coord.x < 1.0)
-		vec_print(inter->obj_coord, "coord en 00");
+	(void)obj;
 	inter->normal = vec_norm(VEC_INIT(inter->obj_coord.x, 0.0, inter->obj_coord.z));
 }

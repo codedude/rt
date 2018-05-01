@@ -9,8 +9,8 @@
 
 t_vec		color_perturbation(t_inter inter)
 {
-	t_float		t;
-	t_float		v[3];
+//	t_float		t;
+//	t_float		v[3];
 	t_vec		color;
 
 	color = inter.obj->color;

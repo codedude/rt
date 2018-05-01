@@ -18,6 +18,8 @@ t_float		intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t)
 void	norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter)
 {
 //	inter->normal = inter->point - obj->dir * 0.05 + 1.0;
-	//inter->normal = inter->point - obj->dir * obj->m + obj->scale));
+	//inter->normal = inter->point - obj->dir * obj->m + obj->scale))
+	(void)ray;
+	(void)obj;
 	inter->normal = vec_norm(VEC_INIT(inter->obj_coord.x, (-1) * inter->obj->radius, inter->obj_coord.z));
 }

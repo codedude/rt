@@ -1,0 +1,58 @@
+#Commentaire
+#Mandatory : canvas, camera
+#Optionnal : objects
+#Order free
+
+#Float format : (+/-)X.X (X in i32 range)
+#Integer format : (+/-)X (X in i32 range)
+#Max int : 2147483647
+#min int : -2147483648
+#All values are clamp to their range (only format/overflow errors pop)
+#Human FOV : 90
+#Normal : 70
+
+canvas
+{
+	width = 1280
+	height = 720
+	background = 250 250 250
+}
+
+camera
+{
+	origin = 0.0 20.0 -200.0
+	ang = 0.0 0.0 0.0
+	fov = 60
+}
+
+light_ambient
+{
+	intensity = 0.0 0.0 0.0
+}
+
+light_point
+{
+	pos = 10.0 0.0 -30.0
+	intensity = 0.6 0.6 0.6
+}
+
+light_par
+{
+	dir = -1.0 0.0 0.0
+	intensity = 0.5 0.5 0.5
+}
+
+
+cylinder
+{
+	pos = 0.0 0.0 30.0
+	dir = 0.0 0.0 0.0
+	rot = 90.0 0.0 0.0
+	radius = 10.0
+	color = 200 0 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
