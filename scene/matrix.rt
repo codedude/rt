@@ -57,7 +57,7 @@ sphere
 	pos = 0.0 -76.0 37.0
 	dir = 0.0 0.0 0.0
 	rot = 0.0 0.0 0.0
-	radius = 30.0
+	radius = 80.0
 	side = 0
 	color = 170 170 170
 	phong = 0 0.90 0.33
@@ -65,7 +65,7 @@ sphere
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 1
-	limited = 2 -15.0 +15.0 -15.0 +15.0 -15.0 +15.0
+	limited = 1 -30.0 +30.0 -80.0 +80.0 -80.0 +80.0
 }
 
 sphere

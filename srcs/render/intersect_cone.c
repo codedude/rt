@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 15:45:05 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/04/27 15:26:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 18:58:00 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_float		intersect_cone(t_ray *ray, t_object *obj, t_float *t)
 	abc[0] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z - obj->radius * ray->dir.y * ray->dir.y;
 	abc[1] = 2.0 * (ray->dir.x * ray->origin.x + ray->dir.z * ray->origin.z - obj->radius * ray->dir.y * ray->origin.y);
 	abc[2] = ray->origin.x * ray->origin.x + ray->origin.z * ray->origin.z - obj->radius * ray->origin.y * ray->origin.y;
-	return ((*t = solve_quadra(abc)));
+	return ((*t = solve_quadra(abc, obj)));
 }
 
 void		norm_cone(t_ray *ray, t_object *obj, t_inter *inter)

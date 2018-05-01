@@ -6,7 +6,7 @@
 /*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 15:56:40 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/01 17:55:10 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:07:19 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int			is_cut(t_object obj, t_hit *hit, t_float t, t_ray simple)
 
 	if (obj.is_limited != 1 && obj.is_limited != 2)
 		return (0);
-	hit->inter.point = hit->ray.origin + hit->ray.dir * t;
-	hit->inter.obj_coord = simple.origin + simple.dir * t;
-	inter = (obj.is_limited == 1) ? hit->inter.obj_coord : hit->inter.point;
+	if (obj.is_limited == 1)
+		inter = simple.origin + simple.dir * t;
+	else
+		inter = hit->ray.origin + hit->ray.dir * t;
 	low = obj.lower_limit;
 	up = obj.upper_limit;
 	//printf("%f, %f, %f, %f, %f, %f\n", low.x, low.y, low.z, up.x, up.y, up.z);

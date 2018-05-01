@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:51:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/27 15:26:31 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 18:58:20 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_float		intersect_cylinder(t_ray *ray, t_object *obj, t_float *t)
 	abc[0] = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
 	abc[1] = 2.0 * ray->dir.x * ray->origin.x + 2.0 * ray->dir.z * ray->origin.z;
 	abc[2] = ray->origin.x * ray->origin.x + ray->origin.z * ray->origin.z - obj->radius * obj->radius;
-	return ((*t = solve_quadra(abc)));
+	return ((*t = solve_quadra(abc, obj)));
 }
 
 void		norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter)

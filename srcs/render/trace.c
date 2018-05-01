@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:57:44 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/01 19:07:23 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 		}
 		i++;
 	}
-	if (hit->inter.obj != NULL && hit->inter.obj->is_limited != 1
-								&& hit->inter.obj->is_limited != 2)
+	if (hit->inter.obj != NULL)
 	{
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
 						+ hit->ray.origin;

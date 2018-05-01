@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:38:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/25 11:14:47 by valentin         ###   ########.fr       */
+/*   Updated: 2018/05/01 18:59:57 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "render.h"
 #include "rt.h"
 
-t_float		solve_quadra(t_float abc[3])
+t_float		solve_quadra(t_float abc[3], t_object *obj)
 {
 	t_float	r;
 	t_float	s[2];
@@ -32,6 +32,8 @@ t_float		solve_quadra(t_float abc[3])
 		r = sqrt(r);
 		s[0] = (-abc[1] + r) / (2.0 * abc[0]);
 		s[1] = (-abc[1] - r) / (2.0 * abc[0]);
+		obj->t2[0] = s[0];
+		obj->t2[1] = s[1];
 	}
 	if (s[0] < FLOAT_MIN && s[1] < FLOAT_MIN)
 		return (FLOAT_ZERO);
