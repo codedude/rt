@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bind_mouse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 14:54:20 by vparis           ###   ########.fr       */
+/*   Created: 2018/05/01 17:30:32 by vparis            #+#    #+#             */
+/*   Updated: 2018/05/01 17:37:07 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "SDL.h"
+#include "sdl_m.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 #include "libft.h"
 #include "env.h"
 #include "rt.h"
 #include "objects.h"
-#include "parser.h"
-#include "vec.h"
+#include "render.h"
+#include "bmp.h"
 
-void		loop(t_env *env);
-
-int			main(int argc, char **argv)
+int		manage_binds_mouse(SDL_Event *event, t_env *env, int *update)
 {
-	t_env	env;
-
-	if (argc < 2)
+	(void)env;
+	(void)update;
+	if (event->button.button == SDL_BUTTON_LEFT)
 	{
-		ft_putstr("rt : ./rtv1 SCENE\n");
-		return (EXIT_FAILURE);
+		printf("%d, %d\n", (int)event->button.x, (int)event->button.y);
 	}
-	if (env_init(&env, argv[1]) == ERROR)
-		return (EXIT_FAILURE);
-	loop(&env);
-	env_destroy(&env);
-	return (EXIT_SUCCESS);
+	return (1);
 }

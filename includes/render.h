@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/20 17:03:26 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/27 15:28:15 by vparis           ###   ########.fr       */
+/*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
+/*   Updated: 2018/05/01 17:40:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +56,8 @@ int					rt(void *data);
 /*
 ** inter
 */
-int					trace(t_rt *rt, t_hit *hit,	t_float max_inter);
+
+int					trace(t_rt *rt, t_hit *hit, t_float max_inter);
 void				compute_hit_normal(t_ray *ray, t_inter *inter);
 void				compute_hit_biais(t_inter *inter);
 
@@ -78,7 +78,8 @@ void				norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter);
 t_float				intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t);
 void				norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter);
 
-t_float				intersect_hyperboloid(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_hyperboloid(t_ray *ray, t_object *obj,
+						t_float *t);
 void				norm_hyperboloid(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
@@ -103,11 +104,10 @@ t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 
 t_vec				color_perturbation(t_inter inter);
-double 				noise3(double vec[3]);
+double				noise3(double vec[3]);
 t_vec				marble1(t_float t, t_inter inter);
 t_vec				marble2(t_float t, t_inter inter);
 t_vec				normal_perturbation(t_inter	inter);
 t_vec				chess(t_inter inter);
-
 
 #endif

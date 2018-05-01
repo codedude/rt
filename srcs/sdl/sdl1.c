@@ -1,68 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sdl.c                                              :+:      :+:    :+:   */
+/*   sdl1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:23:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 16:23:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 17:24:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SDL.h"
-//# include "/usr/local/include/SDL2/SDL.h"
 #include <stdlib.h>
+#include "SDL.h"
 #include "libft.h"
 #include "sdl_m.h"
 
 static int		sdl_init2(t_sdl *sdl, int width, int height)
 {
 	if ((sdl->window = SDL_CreateWindow("RT", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN)) == NULL)
+		SDL_WINDOWPOS_UNDEFINED, width, height,
+		SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI)) == NULL)
 	{
 		ft_putstr("Window could not be created ! SDL_Error : ");
 		ft_putendl(SDL_GetError());
 		return (ERROR);
 	}
-	if ((sdl->renderer = SDL_CreateRenderer(sdl->window, -1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
-	{
-		ft_putstr("Renderer could not be created ! SDL_Error : ");
-		ft_putendl(SDL_GetError());
+	if (sdl_create_screen(sdl, width, height) == ERROR)
 		return (ERROR);
-	}
-	if ((sdl->texture = SDL_CreateTexture(sdl->renderer, SDL_PIXELFORMAT_BGRA32,
-		SDL_TEXTUREACCESS_STATIC, width, height)) == NULL)
-	{
-		ft_putstr("Texture could not be created ! SDL_Error : ");
-		ft_putendl(SDL_GetError());
-		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
 int				sdl_init(t_sdl *sdl, int width, int height)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
 	{
 		ft_putstr("SDL could not initialize ! SDL_Error : ");
 		ft_putendl(SDL_GetError());
 		return (ERROR);
 	}
-	sdl->size_line = width * sizeof(t_uint);
-	sdl->size_buffer = height * sdl->size_line;
 	if (sdl_init2(sdl, width, height) == ERROR)
 		return (ERROR);
-	if ((sdl->image = (t_uint *)malloc(sdl->size_buffer)) == NULL)
-	{
-		ft_putendl("Image buffer cannot be created !");
+	if (sdl_create_buffer(sdl) == ERROR)
 		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
-int				sdl_destroy(t_sdl *sdl)
+int				sdl_reset(t_sdl *sdl)
 {
 	if (sdl->image != NULL)
 	{
@@ -71,6 +54,12 @@ int				sdl_destroy(t_sdl *sdl)
 	}
 	SDL_DestroyTexture(sdl->texture);
 	SDL_DestroyRenderer(sdl->renderer);
+	return (SUCCESS);
+}
+
+int				sdl_destroy(t_sdl *sdl)
+{
+	sdl_reset(sdl);
 	SDL_DestroyWindow(sdl->window);
 	SDL_Quit();
 	return (SUCCESS);

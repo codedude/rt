@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bind.c                                             :+:      :+:    :+:   */
+/*   bind_keydown.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/30 18:19:44 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:41:32 by vparis           ###   ########.fr       */
+/*   Created: 2018/05/01 17:31:59 by vparis            #+#    #+#             */
+/*   Updated: 2018/05/01 17:38:12 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,30 @@
 #include "render.h"
 #include "bmp.h"
 
-int		manage_binds(SDL_Event *event, t_env *env, int *update)
+int		manage_binds_down(t_env *env, int *update, const Uint8 *state)
 {
-	const Uint8	*state;
-	int			r;
+	t_vec		cam_pos;
+	int			smth_changed;
 
-	r = 1;
-	SDL_PumpEvents();
-	state = SDL_GetKeyboardState(NULL);
-	while (SDL_PollEvent(event))
+	smth_changed = 1;
+	cam_pos = camera_get_origin(&env->rt);
+	if (state[SDL_SCANCODE_RIGHT])
+		cam_pos[0] += 1.0;
+	if (state[SDL_SCANCODE_LEFT])
+		cam_pos[0] -= 1.0;
+	if (state[SDL_SCANCODE_UP])
+		cam_pos[1] += 1.0;
+	if (state[SDL_SCANCODE_DOWN])
+		cam_pos[1] -= 1.0;
+	if (state[SDL_SCANCODE_Z])
+		cam_pos[2] -= 1.0;
+	if (state[SDL_SCANCODE_X])
+		cam_pos[2] += 1.0;
+	smth_changed = 1;
+	if (smth_changed == 1)
 	{
-		if (event->type == SDL_QUIT)
-			r = 0;
-		else if (event->type == SDL_KEYUP)
-			r = manage_binds_up(event, env, update);
-		else if (event->type == SDL_MOUSEBUTTONUP)
-			r = manage_binds_mouse(event, env, update);
-		if (r != 1)
-			return (r);
+		camera_set_origin(&env->rt, cam_pos);
+		*update = 1;
 	}
-	r = manage_binds_down(env, update, state);
-	return (r);
+	return (1);
 }

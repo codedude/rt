@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 22:49:36 by valentin         ###   ########.fr       */
+/*   Updated: 2018/05/01 17:03:31 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ typedef struct		s_rt {
 	t_objects		objects;
 	int				canvas_update;
 	int				camera_update;
+	int				antialias;
+	int				sepia;
+	char			*filename;
 }					t_rt;
 
 int					rt_init(t_rt *rt, char *filename);
+int					rt_reload(t_rt *rt);
 int					rt_destroy(t_rt *rt);
 
 int					camera_set_origin(t_rt *rt, t_vec v);
