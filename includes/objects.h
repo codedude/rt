@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 14:03:18 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/01 12:57:35 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct			s_object {
 	t_int				type;
 	t_vec				pos;
 	t_vec				dir;
+	t_int				side;
 	t_vec				color;
 	t_vec				intensity;
 	t_float				radius;
