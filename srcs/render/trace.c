@@ -78,16 +78,14 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 			{
 				hit->inter.t = t;
 				hit->inter.obj = &objs[i];
+				hit->inter.obj_coord = (tmp.dir * hit->inter.t)
+						+ tmp.origin;
 			}
 		}
 		i++;
 	}
 	if (hit->inter.obj != NULL)
-	{
 		hit->inter.point = (hit->ray.dir * hit->inter.t)
 						+ hit->ray.origin;
-		hit->inter.obj_coord = (tmp.dir * hit->inter.t)
-						+ tmp.origin;
-	}
 	return (hit->inter.obj == NULL ? ERROR : SUCCESS);
 }

@@ -32,7 +32,7 @@ light_ambient
 
 light_point
 {
-	pos = 10.0 0.0 -30.0
+	pos = 10.0 60.0 -100.0
 	intensity = 0.6 0.6 0.6
 }
 
@@ -43,13 +43,61 @@ light_par
 }
 
 
+plane
+{
+	pos = 0.0 0.0 60.0
+	dir = 0.0 0.0 0.0
+	rot = 90.0 0.0 0.0
+	radius = 0.0
+	color = 10 10 170
+	phong = 0 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	side = 0
+}
+
+
+sphere
+{
+	pos = 10.0 10.0 30.0
+	dir = 3.0 1.0 2.0
+	rot = 5.0 8.0 9.0
+	radius = 5.0
+	side = 0
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+} 
+
+
+paraboloid
+{
+	pos = 25.0 30.0 30.0
+	dir = 0.0 0.0 0.0
+	rot = 30.0 0.0 -30.0
+	radius = 1.0
+	side = 0
+	color = 200 198 250
+	phong = 12 0.90 0.70
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+}
+
 cylinder
 {
 	pos = 0.0 0.0 30.0
 	dir = 0.0 0.0 0.0
-	rot = 90.0 0.0 0.0
-	radius = 10.0
-	color = 200 0 250
+	rot = 0.0 0.0 33.0
+	radius = 6.0
+	side = 0
+	color = 200 198 250
 	phong = 12 0.90 0.70
 	reflexion = 0.0
 	transparency = 0.0
