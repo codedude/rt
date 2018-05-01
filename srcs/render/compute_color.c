@@ -40,8 +40,8 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 {
 	t_float		max_dist;
 	t_vec		intensity;
-	t_ray		ray_refract;
-	t_inter		inter_refract;
+//	t_ray		ray_refract;
+//	t_inter		inter_refract;
 	t_hit		refract;
 
 	init_ray_light(&light_hit->ray, &max_dist, obj, inter);

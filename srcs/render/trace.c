@@ -31,7 +31,7 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_paraboloid(ray, inter->obj, inter);
 	else if (inter->obj->type == HYPERBOLOID)
 		norm_hyperboloid(ray, inter->obj, inter);
-	inter->normal = matrix_mul_vec(inter->obj->obj_to_w, inter->normal);
+	inter->normal = vec_norm(matrix_mul_vec(inter->obj->obj_to_w, inter->normal));
 }
 
 t_float		intersect(t_ray *ray, t_object *obj)
@@ -67,7 +67,8 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 	i = 0;
 	while (i < rt->objects.size)
 	{
-		tmp = hit->ray;
+		tmp.origin = hit->ray.origin;
+		tmp.dir = hit->ray.dir;
 		tmp.origin -= objs[i].pos;
 		tmp.origin = matrix_mul_vec(objs[i].w_to_obj, tmp.origin);
 		tmp.dir = matrix_mul_vec(objs[i].w_to_obj, tmp.dir);

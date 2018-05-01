@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/01 17:37:17 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/01 17:46:40 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ RENDERD		=	render
 UTILSD		=	utils
 LIBTPOOLD	=	libtpool
 SDLD		=	sdl
-GUID		=	gui
 IMGD		=	saved_img
 SDLLIBD		=	$(HOME)/.brew/lib
 SDLINCD		=	$(HOME)/.brew/include/SDL2

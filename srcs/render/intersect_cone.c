@@ -33,8 +33,6 @@ void		norm_cone(t_ray *ray, t_object *obj, t_inter *inter)
 	t_float	t;
 	t_vec	tmp;
 
-	if (inter->obj_coord.x > -1.0 && inter->obj_coord.x < 1.0 && inter->obj_coord.z > -1.0 && inter->obj_coord.z < 1.0)
-		vec_print(inter->obj_coord, "coord en 00");
 	(void)ray;
 	tmp = inter->point - obj->pos;
 	t = ft_cos(2.0 * obj->radius);

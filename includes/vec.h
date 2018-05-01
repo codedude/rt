@@ -33,6 +33,10 @@ void			matrix_roty(t_vec ret[3], double teta);
 void			matrix_rotz(t_vec ret[3], double teta);
 void			matrix_equal_matrix(t_vec m1[3], t_vec m2[3]);
 void			matrix_id(t_vec m[3]);
+void			inverse_matrix(t_vec m[3], t_vec inv[3]);
+void			transpose_matrix(t_vec m[3], t_vec tr[3]);
+void			comatrix(t_vec m[3], t_vec ret[3]);
+t_float			matrix_det(t_vec m[3]);
 void			print_matrix(t_vec m[3], char *strs);
 
 #endif

@@ -34,5 +34,6 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
-	inter->normal = vec_norm(inter->point - obj->pos);
+	(void)obj;
+	inter->normal = vec_norm(inter->obj_coord);
 }

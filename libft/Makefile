@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/04/26 16:17:05 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/01 17:46:53 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ LIBFT_SRCS	+= $(INPUTD)/ft_gnl.c
 
 OBJS		= $(patsubst %.c, %.o, $(LIBFT_SRCS))
 LDFLAGS		+= -Werror -Wall -Wextra -std=c11 -pedantic -Wno-unused-result
-CFLAGS		+= -I$(INCD) -O3 -flto -march=native -mtune=native
+CFLAGS		+= -I$(INCD) -O3 -flto
 
 .PHONY: clean fclean re showlib
 
