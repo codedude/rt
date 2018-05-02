@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/02 12:23:57 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/02 15:19:46 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,9 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/perlin.c $(RENDERD)/perturbation.c \
 				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c\
 				$(RENDERD)/intersect_cube.c $(RENDERD)/limited_objects.c\
-				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c $(RENDERD)/reflexion.c
+				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c \
+				$(RENDERD)/reflexion.c $(RENDERD)/filters.c \
+				$(RENDERD)/aalias.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c

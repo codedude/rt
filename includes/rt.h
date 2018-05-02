@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 19:14:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 14:57:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_rt {
 	int				camera_update;
 	int				antialias;
 	int				sepia;
+	int				blackwhite;
 	char			*filename;
 }					t_rt;
 

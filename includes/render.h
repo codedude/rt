@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 12:33:00 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:04:33 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int					render_update(t_env *env);
 int					rt(void *data);
 t_object			*get_hit_object(t_rt *rt, int x, int y);
 void				compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray);
+t_vec				apply_filter(t_rt *rt, t_vec color);
 
 /*
 ** inter

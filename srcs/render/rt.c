@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 12:32:56 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 15:08:23 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	compute_rt(t_rt *rt, t_uint *image, int y, int x)
 	t_color	color;
 
 	compute_primary_ray(x, y, rt, &cam.ray);
-	color = vec_to_color(compute_color(rt, &cam, MAX_DEPTH));
+	color = vec_to_color(apply_filter(rt, compute_color(rt, &cam, MAX_DEPTH)));
 	put_pixel(x + (y * rt->canvas.width), color, image);
 	return (SUCCESS);
 }
