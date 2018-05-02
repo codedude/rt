@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:33:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 18:57:44 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:04:57 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_float		intersect_sphere(t_ray *ray, t_object *obj, t_float *t)
 	co = ray->origin;
 	abc[0] = vec_dot(d, d);
 	abc[1] = 2.0 * vec_dot(co, d);
-	abc[2] = vec_dot(co, co) - obj->radius * obj->radius;
+	abc[2] = vec_dot(co, co) - obj->radius2;
 	return ((*t = solve_quadra(abc, obj)));
 }
 

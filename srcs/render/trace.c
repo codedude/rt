@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:51:48 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 20:09:15 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,7 @@
 #include "render.h"
 #include "rt.h"
 
-t_object	*get_hit_object(t_rt *rt, int x, int y)
-{
-	t_hit	cam;
-	t_id	id;
-
-	id = 0;
-	compute_primary_ray(x, y, rt, &cam.ray);
-	if (trace(rt, &cam, FLOAT_MAX) == SUCCESS)
-		id = cam.inter.obj->id;
-	else
-		return (NULL);
-	return (object_get(&rt->objects, id));
-}
-
-void		compute_hit_normal(t_ray *ray, t_inter *inter)
+void			compute_hit_normal(t_ray *ray, t_inter *inter)
 {
 	if (inter->obj->type == PLANE)
 		norm_plane(ray, inter->obj, inter);
@@ -47,10 +33,11 @@ void		compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_hyperboloid(ray, inter->obj, inter);
 	else if (inter->obj->type == CUBE)
 		norm_cube(ray, inter->obj, inter);
-	inter->normal = vec_norm(matrix_mul_vec(inter->obj->obj_to_w, inter->normal));
+	inter->normal = vec_norm(matrix_mul_vec(inter->obj->obj_to_w,
+		inter->normal));
 }
 
-t_float		intersect(t_ray *ray, t_object *obj)
+t_float			intersect(t_ray *ray, t_object *obj)
 {
 	t_float		t;
 
@@ -72,11 +59,40 @@ t_float		intersect(t_ray *ray, t_object *obj)
 	return (t);
 }
 
-int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
+static void		init_tmp(t_hit *hit, t_object *objs, int i, t_ray *tmp)
+{
+	tmp->origin = hit->ray.origin;
+	tmp->dir = hit->ray.dir;
+	tmp->origin -= objs[i].pos;
+	tmp->origin = matrix_mul_vec(objs[i].w_to_obj, tmp->origin);
+	tmp->dir = matrix_mul_vec(objs[i].w_to_obj, tmp->dir);
+}
+
+static void		trace_it(t_hit *hit, t_object *obj, t_ray *tmp,
+					t_float max_inter)
+{
+	t_float		t;
+
+	if ((t = intersect(tmp, obj)) > FLOAT_MIN)
+	{
+		if (t < hit->inter.t && t < max_inter)
+		{
+			hit->inter.t = t;
+			hit->inter.obj = obj;
+			hit->inter.obj_coord = (tmp->dir * hit->inter.t) + tmp->origin;
+			if (is_cut(obj, hit, &t, tmp) == 0)
+			{
+				hit->inter.t = t;
+				hit->inter.obj = obj;
+			}
+		}
+	}
+}
+
+int				trace(t_rt *rt, t_hit *hit, t_float max_inter)
 {
 	t_object	*objs;
 	int			i;
-	t_float		t;
 	t_ray		tmp;
 
 	hit->inter.t = FLOAT_MAX;
@@ -85,23 +101,8 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 	i = 0;
 	while (i < rt->objects.size)
 	{
-		tmp.origin = hit->ray.origin;
-		tmp.dir = hit->ray.dir;
-		tmp.origin -= objs[i].pos;
-		tmp.origin = matrix_mul_vec(objs[i].w_to_obj, tmp.origin);
-		tmp.dir = matrix_mul_vec(objs[i].w_to_obj, tmp.dir);
-		if ((t = intersect(&tmp, &objs[i])) > FLOAT_MIN)
-		{
-				if (t < hit->inter.t && t < max_inter)
-				{
-					if (is_cut(objs[i], hit, &t, tmp) == 0)
-					{
-						hit->inter.t = t;
-						hit->inter.obj = &objs[i];
-						hit->inter.obj_coord = (tmp.dir * hit->inter.t) + tmp.origin;
-					}
-				}
-		}
+		init_tmp(hit, objs, i, &tmp);
+		trace_it(hit, &objs[i], &tmp, max_inter);
 		i++;
 	}
 	if (hit->inter.obj != NULL)

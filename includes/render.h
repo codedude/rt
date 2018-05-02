@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 18:25:44 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 20:08:48 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void				norm_cube(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 
-int					is_cut(t_object obj, t_hit *hit, t_float *t, t_ray simple);
+int					is_cut(t_object *obj, t_hit *hit, t_float *t, t_ray *simple);
 
 /*
 ** Light effect : reflexion and refraction

@@ -30,12 +30,9 @@ t_float		intersect_cone(t_ray *ray, t_object *obj, t_float *t)
 
 void		norm_cone(t_ray *ray, t_object *obj, t_inter *inter)
 {
-	t_float	t;
-	t_vec	tmp;
-
 	(void)ray;
-	tmp = inter->point - obj->pos;
-	t = ft_cos(2.0 * obj->radius);
-	t = (1.0 + (1.0 - t) / (1.0 + t)) * vec_dot(tmp, obj->dir);
-	inter->normal = vec_norm((obj->dir * -t) + tmp);
+	(void)obj;
+	inter->normal = vec_norm(VEC_INIT(inter->obj_coord.x,
+										inter->obj_coord.y * inter->obj->radius * -1,
+										inter->obj_coord.z));
 }

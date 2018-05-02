@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 19:36:56 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 20:10:22 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		intensity = compute_local_light(rt, hit);
 		if (hit->inter.obj->perturbation > 0)
 			color = color_perturbation(hit->inter) * intensity;
-		else
+	//	else if (hit->inter.obj->texture > 0)
+	//		color = texture_color(hit->inter) * intensity;
+		else 
 			color = intensity * hit->inter.obj->color;
 		if (hit->inter.obj->reflexion > 0 && depth > 0)
 			color = (1.0 - hit->inter.obj->reflexion) * color

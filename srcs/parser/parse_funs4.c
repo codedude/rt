@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 17:12:06 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:14:53 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:13:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,6 @@
 #include "rt.h"
 #include "objects.h"
 #include "types.h"
-
-int		parse_t_angle(void *data, char **strs)
-{
-	t_object	*obj;
-	t_float		n;
-
-	obj = (t_object *)data;
-	if (ft_atof_s(strs[0], &n) == ERROR)
-		return (ERROR);
-	object_set_angle(obj, n);
-	return (SUCCESS);
-}
-
-int		parse_t_size(void *data, char **strs)
-{
-	t_object	*obj;
-	t_float		n;
-
-	obj = (t_object *)data;
-	if (ft_atof_s(strs[0], &n) == ERROR)
-		return (ERROR);
-	object_set_size(obj, n);
-	return (SUCCESS);
-}
 
 int		parse_t_reflexion(void *data, char **strs)
 {

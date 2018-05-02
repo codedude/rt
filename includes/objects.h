@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:20:54 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 20:04:52 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ enum {
 	CANVAS, CAMERA,
 	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
 	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
-	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_SPOT, LIGHT_PAR
+	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_PAR, LIGHT_SPOT
 };
 
 enum {
@@ -47,6 +47,12 @@ enum {
 ** 100 objects = 12.5Ko, 1000 objects = 125Ko
 */
 
+typedef struct			s_obj_text {
+	t_color				*pixels;
+	int					width;
+	int					height;
+}						t_obj_text;
+
 typedef struct			s_object {
 	t_id				id;
 	t_int				type;
@@ -62,12 +68,10 @@ typedef struct			s_object {
 	t_float				transparency;
 	t_float				refraction;
 	t_int				perturbation;
-	t_float				angle;
-	t_float				size;
 	t_vec				obj_to_w[3];
 	t_vec				w_to_obj[3];
 	t_vec				rot;
-	t_color				*texture;
+	t_obj_text			texture;
 	t_int				is_limited;
 	t_vec				upper_limit;
 	t_vec				lower_limit;
@@ -134,8 +138,6 @@ int						object_set_reflexion(t_object *obj, t_float n);
 int						object_set_transparency(t_object *obj, t_float n);
 int						object_set_refraction(t_object *obj, t_float n);
 int						object_set_perturbation(t_object *obj, int n);
-int						object_set_angle(t_object *obj, t_float n);
-int						object_set_size(t_object *obj, t_float n);
 int						object_set_matrix(t_object *obj, t_vec rot);
 int						object_set_inverse_matrix(t_object *obj, t_vec rot);
 int						object_set_texture(t_object *obj, int n);
