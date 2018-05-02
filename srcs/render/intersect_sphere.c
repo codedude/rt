@@ -37,3 +37,17 @@ void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 	(void)obj;
 	inter->normal = vec_norm(inter->obj_coord);
 }
+
+/*t_vec		map_sphere(t_vec inter)
+{
+	t_vec	uv;
+	t_vec	n;
+
+	n = vec_norm(inter);
+	uv.x = 0.5 + (asin(n.x) / M_PI);
+	uv.y = 0.5 - (asin(n.y) / M_PI);
+	uv.x += 1.0;
+	uv.y += 1.0;
+	uv /= 2;
+	return (uv);
+}*/
