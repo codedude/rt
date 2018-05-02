@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:24:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 14:58:00 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 17:38:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define KEY_SEPIA		SDLK_5
 # define KEY_BW			SDLK_6
 # define KEY_MODE		SDLK_SPACE
+
+typedef struct		s_textures {
+	int				id;
+	char			*filename;
+	SDL_Surface		*texture;
+	t_color			*pixels;
+}					t_textures;
 
 typedef struct		s_sdl {
 	t_uint			*image;
@@ -55,5 +62,15 @@ int					sdl_create_texture(t_sdl *sdl);
 int					sdl_create_renderer(t_sdl *sdl);
 int					sdl_create_screen(t_sdl *sdl, int width, int height);
 int					sdl_resize(t_sdl *sdl, int width, int height);
+
+/*
+** sdl3.c
+*/
+
+int					sdl_init_textures(void);
+void				sdl_destroy_textures(void);
+t_color				*sdl_get_texture(int id);
+
+t_vec				color_to_vec(t_color c);
 
 #endif

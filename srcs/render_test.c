@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:29:36 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 15:19:11 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 16:12:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void		loop(t_env *env)
 			if (render_update(env) == ERROR)
 				break ;
 			render_compute(env);
-			apply_aalias(env);
 			sdl_render(&env->sdl);
 			get_fps(env->show_fps, 1);
 			update = 0;

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:47:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/24 17:56:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 17:38:26 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "types.h"
 #include "libft.h"
+#include "vec.h"
 
 t_color		rgb_to_color(t_uint r, t_uint g, t_uint b)
 {
@@ -36,33 +37,6 @@ t_color		vec_to_color(t_vec color)
 	y = (unsigned char)(clamp_f32(color[1], 0.0, 1.0) * 255.);
 	z = (unsigned char)(clamp_f32(color[2], 0.0, 1.0) * 255.);
 	return (rgb_to_color(x, y, z));
-}
-
-t_color		calc_color(double i, t_color color)
-{
-	double	r;
-	double	g;
-	double	b;
-
-	b = (color % 256);
-	r = (color / (256 * 256));
-	g = ((color / 256) - r * 256);
-	b = b * i;
-	r = r * i;
-	g = g * i;
-	if (r > 255)
-		r = 255.0;
-	if (r < 0)
-		r = 0;
-	if (g > 255)
-		g = 255.0;
-	if (g < 0)
-		g = 0;
-	if (b > 255)
-		b = 255.0;
-	if (b < 0)
-		b = 0;
-	return (rgb_to_color((t_uint)r, (t_uint)g, (t_uint)b));
 }
 
 /*

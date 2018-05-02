@@ -1,0 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sdl3.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 16:18:38 by vparis            #+#    #+#             */
+/*   Updated: 2018/05/02 17:33:20 by vparis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include "SDL.h"
+#include "SDL_image.h"
+#include "libft.h"
+#include "libft.h"
+#include "sdl_m.h"
+
+static t_textures	*sdl_get_textures(void)
+{
+	static t_textures	textures[] = {
+		{1, "textures/earth.jpg", NULL, NULL},
+		{-1, NULL, NULL, NULL}
+	};
+
+	return (textures);
+}
+
+static SDL_Surface	*sdl_load_texture(char *filename)
+{
+	SDL_Surface	*surf;
+
+	if ((surf = IMG_Load(filename)) == NULL)
+	{
+		ft_putstr("Error : can't load texture from ");
+		ft_putendl(filename);
+		return (NULL);
+	}
+	return (surf);
+}
+
+t_color				*sdl_get_texture(int id)
+{
+	t_textures	*textures;
+
+	textures = sdl_get_textures();
+	return (textures[id].pixels);
+}
+
+int					sdl_init_textures(void)
+{
+	t_textures	*textures;
+	int			i;
+
+	textures = sdl_get_textures();
+	i = 0;
+	while (textures[i].id != -1)
+	{
+		if ((textures[i].texture = sdl_load_texture(textures[i].filename))
+			== NULL)
+			return (ERROR);
+		textures[i].pixels = (t_color *)textures[i].texture->pixels;
+		i++;
+	}
+	return (SUCCESS);
+}
+
+void				sdl_destroy_textures(void)
+{
+	t_textures	*textures;
+	int			i;
+
+	textures = sdl_get_textures();
+	i = 0;
+	while (textures[i].id != -1)
+	{
+		SDL_FreeSurface(textures[i].texture);
+		textures[i].pixels = NULL;
+		i++;
+	}
+}
