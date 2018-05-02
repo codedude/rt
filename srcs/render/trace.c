@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 13:22:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:19:39 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,19 @@ int			trace(t_rt *rt, t_hit *hit, t_float max_inter)
 		tmp.dir = matrix_mul_vec(objs[i].w_to_obj, tmp.dir);
 		if ((t = intersect(&tmp, &objs[i])) > FLOAT_MIN)
 		{
-			if (t < hit->inter.t && t < max_inter)
-			{
-				hit->inter.t = t;
-				hit->inter.obj = &objs[i];
-				hit->inter.obj_coord = (tmp.dir * hit->inter.t)
-						+ tmp.origin;
-				if (is_cut(objs[i], hit, t, tmp) == 0)
+				if (t < hit->inter.t && t < max_inter)
 				{
-					hit->inter.t = t;
-					hit->inter.obj = &objs[i];
+					if (is_cut(objs[i], hit, &t, tmp) == 0)
+					{
+						hit->inter.t = t;
+						hit->inter.obj = &objs[i];
+						hit->inter.obj_coord = (tmp.dir * hit->inter.t) + tmp.origin;
+					}
 				}
-			}
 		}
 		i++;
 	}
 	if (hit->inter.obj != NULL)
-		hit->inter.point = (hit->ray.dir * hit->inter.t)
-						+ hit->ray.origin;
+		hit->inter.point = (hit->ray.dir * hit->inter.t) + hit->ray.origin;
 	return (hit->inter.obj == NULL ? ERROR : SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 11:03:06 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/01 18:46:18 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 17:45:01 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ t_float			intersect_cube(t_ray *ray, t_object *obj, t_float *t)
 	u[3] = (obj->side - ray->origin.z) / ray->dir.z;
 	u[4] = (obj->side - ray->origin.y) / ray->dir.y;
 	u[5] = (obj->side - ray->origin.x) / ray->dir.x;
-	t[0] = u[0];
-	t[1] = u[1];
-	t[2] = u[2];
-	t[3] = u[3];
-	t[4] = u[4];
-	t[5] = u[5];
 	inter = ray->origin + ray->dir * u[0];
 	if (!(inter.x < 0 || inter.x > obj->side || inter.y < 0 || inter.y > obj->side) && (u[0] < *t || *t == -1))
 		*t = u[0];
