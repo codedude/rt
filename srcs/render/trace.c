@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:47:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 20:09:15 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void		trace_it(t_hit *hit, t_object *obj, t_ray *tmp,
 			hit->inter.t = t;
 			hit->inter.obj = obj;
 			hit->inter.obj_coord = (tmp->dir * hit->inter.t) + tmp->origin;
-			if (is_cut(obj, hit, t, tmp) == 0)
+			if (is_cut(obj, hit, &t, tmp) == 0)
 			{
 				hit->inter.t = t;
 				hit->inter.obj = obj;

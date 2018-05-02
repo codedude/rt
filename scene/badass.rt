@@ -59,7 +59,6 @@ cylinder
 	rot = -30.0 0.0 -45.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 paraboloid
@@ -75,7 +74,6 @@ paraboloid
 	rot = 180.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 sphere
@@ -91,7 +89,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 sphere
@@ -107,7 +104,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 sphere
@@ -123,7 +119,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 hyperboloid
@@ -139,5 +134,4 @@ hyperboloid
 	rot = 180.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }

@@ -44,7 +44,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 sphere
 {
@@ -59,7 +58,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 plane
@@ -74,7 +72,6 @@ plane
 	perturbation = 0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 
@@ -91,7 +88,6 @@ paraboloid
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 sphere
@@ -107,7 +103,6 @@ sphere
 	rot = 0.0 0.0 0.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
 
 hyperboloid
@@ -123,5 +118,4 @@ hyperboloid
 	rot = 0.0 0.0 90.0
 	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
 }
