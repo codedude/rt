@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 11:03:06 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/02 17:40:05 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 17:42:21 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_float			intersect_cube(t_ray *ray, t_object *obj, t_float *t)
 	t_vec		inter;
 	t_float		u[6];
 
-	(void)obj;
 	*t = -1;
 	u[0] = -(ray->origin.z / ray->dir.z);
 	u[1] = -(ray->origin.y / ray->dir.y);
@@ -60,5 +59,6 @@ t_float			intersect_cube(t_ray *ray, t_object *obj, t_float *t)
 void			norm_cube(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
+	(void)obj;
 	inter->normal = VEC_INIT(0.0, 0.0, 1.0);
 }
