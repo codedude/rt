@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:25:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:35:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 13:13:16 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ static int	manage_binds_up_3(SDL_Event *event, t_env *env, int *update)
 				return (-1);
 			ft_putendl("Scene reloaded");
 			*update = 1;
+		}
+	}
+	else if (event->key.keysym.sym == KEY_MODE)
+	{
+		env->mode = !env->mode;
+		if (env->mode)
+			ft_putendl("Edition mode activated");
+		else
+		{
+			env->obj_edit = NULL;
+			ft_putendl("Edition mode deactivated");
 		}
 	}
 	return (1);

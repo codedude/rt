@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:30:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:37:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:33:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@
 #include "render.h"
 #include "bmp.h"
 
-int		manage_binds_mouse(SDL_Event *event, t_env *env, int *update)
+int		manage_binds_mouse(SDL_Event *event, t_env *env)
 {
-	(void)env;
-	(void)update;
+	t_object	*obj;
+
+	if (!env->mode)
+		return (1);
 	if (event->button.button == SDL_BUTTON_LEFT)
 	{
-		printf("%d, %d\n", (int)event->button.x, (int)event->button.y);
+		if ((obj = get_hit_object(&env->rt, (int)event->button.x,
+			(int)event->button.y)) != NULL)
+		env->obj_edit = obj;
 	}
 	return (1);
 }

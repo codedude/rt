@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 14:19:51 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/23 18:17:16 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:59:33 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	object_fill_array(t_objects *objects, t_object *tmp)
 
 int			objects_gen_array(t_objects *objects)
 {
+	if (objects->is_update == 0)
+		return (SUCCESS);
+	objects->is_update = 0;
 	if (objects->objects_array != NULL)
 		free(objects->objects_array);
 	if ((objects->objects_array =

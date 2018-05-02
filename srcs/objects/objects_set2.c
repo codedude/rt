@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_set2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/25 02:50:33 by valentin         ###   ########.fr       */
+/*   Updated: 2018/05/02 12:45:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ int		object_set_matrix(t_object *obj, t_vec rot)
 	t_vec	tmp[3];
 	t_vec	matrix[3];
 
-
+	obj->rot = rot;
 	matrix_id(matrix);
 	matrix_id(tmp);
-
 	matrix_rotz(z, rot.z);
 	matrix_roty(y, rot.y);
 	matrix_rotx(x, rot.x);
@@ -56,6 +55,5 @@ int		object_set_matrix(t_object *obj, t_vec rot)
 	matrix_equal_matrix(obj->obj_to_w, matrix);
 	inverse_matrix(obj->obj_to_w, obj->w_to_obj);
 	matrix_mul_matrix(obj->obj_to_w, obj->w_to_obj, matrix);
-	print_matrix(matrix, "identite ?");
 	return (SUCCESS);
 }

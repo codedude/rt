@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:24:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:39:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:03:02 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define KEY_RELOAD		SDLK_3
 # define KEY_AALIAS		SDLK_4
 # define KEY_SEPIA		SDLK_5
+# define KEY_MODE		SDLK_SPACE
 
 typedef struct		s_sdl {
 	t_uint			*image;
