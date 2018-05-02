@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/01 17:56:19 by mcasubol         ###   ########.fr        #
+#    Updated: 2018/05/02 12:23:57 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c $(RENDERD)/normal_perturbation.c
 FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/bind.c \
 				$(SDLD)/bind_mouse.c $(SDLD)/bind_keyup.c \
-				$(SDLD)/bind_keydown.c
+				$(SDLD)/bind_keydown1.c $(SDLD)/bind_keydown2.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))

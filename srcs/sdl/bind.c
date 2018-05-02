@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 18:19:44 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:41:32 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 11:59:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		manage_binds(SDL_Event *event, t_env *env, int *update)
 		else if (event->type == SDL_KEYUP)
 			r = manage_binds_up(event, env, update);
 		else if (event->type == SDL_MOUSEBUTTONUP)
-			r = manage_binds_mouse(event, env, update);
+			r = manage_binds_mouse(event, env);
 		if (r != 1)
 			return (r);
 	}

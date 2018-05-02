@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 18:43:35 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 12:43:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct			s_object {
 	t_float				size;
 	t_vec				obj_to_w[3];
 	t_vec				w_to_obj[3];
+	t_vec				rot;
 	t_int				is_limited;
 	t_vec				upper_limit;
 	t_vec				lower_limit;

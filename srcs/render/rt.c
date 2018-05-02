@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:08:21 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 19:27:59 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:32:56 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "render.h"
 #include "rt.h"
 
-static void	compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
+void		compute_primary_ray(int x, int y, t_rt *rt, t_ray *ray)
 {
 	ray->dir[0] = ((t_float)x + 0.5) / (t_float)rt->canvas.width;
 	ray->dir[1] = ((t_float)y + 0.5) / (t_float)rt->canvas.height;

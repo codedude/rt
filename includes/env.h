@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 17:39:06 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 12:33:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_env {
 	t_rt			rt;
 	int				show_fps;
 	int				mode;
+	t_object		*obj_edit;
 }					t_env;
 
 int					env_init(t_env *env, char *filename);
@@ -52,12 +53,12 @@ int					manage_binds_up(SDL_Event *event, t_env *env, int *update);
 
 int					manage_binds_down(t_env *env, int *update,
 						const Uint8 *state);
+int					manage_object(t_env *env, const Uint8 *state);
 
 /*
 ** bind_mouse.c
 */
 
-int					manage_binds_mouse(SDL_Event *event, t_env *env,
-						int *update);
+int					manage_binds_mouse(SDL_Event *event, t_env *env);
 
 #endif

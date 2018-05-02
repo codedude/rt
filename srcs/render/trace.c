@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 19:07:23 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 13:22:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 #include "vec.h"
 #include "render.h"
 #include "rt.h"
+
+t_object	*get_hit_object(t_rt *rt, int x, int y)
+{
+	t_hit	cam;
+	t_id	id;
+
+	id = 0;
+	compute_primary_ray(x, y, rt, &cam.ray);
+	if (trace(rt, &cam, FLOAT_MAX) == SUCCESS)
+		id = cam.inter.obj->id;
+	else
+		return (NULL);
+	return (object_get(&rt->objects, id));
+}
 
 void		compute_hit_normal(t_ray *ray, t_inter *inter)
 {
