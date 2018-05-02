@@ -30,20 +30,6 @@ light_point
 	intensity = 0.8 0.8 0.8
 }
 
-plane
-{
-	pos = 0.0 0.0 0.0
-	rot = 180.0 0.0 0.0
-	color = 150 150 250
-	phong = 0 0.95 0.00
-	reflexion = 0.75
-	transparency = 0.5
-	refraction = 1.33
-	perturbation = 0
-	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
-}
-
 sphere
 {
 	pos = 0.0 30.0 0.0
@@ -55,7 +41,7 @@ sphere
 	refraction = 0.0
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	limited = 0 1.0 0.0 -8.0 0.0 80.0 0.0
+	limited = 0 0.0 10.0 5.0 0.0 -20.0 0.0
 	texture = 0
 }
 

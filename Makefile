@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/02 17:39:17 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/02 22:01:35 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/perlin.c $(RENDERD)/perturbation.c \
-				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c\
-				$(RENDERD)/intersect_cube.c $(RENDERD)/limited_objects.c\
+				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c \
+				$(RENDERD)/limited_objects.c \
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c \
 				$(RENDERD)/reflexion.c $(RENDERD)/filters.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 20:04:52 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 21:52:06 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef struct			s_object {
 	t_int				is_limited;
 	t_vec				upper_limit;
 	t_vec				lower_limit;
-	t_float				t2[2];
 }						t_object;
 
 /*

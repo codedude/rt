@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 20:08:48 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 21:58:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_algo {
 
 typedef struct		s_inter {
 	t_float			t;
+	t_float			t2[2];
 	t_object		*obj;
 	t_vec			point;
 	t_vec			obj_coord;
@@ -64,29 +65,31 @@ int					trace(t_rt *rt, t_hit *hit, t_float max_inter);
 void				compute_hit_normal(t_ray *ray, t_inter *inter);
 void				compute_hit_biais(t_inter *inter);
 
-t_float				solve_quadra(t_float abc[3], t_object *obj);
+t_float				solve_quadra(t_float abc[3], t_inter *inter);
 
-t_float				intersect_sphere(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_sphere(t_ray *ray, t_object *obj, t_float *t,
+						t_inter *inter);
 void				norm_sphere(t_ray *ray_hit, t_object *obj, t_inter *inter);
 
-t_float				intersect_plane(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_plane(t_ray *ray, t_object *obj, t_float *t,
+						t_inter *inter);
 void				norm_plane(t_ray *ray, t_object *obj, t_inter *inter);
 
-t_float				intersect_cone(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_cone(t_ray *ray, t_object *obj, t_float *t,
+						t_inter *inter);
 void				norm_cone(t_ray *ray, t_object *obj, t_inter *inter);
 
-t_float				intersect_cylinder(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_cylinder(t_ray *ray, t_object *obj, t_float *t,
+						t_inter *inter);
 void				norm_cylinder(t_ray *ray, t_object *obj, t_inter *inter);
 
-t_float				intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t);
+t_float				intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t,
+						t_inter *inter);
 void				norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_float				intersect_hyperboloid(t_ray *ray, t_object *obj,
-						t_float *t);
+						t_float *t, t_inter *inter);
 void				norm_hyperboloid(t_ray *ray, t_object *obj, t_inter *inter);
-
-t_float				intersect_cube(t_ray *ray, t_object *obj, t_float *t);
-void				norm_cube(t_ray *ray, t_object *obj, t_inter *inter);
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 

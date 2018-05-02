@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 20:09:15 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 22:24:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,27 @@ void			compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_paraboloid(ray, inter->obj, inter);
 	else if (inter->obj->type == HYPERBOLOID)
 		norm_hyperboloid(ray, inter->obj, inter);
-	else if (inter->obj->type == CUBE)
-		norm_cube(ray, inter->obj, inter);
 	inter->normal = vec_norm(matrix_mul_vec(inter->obj->obj_to_w,
 		inter->normal));
 }
 
-t_float			intersect(t_ray *ray, t_object *obj)
+t_float			intersect(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	t_float		t;
 
 	t = FLOAT_ZERO;
 	if (obj->type == PLANE)
-		intersect_plane(ray, obj, &t);
+		intersect_plane(ray, obj, &t, inter);
 	else if (obj->type == SPHERE)
-		intersect_sphere(ray, obj, &t);
+		intersect_sphere(ray, obj, &t, inter);
 	else if (obj->type == CYLINDER)
-		intersect_cylinder(ray, obj, &t);
+		intersect_cylinder(ray, obj, &t, inter);
 	else if (obj->type == CONE)
-		intersect_cone(ray, obj, &t);
+		intersect_cone(ray, obj, &t, inter);
 	else if (obj->type == PARABOLOID)
-		intersect_paraboloid(ray, obj, &t);
+		intersect_paraboloid(ray, obj, &t, inter);
 	else if (obj->type == HYPERBOLOID)
-		intersect_hyperboloid(ray, obj, &t);
-	else if (obj->type == CUBE)
-		intersect_cube(ray, obj, &t);
+		intersect_hyperboloid(ray, obj, &t, inter);
 	return (t);
 }
 
@@ -73,18 +69,27 @@ static void		trace_it(t_hit *hit, t_object *obj, t_ray *tmp,
 {
 	t_float		t;
 
-	if ((t = intersect(tmp, obj)) > FLOAT_MIN)
+	if ((t = intersect(tmp, obj, &hit->inter)) > FLOAT_MIN)
 	{
 		if (t < hit->inter.t && t < max_inter)
 		{
-			hit->inter.t = t;
-			hit->inter.obj = obj;
-			hit->inter.obj_coord = (tmp->dir * hit->inter.t) + tmp->origin;
-			if (is_cut(obj, hit, &t, tmp) == 0)
+			if (obj->is_limited > 0)
+			{
+				if (hit->inter.t2[0] < t && hit->inter.t2[1] < t)
+				{
+					if(is_cut(obj, hit, &t, tmp) == 1)
+					{
+						hit->inter.t = t;
+						hit->inter.obj = obj;
+					}
+				}
+			}
+			else
 			{
 				hit->inter.t = t;
 				hit->inter.obj = obj;
 			}
+			hit->inter.obj_coord = (tmp->dir * hit->inter.t) + tmp->origin;
 		}
 	}
 }

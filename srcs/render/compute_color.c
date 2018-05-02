@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 20:10:22 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 22:11:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 	refract_color = VEC_ZERO;
 	if (trace(rt, hit, FLOAT_MAX) == SUCCESS)
 	{
+		//return (hit->inter.obj->color);
 		compute_hit_normal(&hit->ray, &hit->inter);
 		if (hit->inter.obj->perturbation == WATER || hit->inter.obj->perturbation == WAVE)
 			hit->inter.normal = normal_perturbation(hit->inter);
