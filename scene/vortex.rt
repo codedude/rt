@@ -34,7 +34,6 @@ light_par
 sphere
 {
 	pos = -50.0 50.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 80 147 170
 	phong = 12 0.40 0.60
@@ -43,13 +42,12 @@ sphere
 	refraction = 1.531
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 sphere
 {
 	pos = 50.0 50.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 80 147 170
 	phong = 12 0.40 0.60
@@ -58,23 +56,21 @@ sphere
 	refraction = 2.4175
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 plane
 {
 	pos = 0.0 0.0 50.0
-	dir = 0.0 0.0 0.0
 	rot = 90.0 0.0 0.0
-	radius = 0.0
-	side = 0
 	color = 135 170 204
 	phong = 0 0.95 0.00
 	reflexion = 0.3
 	transparency = 0.0
 	refraction = 1.333333
 	perturbation = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -82,7 +78,6 @@ plane
 paraboloid
 {
 	pos = 0.0 10.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 9.0
 	color = 80 147 170
 	phong = 12 0.40 0.60
@@ -91,14 +86,13 @@ paraboloid
 	refraction = 1.31
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
 {
 	pos = 0.0 -25.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 80 147 170
 	phong = 12 0.40 0.60
@@ -107,22 +101,21 @@ sphere
 	refraction = 1.31
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 hyperboloid
 {
 	pos = 0.0 0.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 0.05
 	color = 255 179 83
 	phong = 12 0.40 0.60
 	reflexion = 0.5
 	transparency = 0.0
 	refraction = 0.0
-	perturbation = 0 
+	perturbation = 0
 	rot = 0.0 0.0 90.0
-	side = 0
+	texture = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
