@@ -44,6 +44,7 @@ plane
 	refraction = 1.333333
 	perturbation = 5
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 
@@ -62,6 +63,7 @@ cylinder
 	rot = -30.0 0.0 -45.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 paraboloid
@@ -78,6 +80,7 @@ paraboloid
 	rot = 180.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 sphere
@@ -94,11 +97,12 @@ sphere
 	rot = 0.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 sphere
 {
-	pos = 0.0 55.0 60.0
+	pos = -50.0 70.0 0.0
 	dir = 0.0 0.0 0.0
 	radius = 30.0
 	color = 255 255 255
@@ -106,10 +110,11 @@ sphere
 	reflexion = 0.0
 	transparency = 0.8
 	refraction = 1.33333
-	perturbation = 1
+	perturbation = 0
 	rot = 0.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 sphere
@@ -126,6 +131,7 @@ sphere
 	rot = 0.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 hyperboloid
@@ -142,4 +148,5 @@ hyperboloid
 	rot = 180.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }

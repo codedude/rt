@@ -153,7 +153,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		intensity = compute_local_light(rt, hit);
 		if (hit->inter.obj->perturbation > 0)
 			color = color_perturbation(hit->inter) * intensity;
-		else
+	//	else if (hit->inter.obj->texture > 0)
+	//		color = texture_color(hit->inter) * intensity;
+		else if
 			color = intensity * hit->inter.obj->color;
 		if (hit->inter.obj->reflexion > 0 && depth > 0)
 			color = (1.0 - hit->inter.obj->reflexion) * color
