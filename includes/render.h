@@ -111,11 +111,19 @@ t_vec				light(t_inter it, t_vec v, t_rt *rt);
 t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 
+/*
+** Perturbations
+*/
+
 t_vec				color_perturbation(t_inter inter);
 double				noise3(double vec[3]);
 t_vec				marble1(t_float t, t_inter inter);
 t_vec				marble2(t_float t, t_inter inter);
 t_vec				normal_perturbation(t_inter	inter);
 t_vec				chess(t_inter inter);
+t_vec				chess_plane(t_inter inter);
+t_vec				normal_perturbation(t_inter	inter);
+t_vec				water_perturbation(t_vec n, t_inter inter);
+t_vec				wave_perturbation(t_vec n, t_inter inter);
 
 #endif

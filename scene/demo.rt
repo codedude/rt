@@ -54,7 +54,14 @@ plane
 	dir = 0.0 1.0 0.0
 	radius = 1.0
 	color = 180 140 100
-	phong = 0 0.12 0.95 0.0
+	phong = 0.12 0.95 0.0
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
@@ -63,7 +70,14 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 80.0
 	color = 170 170 170
-	phong = 4 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1	
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
@@ -72,7 +86,14 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 5.0
 	color = 255 82 90
-	phong = 10 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
@@ -81,7 +102,14 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 3.0
 	color = 127 220 127
-	phong = 0 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
@@ -90,7 +118,14 @@ sphere
 	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 148 198 250
-	phong = 40 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 cylinder
@@ -99,7 +134,14 @@ cylinder
 	dir = 0.0 1.0 0.0
 	radius = 4.0
 	color = 128 200 230
-	phong = 12 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 cylinder
@@ -108,7 +150,14 @@ cylinder
 	dir = 0.0 1.0 0.0
 	radius = 4.0
 	color = 128 200 230
-	phong = 12 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 cone
@@ -117,7 +166,14 @@ cone
 	dir = 0.1 1.0 0.33
 	radius = 10.0
 	color = 200 128 230
-	phong = 12 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 cone
@@ -126,5 +182,12 @@ cone
 	dir = -0.2 1.0 -0.25
 	radius = 5.0
 	color = 200 128 230
-	phong = 12 0.12 0.90 0.33
+	phong = 0.12 0.90 0.33
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 1
+	rot = 0.0 0.0 20.0
+	side = 0
+	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }

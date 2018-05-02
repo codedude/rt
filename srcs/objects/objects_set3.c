@@ -37,7 +37,7 @@ int		object_set_transparency(t_object *obj, t_float n)
 
 int		object_set_perturbation(t_object *obj, int n)
 {
-	if (n < 0 || n > 3)
+	if (n < 0 || n > 10)
 		return (ERROR);
 	obj->perturbation = n;
 	return (SUCCESS);

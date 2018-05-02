@@ -20,7 +20,7 @@
 t_float		intersect_plane(t_ray *ray, t_object *obj, t_float *t)
 {
 	(void)obj;
-	*t = -(ray->origin.z / ray->dir.z);
+	*t = -(ray->origin.y / ray->dir.y);
 	return (SUCCESS);
 }
 
@@ -28,5 +28,5 @@ void		norm_plane(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
 	(void)obj;
-	inter->normal = VEC_INIT(0.0, 0.0, 1.0);
+	inter->normal = VEC_INIT(0.0, 1.0, 0.0);
 }
