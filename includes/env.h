@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 12:33:38 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:24:41 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_env {
 
 int					env_init(t_env *env, char *filename);
 void				env_destroy(t_env *env);
+void				loop(t_env *env);
 
 /*
 ** bind.c

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:29:55 by valentin          #+#    #+#             */
-/*   Updated: 2018/05/02 17:20:54 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:13:31 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ int				parse_t_radius(void *data, char **strs);
 int				parse_t_color(void *data, char **strs);
 int				parse_t_intensity(void *data, char **strs);
 int				parse_t_phong(void *data, char **strs);
-int				parse_t_angle(void *data, char **strs);
-int				parse_t_size(void *data, char **strs);
 int				parse_t_reflexion(void *data, char **strs);
 int				parse_t_refraction(void *data, char **strs);
 int				parse_t_transparency(void *data, char **strs);

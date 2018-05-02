@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/05/02 17:32:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:56:41 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,18 @@ int		object_set_perturbation(t_object *obj, int n)
 
 int		object_set_texture(t_object *obj, int n)
 {
+	SDL_Surface	*surf;
+
 	if (n < 0 || n > 10)
 		return (ERROR);
 	if (n == 0)
-		obj->texture = NULL;
+		obj->texture.pixels = NULL;
 	else
-		obj->texture = sdl_get_texture(n);
+	{
+		surf = sdl_get_texture(n);
+		obj->texture.pixels = (t_color *)surf->pixels;
+		obj->texture.width = surf->w;
+		obj->texture.height = surf->h;
+	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 14:19:51 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 12:59:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 19:14:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int			object_is_light(t_object *object)
 {
 	return (object->type == LIGHT_AMBIENT || object->type == LIGHT_POINT
-		|| object->type == LIGHT_SPOT || object->type == LIGHT_PAR);
+		|| object->type == LIGHT_PAR);
 }
 
 static void	object_fill_array(t_objects *objects, t_object *tmp)

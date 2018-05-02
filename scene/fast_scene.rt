@@ -33,10 +33,7 @@ light_point
 plane
 {
 	pos = 0.0 0.0 0.0
-	dir = 0.0 0.0 0.0
 	rot = 180.0 0.0 0.0
-	radius = 0.0
-	side = 0
 	color = 150 150 250
 	phong = 0 0.95 0.00
 	reflexion = 0.75
@@ -50,7 +47,6 @@ plane
 sphere
 {
 	pos = 0.0 30.0 0.0
-	dir = 0.0 0.0 0.0
 	radius = 9.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -59,7 +55,6 @@ sphere
 	refraction = 0.0
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 	texture = 0
 }
@@ -67,7 +62,6 @@ sphere
 cylinder
 {
 	pos = 30.0 10.0 10.0
-	dir = 0.0 0.0 0.0
 	radius = 9.0
 	color = 70 240 70
 	phong = 12 0.40 0.60
@@ -76,7 +70,6 @@ cylinder
 	refraction = 0.0
 	perturbation = 0
 	rot = 0.0 0.0 20.0
-	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 	texture = 0
 }
@@ -84,7 +77,6 @@ cylinder
 sphere
 {
 	pos = -30.0 10.0 -10.0
-	dir = 0.0 0.0 0.0
 	radius = 20.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -93,7 +85,6 @@ sphere
 	refraction = 0.0
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 	texture = 1
 }
