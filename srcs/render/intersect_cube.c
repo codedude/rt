@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cube.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 11:03:06 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/01 18:46:18 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 17:40:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_float			intersect_cube(t_ray *ray, t_object *obj, t_float *t)
 	t_vec		inter;
 	t_float		u[6];
 
+	(void)obj;
 	*t = -1;
 	u[0] = -(ray->origin.z / ray->dir.z);
 	u[1] = -(ray->origin.y / ray->dir.y);

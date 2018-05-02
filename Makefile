@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/02 15:19:46 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/02 17:39:17 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,14 +49,14 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c\
 				$(RENDERD)/intersect_cube.c $(RENDERD)/limited_objects.c\
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c \
-				$(RENDERD)/reflexion.c $(RENDERD)/filters.c \
-				$(RENDERD)/aalias.c
+				$(RENDERD)/reflexion.c $(RENDERD)/filters.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c $(RENDERD)/normal_perturbation.c
-FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/bind.c \
+FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/sdl3.c $(SDLD)/bind.c \
 				$(SDLD)/bind_mouse.c $(SDLD)/bind_keyup.c \
-				$(SDLD)/bind_keydown1.c $(SDLD)/bind_keydown2.c
+				$(SDLD)/bind_keydown1.c $(SDLD)/bind_keydown2.c \
+				$(SDLD)/color.c
 
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
@@ -66,7 +66,7 @@ CFLAGS		+=	-O3 -flto -std=c11 -pedantic \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
-				-L$(SDLLIBD) -lsdl2
+				-L$(SDLLIBD) -lsdl2 -lsdl2_image
 
 .PHONY: clean fclean re rer clean_img
 

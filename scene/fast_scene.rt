@@ -34,16 +34,17 @@ plane
 {
 	pos = 0.0 0.0 0.0
 	dir = 0.0 0.0 0.0
-	rot = 90.0 0.0 0.0
+	rot = 180.0 0.0 0.0
 	radius = 0.0
 	side = 0
 	color = 150 150 250
 	phong = 0 0.95 0.00
 	reflexion = 0.75
-	transparency = 0.75
-	refraction = 0.0
+	transparency = 0.5
+	refraction = 1.33
 	perturbation = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 sphere
@@ -60,6 +61,7 @@ sphere
 	rot = 0.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 cylinder
@@ -76,6 +78,7 @@ cylinder
 	rot = 0.0 0.0 20.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 0
 }
 
 sphere
@@ -92,4 +95,5 @@ sphere
 	rot = 0.0 0.0 0.0
 	side = 0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	texture = 1
 }

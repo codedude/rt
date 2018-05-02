@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs5.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 16:30:18 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/01 17:16:32 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/02 17:21:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,15 @@ int				parse_t_limited(void *data, char **strs)
 	obj->lower_limit = VEC_INIT(o[0], o[1], o[2]);
 	obj->upper_limit = VEC_INIT(p[0], p[1], p[2]);
 	return (SUCCESS);
+}
+
+int				parse_t_texture(void *data, char **strs)
+{
+	t_object	*obj;
+	int			n;
+
+	obj = (t_object *)data;
+	if (ft_atoi_s(strs[0], &n) == ERROR)
+		return (ERROR);
+	return (object_set_texture(obj, n));
 }

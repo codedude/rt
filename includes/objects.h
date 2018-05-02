@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 12:43:59 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/02 17:30:01 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct			s_object {
 	t_vec				obj_to_w[3];
 	t_vec				w_to_obj[3];
 	t_vec				rot;
+	t_color				*texture;
 	t_int				is_limited;
 	t_vec				upper_limit;
 	t_vec				lower_limit;
@@ -137,5 +138,6 @@ int						object_set_angle(t_object *obj, t_float n);
 int						object_set_size(t_object *obj, t_float n);
 int						object_set_matrix(t_object *obj, t_vec rot);
 int						object_set_inverse_matrix(t_object *obj, t_vec rot);
+int						object_set_texture(t_object *obj, int n);
 
 #endif

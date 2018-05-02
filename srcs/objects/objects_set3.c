@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_set3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/25 02:50:37 by valentin         ###   ########.fr       */
+/*   Updated: 2018/05/02 17:32:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "objects.h"
 #include "types.h"
 #include "vec.h"
+#include "sdl_m.h"
 
 int		object_set_reflexion(t_object *obj, t_float n)
 {
@@ -40,5 +41,16 @@ int		object_set_perturbation(t_object *obj, int n)
 	if (n < 0 || n > 10)
 		return (ERROR);
 	obj->perturbation = n;
+	return (SUCCESS);
+}
+
+int		object_set_texture(t_object *obj, int n)
+{
+	if (n < 0 || n > 10)
+		return (ERROR);
+	if (n == 0)
+		obj->texture = NULL;
+	else
+		obj->texture = sdl_get_texture(n);
 	return (SUCCESS);
 }
