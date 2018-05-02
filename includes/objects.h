@@ -29,7 +29,7 @@ enum {
 };
 
 enum {
-	NONE, MARBLE, WOOD
+	NONE, MARBLE1, MARBLE2, CHESS, WOOD, WATER, WAVE
 };
 
 # define PHONGS			3

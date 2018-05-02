@@ -51,7 +51,7 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c $(RENDERD)/reflexion.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
-				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c
+				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c $(RENDERD)/normal_perturbation.c
 FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/bind.c \
 				$(SDLD)/bind_mouse.c $(SDLD)/bind_keyup.c \
 				$(SDLD)/bind_keydown.c
