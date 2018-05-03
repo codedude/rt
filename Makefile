@@ -49,7 +49,7 @@ FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
 				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c \
 				$(RENDERD)/limited_objects.c \
 				$(RENDERD)/render_update.c $(RENDERD)/compute_color.c \
-				$(RENDERD)/reflexion.c $(RENDERD)/filters.c
+				$(RENDERD)/reflexion.c $(RENDERD)/filters.c $(RENDERD)/texture.c
 FILES		+=	$(RENDERD)/intersect_sphere.c $(RENDERD)/intersect_plane.c \
 				$(RENDERD)/intersect_cone.c $(RENDERD)/intersect_cylinder.c\
 				$(RENDERD)/solve_quadra.c $(RENDERD)/trace.c $(RENDERD)/normal_perturbation.c

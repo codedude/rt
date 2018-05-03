@@ -54,7 +54,7 @@ int		object_set_texture(t_object *obj, int n)
 		obj->texture.pixels = NULL;
 	else
 	{
-		surf = sdl_get_texture(n);
+		surf = sdl_get_texture(n - 1);
 		obj->texture.pixels = (t_color *)surf->pixels;
 		obj->texture.width = surf->w;
 		obj->texture.height = surf->h;
