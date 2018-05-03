@@ -6,19 +6,13 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:24:35 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:45:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 #include "libft.h"
 #include "env.h"
-#include "rt.h"
-#include "objects.h"
-#include "parser.h"
-#include "vec.h"
 
 int			main(int argc, char **argv)
 {

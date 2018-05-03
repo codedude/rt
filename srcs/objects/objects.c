@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:46:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/12 15:13:16 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:42:31 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		objects_destroy(t_objects *objects)
 	while (iter != NULL)
 	{
 		tmp = iter->next;
+		free(iter->object);
 		free(iter);
 		iter = tmp;
 	}
