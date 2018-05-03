@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 17:49:48 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:44:16 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ t_parse_objects	*get_parse_objects(void)
 	static t_parse_objects	parse_objects[] = {
 		ADD_OBJECT(CANVAS, 1), ADD_OBJECT(CAMERA, 1),
 		ADD_OBJECT(LIGHT_AMBIENT, 1), ADD_OBJECT(LIGHT_POINT, 0),
-		ADD_OBJECT(LIGHT_SPOT, 0), ADD_OBJECT(LIGHT_PAR, 0),
+		ADD_OBJECT(LIGHT_PAR, 0),
 		ADD_OBJECT(PLANE, 0), ADD_OBJECT(SPHERE, 0),
 		ADD_OBJECT(CONE, 0), ADD_OBJECT(CYLINDER, 0),
-		ADD_OBJECT(DISK, 0), ADD_OBJECT(HALF_SPHERE, 0),
-		ADD_OBJECT(HYPERBOLOID, 0), ADD_OBJECT(TORUS, 0),
-		ADD_OBJECT(PARABOLOID, 0), ADD_OBJECT(PARALLELOGRAM, 0),
-		ADD_OBJECT(CUBE, 0), ADD_OBJECT(PYRAMID, 0),
+		ADD_OBJECT(DISK, 0), ADD_OBJECT(HYPERBOLOID, 0),
+		ADD_OBJECT(PARABOLOID, 0),
 		ADD_OBJECT(SQUARE, 0), ADD_OBJECT(RING, 0),
 		{NULL, 0, 0}};
 

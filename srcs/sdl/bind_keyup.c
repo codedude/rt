@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:25:39 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 15:18:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:07:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,20 @@ static int	manage_binds_up_3(SDL_Event *event, t_env *env, int *update)
 
 static int	manage_binds_up_2(SDL_Event *event, t_env *env, int *update)
 {
-	if (event->key.keysym.sym == KEY_AALIAS)
+	if (event->key.keysym.sym == KEY_SPEED)
 	{
-		if ((env->rt.antialias = !env->rt.antialias))
-			ft_putendl("Anti-aliasing activated");
+		if (env->speed_pos < 5.0)
+		{
+			ft_putendl("Speed mode activated");
+			env->speed_ang = 4.0;
+			env->speed_pos = 16.0;
+		}
 		else
-			ft_putendl("Anti-aliasing deactivated");
+		{
+			ft_putendl("Speed mode deactivated");
+			env->speed_ang = 1.0;
+			env->speed_pos = 2.0;
+		}
 	}
 	else
 		return (manage_binds_up_3(event, env, update));

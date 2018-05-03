@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:18:45 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:15:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@
 /*
 ** canvas = 0, camera = 1 => always firsts
 ** plane = 2... => in between
-** light_ambient = 14.. => always the lasts
+** light_ambient = 11.. => always the lasts
 */
 
 enum {
 	CANVAS, CAMERA,
-	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
-	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
-	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_PAR, LIGHT_SPOT,
-	SQUARE, RING
+	PLANE, SPHERE, CONE, CYLINDER, DISK, HYPERBOLOID,
+	PARABOLOID, SQUARE, RING,
+	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_PAR
 };
 
 enum {
