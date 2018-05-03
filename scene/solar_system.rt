@@ -33,7 +33,7 @@ light_point
 sphere
 {
 	pos = 0.0 0.0 0.0
-	radius = 200.0
+	radius = 500.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
 	reflexion = 0.0
@@ -47,7 +47,7 @@ sphere
 
 sphere
 {
-	pos = 220.0 0.0 0.0
+	pos = 530.0 0.0 -30.0
 	radius = 5.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -62,7 +62,7 @@ sphere
 
 sphere
 {
-	pos = 240.0 0.0 0.0
+	pos = 560.0 0.0 50.0
 	radius = 12.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -77,7 +77,7 @@ sphere
 
 sphere
 {
-	pos = 270.0 0.0 0.0
+	pos = 590.0 0.0 -80.0
 	radius = 13.0
 	color = 255 255 0
 	phong = 12 0.40 0.60
@@ -92,7 +92,7 @@ sphere
 
 sphere
 {
-	pos = 300.0 0.0 0.0
+	pos = 640.0 0.0 100.0
 	radius = 7.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -107,7 +107,7 @@ sphere
 
 sphere
 {
-	pos = 500.0 0.0 0.0
+	pos = 1100.0 0.0 -200.0
 	radius = 140.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -122,7 +122,7 @@ sphere
 
 sphere
 {
-	pos = 800.0 0.0 0.0
+	pos = 2300.0 0.0 300.0
 	radius = 100.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -135,9 +135,84 @@ sphere
 	texture = 0 0.0 0.0 0.0 0.0
 }
 
+ring
+{
+	pos = 2300.0 0.0 300.0
+	radius = 110.0
+	side = 30.0
+	color = 254 70 70
+	phong = 12 0.40 0.60
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 0
+	rot = 0.0 0.0 0.0
+	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
+}
+
+ring
+{
+	pos = 2300.0 0.0 300.0
+	radius = 130.0
+	side = 30.0
+	color = 254 70 70
+	phong = 12 0.40 0.60
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 0
+	rot = 2.0 0.0 0.0
+	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
+}
+
+ring
+{
+	pos = 2300.0 0.0 300.0
+	radius = 150.0
+	side = 30.0
+	color = 254 70 70
+	phong = 12 0.40 0.60
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 0
+	rot = -2.0 0.0 0.0
+	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
+}
+
+ring
+{
+	pos = 2300.0 0.0 300.0
+	radius = 180.0
+	side = 30.0
+	color = 254 70 70
+	phong = 12 0.40 0.60
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 0
+	rot = -3.0 0.0 0.0
+	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
+}
+
+ring
+{
+	pos = 2300.0 0.0 300.0
+	radius = 210.0
+	side = 30.0
+	color = 254 70 70
+	phong = 12 0.40 0.60
+	reflexion = 0.0
+	transparency = 0.0
+	refraction = 0.0
+	perturbation = 0
+	rot = 2.0 0.0 0.0
+	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
+}
+
 sphere
 {
-	pos = 1000.0 0.0 0.0
+	pos = 3500.0 0.0 -350.0
 	radius = 50.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -152,7 +227,7 @@ sphere
 
 sphere
 {
-	pos = 1200.0 0.0 0.0
+	pos = 4200.0 0.0 400.0
 	radius = 50.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
@@ -167,7 +242,7 @@ sphere
 
 sphere
 {
-	pos = 1350.0 0.0 0.0
+	pos = 1350.0 0.0 -400.0
 	radius = 23.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
