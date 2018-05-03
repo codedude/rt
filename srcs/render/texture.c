@@ -1,9 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 15:04:33 by hcaillau          #+#    #+#             */
+/*   Updated: 2018/05/03 18:16:21 by hcaillau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "types.h"
 #include "objects.h"
 #include "vec.h"
 #include "render.h"
 #include "rt.h"
+
+static t_vec 	get_text_color(t_obj_text *text, int coord)
+{
+	t_vec	color;
+
+	coord = coord * text->format;
+	color = VEC_INIT(
+		(t_float)text->pixels[coord] / 255.0,
+		(t_float)text->pixels[coord + 1] / 255.0,
+		(t_float)text->pixels[coord + 2] / 255.0);
+	return (color);
+}
+
+static t_vec	uv_mapping(t_inter inter)
+{
+	t_vec ret;
+
+	ret = VEC_INIT(0.0, 0.0, 0.0);
+	if (inter.obj->type == SPHERE)
+		ret = map_sphere(inter.obj_coord);
+	return (ret);
+}
+
+static int 		uv_to_texture_coord(t_vec px, t_obj_text t)
+{
+	int 	coord;
+	t_float u;
+	t_float	v;
+
+	u = (t_float)t.width * px.x;
+	v = (t_float)t.height * px.y;
+	if (t.scale.x > 0.0)
+		u /= t.scale.x;
+	if (t.scale.y > 0.0)
+		v /= t.scale.y;
+	if (t.off.x > 0.0 || t.off.y > 0.0)
+	{
+		u += t.off.x * (t_float)t.width;
+		v += t.off.y * (t_float)t.height;
+	}
+
+	coord = (int)u + (int)v * t.width;
+	coord = coord % (t.width * t.height);
+	return (coord);
+}
 
 t_vec		texture_color(t_inter inter)
 {
@@ -12,54 +69,8 @@ t_vec		texture_color(t_inter inter)
 	int 	coord;
 
 	px = uv_mapping(inter);
-	printf("ici1");
+
 	coord = uv_to_texture_coord(px, inter.obj->texture);
-	printf("ici");
-	color = get_text_color(inter.obj->texture.pixels, coord);
-	printf("ici3");
+	color = get_text_color(&inter.obj->texture, coord);
 	return (color);
-}
-
-t_vec		uv_mapping(t_inter inter)
-{
-	t_vec ret;
-
-	ret = VEC_INIT(0.0, 0.0, 0.0);
-	//if (inter.obj->type == PLANE)
-	//	ret = map_plane(inter.obj_coord);
-	if (inter.obj->type == SPHERE)
-		ret = map_sphere(inter.obj_coord);
-/*	else if (inter.obj->type == CYLINDER)
-		ret = map_cylinder(inter.obj_coord);
-	else if (inter.obj->type == CONE)
-		ret = map_cone(inter.obj_coord);
-	else if (inter.obj->type == PARABOLOID)
-		ret = map_paraboloid(inter.obj_coord);
-	else if (inter.obj->type == HYPERBOLOID)
-		ret = map_hyperboloid(inter);
-	else if (inter.obj->type == CUBE)
-		ret = map_cube(inter.obj_coord);*/
-	return (ret);
-}
-
-int 		uv_to_texture_coord(t_vec px, t_obj_text t)
-{
-	int coord;
-	int u;
-	int v;
-	u = (int)((t_float)t.width * px.x);
-	v = (int)((t_float)t.height * px.y);
-/*	if (t.off > 0)
-	{
-		u += t.off;
-		u = u % t.width;
-		v += t.off / width;
-	}*/
-	coord = u + v * t.width;
-	return (coord);
-}
-
-t_vec 		get_text_color(t_color *pixels, int coord)
-{
-	return (color_to_vec(pixels[coord]));
 }

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 21:52:06 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:15:17 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
+# include "libft.h"
 # include "types.h"
 
 /*
@@ -48,9 +49,13 @@ enum {
 */
 
 typedef struct			s_obj_text {
-	t_color				*pixels;
+	t_u8				*pixels;
 	int					width;
+	t_vec				scale;
+	t_vec				off;
 	int					height;
+	int					format;
+
 }						t_obj_text;
 
 typedef struct			s_object {

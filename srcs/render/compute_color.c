@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 22:11:13 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 18:16:18 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 	refract_color = VEC_ZERO;
 	if (trace(rt, hit, FLOAT_MAX) == SUCCESS)
 	{
-		//return (hit->inter.obj->color);
 		compute_hit_normal(&hit->ray, &hit->inter);
 		if (hit->inter.obj->perturbation == WATER || hit->inter.obj->perturbation == WAVE)
 			hit->inter.normal = normal_perturbation(hit->inter);
@@ -153,11 +152,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 			hit->inter.normal *= -1.0;
 		intensity = compute_local_light(rt, hit);
 		if (hit->inter.obj->perturbation > 0)
-			{color = color_perturbation(hit->inter) * intensity;
-		printf("hola");}
-		else if (hit->inter.obj->texture.pixels == NULL)
-			{color = texture_color(hit->inter) * intensity;
-			printf("hola2");}
+			color = color_perturbation(hit->inter) * intensity;
+		if (hit->inter.obj->texture.pixels != NULL)
+			color = texture_color(hit->inter) * intensity;
 		else
 			color = intensity * hit->inter.obj->color;
 		if (hit->inter.obj->reflexion > 0 && depth > 0)

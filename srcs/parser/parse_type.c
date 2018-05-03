@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:12:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:15:19 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_parse_type	*get_parse_funs(void)
 		ADD_TYPE(color, 3, "2 3 4 5 8 10 12"),
 		ADD_TYPE(intensity, 3, "14 15 16"),
 		ADD_TYPE(phong, 3, "2 3 4 5 8 10 12"),
-		ADD_TYPE(texture, 1, "2 3 4 5 8 10 12"),
+		ADD_TYPE(texture, 5, "2 3 4 5 8 10 12"),
 		ADD_TYPE(reflexion, 1, "2 3 4 5 8 10 12"),
 		ADD_TYPE(refraction, 1, "2 3 4 5 8 10 12"),
 		ADD_TYPE(transparency, 1, "2 3 4 5 8 10 12"),
