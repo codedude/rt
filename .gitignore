@@ -1,8 +1,5 @@
 rt
 *.swp
-*.bmp
-*.jpg
-*.png
 saved_img/*.bmp
 *.swn
 *.swo
