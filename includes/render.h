@@ -6,7 +6,7 @@
 /*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 20:03:47 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:15:53 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,9 @@ t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 void				surface_color(t_hit *hit, t_vec intensity, t_vec *color);
 void				light_effect(t_hit *hit, t_vec *color, int depth, t_rt *rt);
+//void				local(t_rt *rt, t_object *obj, t_hit *hit, t_vec *intensity);
+t_vec				specular(t_hit *hit, t_vec reflect_ray, t_vec intensity_local, t_float dot);
+t_float				transparent_shadow(t_inter inter, t_ray rayon, t_rt *rt);
 
 /*
 ** Perturbations

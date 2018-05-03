@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   perturbation.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 14:59:48 by hcaillau          #+#    #+#             */
+/*   Updated: 2018/05/03 22:32:02 by hcaillau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "env.h"
 #include "types.h"
@@ -21,8 +33,9 @@ t_vec		color_perturbation(t_inter inter)
 		else
 			return (color = chess(inter));
 	}
-	if (inter.obj->perturbation == MARBLE1 || inter.obj->perturbation == MARBLE2)
-	{
+	if (inter.obj->perturbation == MARBLE1
+      || inter.obj->perturbation == MARBLE2)
+  {
 		v[0] = inter.obj_coord.x;
 		v[1] = inter.obj_coord.y;
 		v[2] = inter.obj_coord.z;
@@ -31,27 +44,33 @@ t_vec		color_perturbation(t_inter inter)
 			return (color = marble1(t, inter));
 		else
 			return (color = marble2(t, inter));
-	}
+	 }
 	return (color);
 }
 
 t_vec		chess_plane(t_inter inter)
 {
-        if ((inter.obj_coord.x < 0 && inter.obj_coord.z < 0) || (inter.obj_coord.x > 0 && inter.obj_coord.z > 0))
-        {    
-            if ((int)fabs(inter.obj_coord.x) % 10 < 5 && ((int)fabs(inter.obj_coord.z) % 10 < 5))
-                return (VEC_INIT(0.0, 0.0, 0.0));
-            if (!((int)fabs(inter.obj_coord.x) % 10 < 5 || ((int)fabs(inter.obj_coord.z) % 10 < 5)))
-                return(VEC_INIT(0.0, 0.0, 0.0));
-        }
-        if ((inter.obj_coord.x > 0 && inter.obj_coord.z < 0) || (inter.obj_coord.x < 0 && inter.obj_coord.z > 0))
-        {
-            if ((int)fabs(inter.obj_coord.x) % 10 >= 5 && ((int)fabs(inter.obj_coord.z) % 10 < 5))
-                return (VEC_INIT(0.0, 0.0, 0.0));
-            if ((int)fabs(inter.obj_coord.x) % 10 < 5 && ((int)fabs(inter.obj_coord.z) % 10 >= 5))
-                return(VEC_INIT(0.0, 0.0, 0.0));
-        }
-        return (inter.obj->color);
+  if ((inter.obj_coord.x < 0 && inter.obj_coord.z < 0)
+    || (inter.obj_coord.x > 0 && inter.obj_coord.z > 0))
+  {
+    if ((int)fabs(inter.obj_coord.x) % 10 < 5
+      && ((int)fabs(inter.obj_coord.z) % 10 < 5))
+      return (VEC_INIT(0.0, 0.0, 0.0));
+    if (!((int)fabs(inter.obj_coord.x) % 10 < 5 ||
+      ((int)fabs(inter.obj_coord.z) % 10 < 5)))
+      return(VEC_INIT(0.0, 0.0, 0.0));
+  }
+  if ((inter.obj_coord.x > 0 && inter.obj_coord.z < 0) ||
+    (inter.obj_coord.x < 0 && inter.obj_coord.z > 0))
+  {
+    if ((int)fabs(inter.obj_coord.x) % 10 >= 5 &&
+      ((int)fabs(inter.obj_coord.z) % 10 < 5))
+      return (VEC_INIT(0.0, 0.0, 0.0));
+    if ((int)fabs(inter.obj_coord.x) % 10 < 5 &&
+      ((int)fabs(inter.obj_coord.z) % 10 >= 5))
+       return(VEC_INIT(0.0, 0.0, 0.0));
+  }
+  return (inter.obj->color);
 }
 
 t_vec		chess(t_inter inter)
