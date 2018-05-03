@@ -6,7 +6,7 @@
 /*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 18:20:27 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:05:25 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@
 # define MAX_DEPTH			4
 # define REFRACTION_DEFAULT	1.0
 # define POW(x) ((x)*(x))
+# define B 0x100
+# define BM 0xff
+# define N 0x1000
+
+typedef	struct			s_perlin
+{
+	int					b_tmp[3][2];
+	double				r[3][2];
+	double				tab_2[3];
+	int					*p;
+	int					**b;
+	double				*tab;
+}						t_perlin;
 
 typedef struct		s_algo {
 	t_env			*env;
@@ -123,7 +136,6 @@ t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
 */
 
 t_vec				color_perturbation(t_inter inter);
-double				noise3(double vec[3]);
 t_vec				marble1(t_float t, t_inter inter);
 t_vec				marble2(t_float t, t_inter inter);
 t_vec				normal_perturbation(t_inter	inter);
@@ -132,6 +144,20 @@ t_vec				chess_plane(t_inter inter);
 t_vec				normal_perturbation(t_inter	inter);
 t_vec				water_perturbation(t_vec n, t_inter inter);
 t_vec				wave_perturbation(t_vec n, t_inter inter);
+double				noise3(double vec[3]);
+t_perlin			*ft_init(t_perlin *l, double g3[B + B + 2][3]);
+t_perlin			*ft_q(t_perlin *l, int m, int n, double g3[B + B + 2][3]);
+double				*ft_q_all(t_perlin *l, double sy, double g3[B + B + 2][3]);
+int					**ft_b(t_perlin *l);
+t_perlin			*ft_setup_i(t_perlin *l, double *vec, int i);
+t_perlin			*ft_setup(t_perlin *l, double *vec);
+double				s_curve(double t);
+double				at3(double rx, double ry, double rz, double *q);
+double				lerp(double t, double a, double b);
+void				ft_free_bl(t_perlin *l, int **b);
+double				ft_lerp(double s1, double *tab);
+t_perlin			*ft_rndm(t_perlin *l, double g3[B + B + 2][3], int i);
+int					*ft_init_p(t_perlin *l, int i, int j, int k);
 
 /*
 ** Textures

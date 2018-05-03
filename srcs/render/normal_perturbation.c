@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normal_perturbation.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 19:07:32 by mcasubol          #+#    #+#             */
+/*   Updated: 2018/05/03 19:09:08 by mcasubol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "env.h"
 #include "types.h"
@@ -7,7 +19,7 @@
 #include "render.h"
 #include "rt.h"
 
-t_vec		normal_perturbation(t_inter	inter)
+t_vec		normal_perturbation(t_inter inter)
 {
 	t_vec	n;
 
@@ -34,7 +46,7 @@ t_vec		water_perturbation(t_vec n, t_inter inter)
 	tmp1.x = noise3(v);
 	v[0] = n.x + inter.obj_coord.x - epsi;
 	tmp2.x = noise3(v);
-	v[0] = n.x + inter.obj_coord.x; 
+	v[0] = n.x + inter.obj_coord.x;
 	v[1] = n.y * 50 + 100 * inter.obj_coord.y + epsi;
 	tmp1.y = noise3(v);
 	v[1] = n.y * 50 + 100 * inter.obj_coord.y - epsi;
@@ -55,7 +67,5 @@ t_vec		wave_perturbation(t_vec n, t_inter inter)
 	return (vec_norm(matrix_mul_vec(inter.obj->obj_to_w,
 							VEC_INIT(n.x + sin(inter.obj_coord.x),
 									n.y,
-									n.z)
-			)));
-
+									n.z))));
 }
