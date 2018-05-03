@@ -42,7 +42,7 @@ disk
 	perturbation = 0
 	rot = 90.0 0.0 0.0
 	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 }
 
 square
@@ -58,7 +58,7 @@ square
 	perturbation = 0
 	rot = 90.0 0.0 0.0
 	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 }
 
 ring
@@ -74,5 +74,5 @@ ring
 	perturbation = 0
 	rot = 90.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 1
+	texture = 0 0.0 0.0 0.0 0.0
 }

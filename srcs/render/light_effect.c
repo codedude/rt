@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_effect.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 18:58:22 by mcasubol          #+#    #+#             */
+/*   Updated: 2018/05/03 18:59:48 by mcasubol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "env.h"
 #include "types.h"
@@ -20,7 +32,7 @@ t_ray		reflected_ray(t_inter inter, t_vec ray)
 t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter)
 {
 	t_uint	reflected_color;
-	t_ray refl_ray;
+	t_ray	refl_ray;
 
 	reflected_color = 0;
 	if (depth > 0)
@@ -35,7 +47,7 @@ t_uint		reflect(t_ray ray, t_rt *rt, int depth, t_inter inter)
 t_uint		refract(t_ray ray, t_rt *rt, int depth, t_inter inter)
 {
 	t_uint	refracted_color;
-	t_ray refracted_ray;
+	t_ray	refracted_ray;
 
 	refracted_color = 0;
 	if (inter.obj->refraction >= 1.0 || inter.obj->transparency > 0)
@@ -83,13 +95,15 @@ t_float		fresnel(t_ray ray, t_inter inter)
 	n = ray.refraction / inter.obj->refraction;
 	cosi = vec_dot(vec_opposite(ray.dir), inter.normal);
 	sint = n * sqrt(1 - cosi * cosi);
-	if (sint >= 1) //total internal reflexion
+	if (sint >= 1)
 		kr = 1;
 	else
 	{
 		cost = sqrt(1 - sint * sint);
-		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost)) / ((inter.obj->refraction * cosi) + (ray.refraction * cost));
-		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi)) / ((ray.refraction * cost) + (inter.obj->refraction * cosi));
+		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost))
+			/ ((inter.obj->refraction * cosi) + (ray.refraction * cost));
+		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
+			/ ((ray.refraction * cost) + (inter.obj->refraction * cosi));
 		kr = (rs * rs + rp * rp) / 2;
 	}
 	return (kr);

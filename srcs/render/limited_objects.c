@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 15:56:40 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/03 15:03:20 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:07:05 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@ int			is_cut(t_object *obj, t_hit *hit, t_float *t, t_ray *simple)
 	i = -1;
 	*t = FLOAT_ZERO;
 	while (++i < 2)
-			inter[i] = (obj->is_limited == 1)
-				? simple->origin + simple->dir * hit->inter.t2[i]
-				: hit->ray.origin + hit->ray.dir * hit->inter.t2[i];
+		inter[i] = (obj->is_limited == 1)
+			? simple->origin + simple->dir * hit->inter.t2[i]
+			: hit->ray.origin + hit->ray.dir * hit->inter.t2[i];
 	if (in_limit(hit->inter.t2[0], inter[0], obj))
 		*t = (in_limit(hit->inter.t2[1], inter[1], obj))
-		? fminf(hit->inter.t2[0], hit->inter.t2[1])
-			: hit->inter.t2[0];
+		? fminf(hit->inter.t2[0], hit->inter.t2[1]) : hit->inter.t2[0];
 	else if (in_limit(hit->inter.t2[1], inter[1], obj))
 		*t = hit->inter.t2[1];
 	if (*t > FLOAT_MIN)
-	   return (0);
+		return (0);
 	if (hit->inter.t2[0] < hit->inter.t2[1])
-		return (in_limit(hit->inter.t2[1], inter[1], obj) 
-				&& ((*t = hit->inter.t2[1]) > FLOAT_MIN)) ? (0) : (1);
+		return (in_limit(hit->inter.t2[1], inter[1], obj)
+		&& ((*t = hit->inter.t2[1]) > FLOAT_MIN)) ? (0) : (1);
 	else
+	{
 		return (in_limit(hit->inter.t2[0], inter[0], obj)
-				&& ((*t = hit->inter.t2[0]) > FLOAT_MIN)) ? (0) : (1);
+		&& ((*t = hit->inter.t2[0]) > FLOAT_MIN)) ? (0) : (1);
+	}
 	return (1);
 }

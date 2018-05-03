@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_paraboloid.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 18:57:34 by mcasubol          #+#    #+#             */
+/*   Updated: 2018/05/03 18:57:45 by mcasubol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "types.h"
 #include "objects.h"
@@ -18,10 +30,8 @@ t_float		intersect_paraboloid(t_ray *ray, t_object *obj, t_float *t,
 	return ((*t = solve_quadra(abc, inter)));
 }
 
-void	norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter)
+void		norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter)
 {
-//	inter->normal = inter->point - obj->dir * 0.05 + 1.0;
-	//inter->normal = inter->point - obj->dir * obj->m + obj->scale))
 	(void)ray;
 	(void)obj;
 	inter->normal = vec_norm(VEC_INIT(
