@@ -1,16 +1,17 @@
+#Badass scene
 
 canvas
 {
-	width = 1000
-	height = 1000
+	width = 1200
+	height = 800
 	background = 200 200 200
 }
 
 camera
 {
-	origin = 0.0 40.0 -300.0
-	ang = 8.0 0.0 0.0
-	fov = 65
+	origin = 0.0 40.0 -100.0
+	ang = -8.0 0.0 0.0
+	fov = 70
 }
 
 light_ambient
@@ -20,60 +21,60 @@ light_ambient
 
 light_point
 {
-	pos = 0.0 50.0 0.0
-	intensity = 0.4 0.5 0.0
+	pos = -40.0 50.0 30.0
+	intensity = 0.8 0.8 0.2
 }
 
 light_par
 {
-	dir = 0.0 -10.0 -10.0
+	dir = 0.0 -10.0 10.0
 	intensity = 0.8 0.8 0.8
 }
 
 plane
 {
 	pos = 0.0 0.0 0.0
-	rot = 0.0 0.0 0.0
+	rot = -20.0 0.0 0.0
 	color = 135 170 204
 	phong = 0 0.95 0.00
 	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 0
+	transparency = 0.6
+	refraction = 1.333333
+	perturbation = 5
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 cylinder
 {
-	pos = -50.0 10.0 10.0
+	pos = 30.0 10.0 10.0
 	radius = 9.0
 	color = 199 147 116
 	phong = 12 0.40 0.60
-	reflexion = 0.0
+	reflexion = 0.5
 	transparency = 0.0
 	refraction = 0.0
-	perturbation = 0
-	rot = 0.0 0.0 0.0
+	perturbation = 2
+	rot = -30.0 0.0 -45.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
-cylinder
+paraboloid
 {
-	pos = 50.0 10.0 10.0
+	pos = -50.0 50.0 0.0
 	radius = 9.0
-	color = 199 147 116
+	color = 80 147 170
 	phong = 12 0.40 0.60
 	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 0
-	rot = 0.0 0.0 0.0
+	transparency = 0.7
+	refraction = 1.31
+	perturbation = 6
+	rot = 180.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
 {
-	pos = 0.0 15.0 -50.0
+	pos = -50.0 58.0 0.0
 	radius = 10.0
 	color = 80 147 170
 	phong = 12 0.40 0.60
@@ -82,19 +83,19 @@ sphere
 	refraction = 0.0
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	texture = 0 0.0 0.0 0.0 0.0
+	texture = 1 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
 sphere
 {
-	pos = 0.0 75.0 60.0
+	pos = 0.0 55.0 60.0
 	radius = 30.0
 	color = 255 255 255
 	phong = 12 0.40 0.60
 	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
+	transparency = 0.8
+	refraction = 1.33333
 	perturbation = 0
 	rot = 0.0 0.0 0.0
 	texture = 0 0.0 0.0 0.0 0.0
@@ -103,44 +104,29 @@ sphere
 
 sphere
 {
-	pos = 200.0 200.0 200.0
+	pos = 200.0 30.0 200.0
 	radius = 50.0
-	color = 255 112 90
+	color = 93 112 90
 	phong = 12 0.40 0.60
 	reflexion = 0.0
 	transparency = 0.0
-	refraction = 0.0
-	perturbation = 0
+	refraction = 1.33333
+	perturbation = 3
 	rot = 0.0 0.0 0.0
 	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
-sphere
+hyperboloid
 {
-	pos = -200.0 200.0 200.0
-	radius = 50.0
-	color = 255 112 90
+	pos = 0.0 60.0 200.0
+	radius = 1.0
+	color = 255 179 83
 	phong = 12 0.40 0.60
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
-	perturbation = 0
-	rot = 0.0 0.0 0.0
-	texture = 0 0.0 0.0 0.0 0.0
-	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-}
-
-cone
-{
-	pos = 0.0 10.0 150.0
-	radius = 0.05
-	color = 199 147 116
-	phong = 12 0.40 0.60
-	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 0
-	rot = 0.0 0.0 90.0
+	perturbation = 6
+	rot = 180.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }

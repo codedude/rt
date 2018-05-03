@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 11:01:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/30 16:47:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:08:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int			save_img(t_color *image, int width, int height)
 	int			fd;
 	static int	nb = 0;
 
+	if (nb == 999)
+	{
+		ft_putendl("Can't save image, limit reached (999)");
+		return (SUCCESS);
+	}
 	size[0] = height;
 	size[1] = width;
 	get_filename(nb, filename);
