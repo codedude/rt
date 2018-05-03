@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:23:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 13:17:30 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:34:39 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int				sdl_init(t_sdl *sdl, int width, int height)
 		return (ERROR);
 	}
 	if (sdl_init2(sdl, width, height) == ERROR)
-		return (ERROR);
-	if (sdl_create_buffer(sdl) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }

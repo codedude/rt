@@ -2,8 +2,8 @@
 
 canvas
 {
-	width = 1200
-	height = 800
+	width = 400
+	height = 200
 	background = 200 200 200
 }
 

@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/03 22:51:42 by vparis           ###   ########.fr        #
+#    Updated: 2018/05/03 23:45:53 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ FILES		+=	$(SDLD)/sdl1.c $(SDLD)/sdl2.c $(SDLD)/sdl3.c $(SDLD)/bind.c \
 SRCS		=	$(addprefix $(SRCD)/, $(FILES))
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-O3 -flto -std=c11 -pedantic \
+CFLAGS		+=	-O3 -flto \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
 				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
