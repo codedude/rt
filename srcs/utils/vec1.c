@@ -6,11 +6,10 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/26 16:14:35 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 01:40:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <math.h>
 #include "types.h"
 
@@ -38,9 +37,4 @@ t_vec		vec_norm(t_vec v1)
 		v1 *= len;
 	}
 	return (v1);
-}
-
-void		vec_print(t_vec v, char *name)
-{
-	printf("%s : %f, %f, %f\n", name, v[0], v[1], v[2]);
 }
