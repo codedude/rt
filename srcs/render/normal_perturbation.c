@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_perturbation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 19:07:32 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/03 19:09:08 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:47:55 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_vec		water_perturbation(t_vec n, t_inter inter)
 {
 	t_vec	tmp1;
 	t_vec	tmp2;
-	t_vec	ret;
 	t_float	v[3];
 	t_float	epsi;
 
@@ -57,9 +56,7 @@ t_vec		water_perturbation(t_vec n, t_inter inter)
 	v[2] = n.z + inter.obj_coord.z - epsi;
 	tmp2.z = noise3(v);
 	tmp1 = tmp2 - tmp1;
-	ret = tmp1 + n;
-	ret = vec_norm(ret);
-	return (ret);
+	return (vec_norm(tmp1 + n));
 }
 
 t_vec		wave_perturbation(t_vec n, t_inter inter)

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 21:51:02 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:03:33 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct		s_env {
 	t_rt			rt;
 	int				show_fps;
 	int				mode;
+	t_float			speed_ang;
+	t_float			speed_pos;
 	t_object		*obj_edit;
 }					t_env;
 

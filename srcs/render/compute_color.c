@@ -6,7 +6,7 @@
 /*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:19:51 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:07:54 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 {
 	t_float		max_dist;
 	t_vec		intensity;
-//	t_ray		ray_refract;
-//	t_inter		inter_refract;
 	t_hit		refract;
 
 	init_ray_light(&light_hit->ray, &max_dist, obj, inter);
@@ -61,9 +59,7 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 		}
 	}
 	else
-	{
 		intensity = obj->intensity;
-	}
 	if (obj->type == LIGHT_POINT)
 		light_hit->ray.dir = vec_norm(light_hit->ray.dir);
 	return (intensity);
@@ -72,41 +68,29 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 t_vec		local(t_rt *rt, t_object *obj, t_hit *hit)
 {
 	t_hit	light_hit;
-	t_vec	intensity_local;
-	t_vec	intensity;
+	t_vec	i[2];
 	t_float	dot;
 	t_vec	reflect_ray;
 	t_inter	inter;
 
 	inter = hit->inter;
-	intensity = VEC_ZERO;
-	intensity_local = diffuse(rt, obj, &hit->inter, &light_hit);
-	if (intensity_local[0] > 0.0 || intensity_local[1] > 0.0
-		|| intensity_local[2] > 0.0)
+	i[0] = VEC_ZERO;
+	i[1] = diffuse(rt, obj, &hit->inter, &light_hit);
+	if (i[1][0] > 0.0 || i[1][1] > 0.0 || i[1][2] > 0.0)
 	{
 		if (vec_dot(vec_norm(light_hit.ray.dir), inter.normal) < FLOAT_ZERO
-			&& inter.obj->transparency > 0)
+				&& inter.obj->transparency > 0)
 			inter.normal *= -1;
 		dot = vec_dot(vec_norm(light_hit.ray.dir), inter.normal);
 		if (dot > FLOAT_ZERO)
 		{
-			intensity = intensity_local
-				* (dot * inter.obj->phong[PHONG_KD]);
-			if (inter.obj->phong[PHONG_SHINI] > 0.0)
-			{
-				reflect_ray = vec_norm((inter.normal * (-2.0 * dot))
+			i[0] = i[1] * (dot * inter.obj->phong[PHONG_KD]);
+			reflect_ray = vec_norm((inter.normal * (-2.0 * dot))
 					+ light_hit.ray.dir);
-				dot = vec_dot(reflect_ray, hit->ray.dir);
-				if (dot > FLOAT_ZERO)
-				{
-					intensity += intensity_local
-						* (pow(dot, inter.obj->phong[PHONG_SHINI])
-						* inter.obj->phong[PHONG_KS]);
-				}
-			}
+			i[0] += specular(hit, reflect_ray, i[1], dot);
 		}
 	}
-	return (intensity);
+	return (i[0]);
 }
 
 t_vec		compute_local_light(t_rt *rt, t_hit *hit)
@@ -125,9 +109,7 @@ t_vec		compute_local_light(t_rt *rt, t_hit *hit)
 			if (objs[i].type == LIGHT_AMBIENT)
 				intensity += objs[i].intensity;
 			else
-			{
 				intensity += local(rt, &objs[i], hit);
-			}
 		}
 		i++;
 	}
@@ -138,42 +120,21 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec		intensity;
 	t_vec		color;
-	t_vec		refract_color;
-	t_float		kr;
 
-	refract_color = VEC_ZERO;
 	if (trace(rt, hit, FLOAT_MAX) == SUCCESS)
 	{
 		compute_hit_normal(&hit->ray, &hit->inter);
-		if (hit->inter.obj->perturbation == WATER || hit->inter.obj->perturbation == WAVE)
+		if (hit->inter.obj->perturbation == WATER ||
+				hit->inter.obj->perturbation == WAVE)
 			hit->inter.normal = normal_perturbation(hit->inter);
 		compute_hit_biais(&hit->inter);
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;
 		intensity = compute_local_light(rt, hit);
-		if (hit->inter.obj->perturbation > 0)
-			color = color_perturbation(hit->inter) * intensity;
-		else if (hit->inter.obj->texture.pixels != NULL)
-			color = texture_color(hit->inter) * intensity;
-		else
-			color = intensity * hit->inter.obj->color;
-		if (hit->inter.obj->reflexion > 0 && depth > 0)
-			color = (1.0 - hit->inter.obj->reflexion) * color
-				+ reflexion(rt, hit, depth) * hit->inter.obj->reflexion;
-		if (hit->inter.obj->transparency > 0.0 && depth > 0
-			&& hit->inter.obj->refraction >= 1.0)
-		{
-			kr = fresnel(hit->ray, hit->inter);
-			if (kr < 1)
-				refract_color = refract(rt, hit, depth);
-			refract_color = (1.0 - kr) * refract_color
-								+ kr * reflexion(rt, hit, depth);
-			color = (1.0 - hit->inter.obj->transparency) * color
-					+ refract_color * hit->inter.obj->transparency;
-		}
+		surface_color(hit, intensity, &color);
+		light_effect(hit, &color, depth, rt);
 	}
 	else
 		color = rt->canvas.bg_color;
-
 	return (color);
 }

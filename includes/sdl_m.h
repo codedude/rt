@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:24:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:57:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 23:06:49 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # define KEY_FPS		SDLK_1
 # define KEY_SAVE		SDLK_2
 # define KEY_RELOAD		SDLK_3
-# define KEY_AALIAS		SDLK_4
-# define KEY_SEPIA		SDLK_5
-# define KEY_BW			SDLK_6
+# define KEY_SEPIA		SDLK_4
+# define KEY_BW			SDLK_5
+# define KEY_SPEED		SDLK_6
 # define KEY_MODE		SDLK_SPACE
 
 typedef struct		s_textures {

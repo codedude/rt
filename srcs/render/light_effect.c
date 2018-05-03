@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_effect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:58:22 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/03 18:59:48 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 22:21:04 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,23 +88,21 @@ t_float		fresnel(t_ray ray, t_inter inter)
 	t_float	cosi;
 	t_float	cost;
 	t_float	sint;
-	t_float	rs;
-	t_float	rp;
-	t_float	kr;
+	t_float	r[3];
 
 	n = ray.refraction / inter.obj->refraction;
 	cosi = vec_dot(vec_opposite(ray.dir), inter.normal);
 	sint = n * sqrt(1 - cosi * cosi);
 	if (sint >= 1)
-		kr = 1;
+		r[2] = 1;
 	else
 	{
 		cost = sqrt(1 - sint * sint);
-		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost))
+		r[0] = ((inter.obj->refraction * cosi) - (ray.refraction * cost))
 			/ ((inter.obj->refraction * cosi) + (ray.refraction * cost));
-		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
+		r[1] = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
 			/ ((ray.refraction * cost) + (inter.obj->refraction * cosi));
-		kr = (rs * rs + rp * rp) / 2;
+		r[2] = (r[0] * r[0] + r[1] * r[1]) / 2;
 	}
 	return (kr);
 }
