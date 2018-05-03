@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:38:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 13:07:58 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:41:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ t_float		solve_quadra(t_float abc[3], t_inter *inter)
 	t_float	r;
 	t_float	s[2];
 
-	r = abc[1] * abc[1] - (4.0 * abc[0] * abc[2]);
-	if (r < 0.0)
+	if ((r = abc[1] * abc[1] - (4.0 * abc[0] * abc[2])) < 0.0)
 		return (FLOAT_ZERO);
 	if (r == 0.0)
 	{

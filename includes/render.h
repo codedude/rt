@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:05:25 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:34:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 # define BM 0xff
 # define N 0x1000
 
-typedef	struct			s_perlin
+typedef	struct		s_perlin
 {
-	int					b_tmp[3][2];
-	double				r[3][2];
-	double				tab_2[3];
-	int					*p;
-	int					**b;
-	double				*tab;
-}						t_perlin;
+	int				b_tmp[3][2];
+	double			r[3][2];
+	double			tab_2[3];
+	int				*p;
+	int				**b;
+	double			*tab;
+}					t_perlin;
 
 typedef struct		s_algo {
 	t_env			*env;
@@ -110,7 +110,8 @@ t_float				intersect_limited_planes(t_ray *ray, t_object *obj,
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 
-int					is_cut(t_object *obj, t_hit *hit, t_float *t, t_ray *simple);
+int					is_cut(t_object *obj, t_hit *hit, t_float *t,
+						t_ray *simple);
 
 /*
 ** Light effect : reflexion and refraction

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+         #
+#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/03 19:30:23 by hcaillau         ###   ########.fr        #
+#    Updated: 2018/05/03 19:41:56 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ FILES		+=	$(ENVD)/rt.c $(ENVD)/env.c \
 				$(ENVD)/camera_set.c $(ENVD)/canvas_set.c \
 				$(ENVD)/camera_get.c $(ENVD)/canvas_get.c
 FILES		+=	$(UTILSD)/vec1.c $(UTILSD)/types.c $(UTILSD)/vec2.c \
-				$(UTILSD)/matrix.c $(UTILSD)/export_bmp.c \
+				$(UTILSD)/matrix1.c $(UTILSD)/export_bmp.c \
+				$(UTILSD)/matrix2.c $(UTILSD)/matrix3.c \
 				$(UTILSD)/export_bmp2.c
 FILES		+=	$(OBJECTSD)/objects.c $(OBJECTSD)/objects_queue.c \
 				$(OBJECTSD)/objects_format.c \
@@ -64,7 +65,7 @@ OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-O3 -flto -std=c11 -pedantic \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
-				-I$(SDLINCD) 
+				-I$(SDLINCD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
 				-L$(SDLLIBD) -lsdl2 -lsdl2_image

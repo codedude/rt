@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:25:36 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:43:53 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ static void		trace_it(t_hit *hit, t_object *obj, t_ray *tmp,
 		{
 			if (obj->is_limited > 0)
 			{
-				if (hit->inter.t2[0] < hit->inter.t || hit->inter.t2[1]
-						< hit->inter.t && is_cut(obj, hit, &t, tmp) == 0)
+				if ((hit->inter.t2[0] < hit->inter.t
+					|| hit->inter.t2[1] < hit->inter.t)
+					&& is_cut(obj, hit, &t, tmp) == 0)
 				{
 					hit->inter.t = t;
 					hit->inter.obj = obj;

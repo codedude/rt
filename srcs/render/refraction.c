@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refraction.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 19:11:46 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/03 19:14:15 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:42:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,31 @@ t_ray			refract_ray(t_ray ray, t_inter inter)
 	return (ret);
 }
 
+/*
+** rs = 0, rp = 1, kr = 3
+*/
+
 t_float			fresnel(t_ray ray, t_inter inter)
 {
 	t_float		n;
 	t_float		cosi;
 	t_float		cost;
 	t_float		sint;
-	t_float		rs;
-	t_float		rp;
-	t_float		kr;
+	t_float		coeff[3];
 
 	n = ray.refraction / inter.obj->refraction;
 	cosi = vec_dot(-1 * ray.dir, inter.normal);
 	sint = n * sqrt(1 - cosi * cosi);
 	if (sint >= 1)
-		kr = 1;
+		coeff[2] = 1;
 	else
 	{
 		cost = sqrt(1 - sint * sint);
-		rs = ((inter.obj->refraction * cosi) - (ray.refraction * cost))
+		coeff[0] = ((inter.obj->refraction * cosi) - (ray.refraction * cost))
 			/ ((inter.obj->refraction * cosi) + (ray.refraction * cost));
-		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
+		coeff[1] = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
 			/ ((ray.refraction * cost) + (inter.obj->refraction * cosi));
-		kr = (rs * rs + rp * rp) / 2;
+		coeff[2] = (coeff[0] * coeff[0] + coeff[1] * coeff[1]) / 2.0;
 	}
-	return (kr);
+	return (coeff[2]);
 }
