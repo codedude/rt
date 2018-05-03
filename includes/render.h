@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:34:48 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 20:03:47 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ t_float				fresnel(t_ray ray, t_inter inter);
 t_vec				light(t_inter it, t_vec v, t_rt *rt);
 t_float				diffuse_light(t_ray *r, t_inter it, int *j, t_rt *rt);
 t_vec				light_specular(t_inter it, t_vec i[4], t_vec v, t_ray *r);
+void				surface_color(t_hit *hit, t_vec intensity, t_vec *color);
+void				light_effect(t_hit *hit, t_vec *color, int depth, t_rt *rt);
 
 /*
 ** Perturbations

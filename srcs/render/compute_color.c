@@ -6,7 +6,7 @@
 /*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:44:24 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 19:19:51 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/03 20:03:51 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_vec		diffuse(t_rt *rt, t_object *obj, t_inter *inter, t_hit *light_hit)
 {
 	t_float		max_dist;
 	t_vec		intensity;
-//	t_ray		ray_refract;
-//	t_inter		inter_refract;
 	t_hit		refract;
 
 	init_ray_light(&light_hit->ray, &max_dist, obj, inter);
@@ -138,8 +136,6 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec		intensity;
 	t_vec		color;
-	t_vec		refract_color;
-	t_float		kr;
 
 	refract_color = VEC_ZERO;
 	if (trace(rt, hit, FLOAT_MAX) == SUCCESS)
@@ -151,13 +147,9 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 		if (vec_dot(hit->ray.dir, hit->inter.normal) > FLOAT_ZERO)
 			hit->inter.normal *= -1.0;
 		intensity = compute_local_light(rt, hit);
-		if (hit->inter.obj->perturbation > 0)
-			color = color_perturbation(hit->inter) * intensity;
-		else if (hit->inter.obj->texture.pixels != NULL)
-			color = texture_color(hit->inter) * intensity;
-		else
-			color = intensity * hit->inter.obj->color;
-		if (hit->inter.obj->reflexion > 0 && depth > 0)
+		surface_color(hit, intensity, &color);
+		light_effect(hit, &color, depth, rt);
+	/*	if (hit->inter.obj->reflexion > 0 && depth > 0)
 			color = (1.0 - hit->inter.obj->reflexion) * color
 				+ reflexion(rt, hit, depth) * hit->inter.obj->reflexion;
 		if (hit->inter.obj->transparency > 0.0 && depth > 0
@@ -170,7 +162,7 @@ t_vec		compute_color(t_rt *rt, t_hit *hit, int depth)
 								+ kr * reflexion(rt, hit, depth);
 			color = (1.0 - hit->inter.obj->transparency) * color
 					+ refract_color * hit->inter.obj->transparency;
-		}
+		}*/
 	}
 	else
 		color = rt->canvas.bg_color;
