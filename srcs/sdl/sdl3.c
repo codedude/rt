@@ -6,7 +6,7 @@
 /*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 16:18:38 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 15:26:21 by hcaillau         ###   ########.fr       */
+/*   Updated: 2018/05/04 00:16:04 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@
 static t_textures	*sdl_get_textures(void)
 {
 	static t_textures	textures[] = {
-		{1, "textures/earth_2k.jpg", NULL},
-		{2, "textures/earth_4k.jpg", NULL},
+		{1, "textures/sun.jpg", NULL},
+		{2, "textures/mercury.jpg", NULL},
+		{3, "textures/venus.jpg", NULL},
+		{4, "textures/earth.jpg", NULL},
+		{5, "textures/mars.jpg", NULL},
+		{6, "textures/jupiter.jpg", NULL},
+		{7, "textures/saturn.jpg", NULL},
+		{8, "textures/uranus.jpg", NULL},
+		{9, "textures/neptune.jpg", NULL},
+		{10, "textures/milky_way.jpg", NULL},
 		{-1, NULL, NULL}
 	};
 
