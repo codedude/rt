@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:33:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 15:07:57 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:18:54 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_vec		map_sphere(t_vec inter)
 	t_vec	n;
 
 	n = vec_norm(inter);
-	uv.x = 0.5 + (atan2(n.z, n.x) / 2.0 * M_PI);
+	uv.x = 0.5 + atan2(n.z, n.x) / (2.0 * M_PI);
 	uv.y = 0.5 - (asin(n.y) / M_PI);
 	return (uv);
 }

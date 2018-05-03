@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 16:18:38 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 13:17:54 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 15:26:21 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 static t_textures	*sdl_get_textures(void)
 {
 	static t_textures	textures[] = {
-		{1, "textures/earth.jpg", NULL},
+		{1, "textures/earth_2k.jpg", NULL},
+		{2, "textures/earth_4k.jpg", NULL},
 		{-1, NULL, NULL}
 	};
 

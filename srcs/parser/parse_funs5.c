@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_funs5.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 16:30:18 by mcasubol          #+#    #+#             */
-/*   Updated: 2018/05/02 17:21:10 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 18:10:53 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,20 @@ int				parse_t_texture(void *data, char **strs)
 {
 	t_object	*obj;
 	int			n;
+	t_float		off[2];
+	t_float		scale[2];
 
 	obj = (t_object *)data;
 	if (ft_atoi_s(strs[0], &n) == ERROR)
 		return (ERROR);
+	if (ft_atof_s(strs[1], &off[0]) == ERROR
+		|| ft_atof_s(strs[2], &off[1]) == ERROR
+		|| ft_atof_s(strs[3], &scale[0]) == ERROR
+		|| ft_atof_s(strs[4], &scale[1]) == ERROR)
+		return (ERROR);
+	obj->texture.off = VEC_INIT(clamp_f64(off[0], 0.0, 1.0),
+								clamp_f64(off[1], 0.0, 1.0),
+														0.0);
+	obj->texture.scale = VEC_INIT(scale[0], scale[1], 0.0);
 	return (object_set_texture(obj, n));
 }

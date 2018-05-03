@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 16:48:40 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:20:27 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,5 @@ t_vec				wave_perturbation(t_vec n, t_inter inter);
 
 t_vec				map_sphere(t_vec inter);
 t_vec				texture_color(t_inter inter);
-t_vec				uv_mapping(t_inter inter);
-int 				uv_to_texture_coord(t_vec px, t_obj_text t);
-t_vec	 			get_text_color(t_color *pixels, int coord);
 
 #endif

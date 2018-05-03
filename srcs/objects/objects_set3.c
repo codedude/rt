@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_set3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/05/03 13:15:20 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:15:16 by hcaillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ int		object_set_texture(t_object *obj, int n)
 	else
 	{
 		surf = sdl_get_texture(n - 1);
-		obj->texture.pixels = (t_color *)surf->pixels;
+		obj->texture.pixels = (t_u8 *)surf->pixels;
 		obj->texture.width = surf->w;
 		obj->texture.height = surf->h;
+		obj->texture.format = surf->format->BytesPerPixel;
 	}
 	return (SUCCESS);
 }
