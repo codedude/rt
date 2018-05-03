@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 19:12:45 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:39:54 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ t_parse_type	*get_parse_funs(void)
 		ADD_TYPE(width, 1, "0"), ADD_TYPE(height, 1, "0"),
 		ADD_TYPE(background, 3, "0"), ADD_TYPE(fov, 1, "1"),
 		ADD_TYPE(ang, 3, "1"), ADD_TYPE(origin, 3, "1"),
-		ADD_TYPE(pos, 3, "2 3 4 5 8 10 12 15"),
+		ADD_TYPE(pos, 3, "2 3 4 5 6 8 10 12 15 18 19"),
 		ADD_TYPE(dir, 3, "16"),
-		ADD_TYPE(side, 1, "12"),
-		ADD_TYPE(radius, 1, "3 4 5 8 10 12"),
-		ADD_TYPE(color, 3, "2 3 4 5 8 10 12"),
+		ADD_TYPE(side, 1, "12 18 19"),
+		ADD_TYPE(radius, 1, "3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(color, 3, "2 3 4 5 6 8 10 12 18 19"),
 		ADD_TYPE(intensity, 3, "14 15 16"),
-		ADD_TYPE(phong, 3, "2 3 4 5 8 10 12"),
-		ADD_TYPE(texture, 1, "2 3 4 5 8 10 12"),
-		ADD_TYPE(reflexion, 1, "2 3 4 5 8 10 12"),
-		ADD_TYPE(refraction, 1, "2 3 4 5 8 10 12"),
-		ADD_TYPE(transparency, 1, "2 3 4 5 8 10 12"),
-		ADD_TYPE(perturbation, 1, "2 3 4 5 8 10 12"),
-		ADD_TYPE(rot, 3, "2 3 4 5 8 10 12"),
-		ADD_TYPE(limited, 7, "2 3 4 5 8 10 12"),
+		ADD_TYPE(phong, 3, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(texture, 1, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(reflexion, 1, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(refraction, 1, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(transparency, 1, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(perturbation, 1, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(rot, 3, "2 3 4 5 6 8 10 12 18 19"),
+		ADD_TYPE(limited, 7, "2 3 4 5 6 8 10 12 18 19"),
 		{NULL, NULL, NULL, 0}};
 
 	return (parse_type);

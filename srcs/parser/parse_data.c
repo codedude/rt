@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/04/18 15:48:30 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:49:48 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_parse_objects	*get_parse_objects(void)
 		ADD_OBJECT(HYPERBOLOID, 0), ADD_OBJECT(TORUS, 0),
 		ADD_OBJECT(PARABOLOID, 0), ADD_OBJECT(PARALLELOGRAM, 0),
 		ADD_OBJECT(CUBE, 0), ADD_OBJECT(PYRAMID, 0),
+		ADD_OBJECT(SQUARE, 0), ADD_OBJECT(RING, 0),
 		{NULL, 0, 0}};
 
 	return (parse_objects);

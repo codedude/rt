@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:33:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 22:01:09 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 15:07:57 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		norm_sphere(t_ray *ray, t_object *obj, t_inter *inter)
 {
 	(void)ray;
 	(void)obj;
-	inter->normal = vec_norm(inter->obj_coord);
+	inter->normal = vec_norm(-inter->obj_coord);
 }
 
 /*t_vec		map_sphere(t_vec inter)

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 14:52:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 21:58:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 16:48:40 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BIAIS				1e-6
 # define MAX_DEPTH			4
 # define REFRACTION_DEFAULT	1.0
+# define POW(x) ((x)*(x))
 
 typedef struct		s_algo {
 	t_env			*env;
@@ -90,6 +91,9 @@ void				norm_paraboloid(t_ray *ray, t_object *obj, t_inter *inter);
 t_float				intersect_hyperboloid(t_ray *ray, t_object *obj,
 						t_float *t, t_inter *inter);
 void				norm_hyperboloid(t_ray *ray, t_object *obj, t_inter *inter);
+
+t_float				intersect_limited_planes(t_ray *ray, t_object *obj,
+						t_float *t, t_inter *inter);
 
 t_vec				compute_color(t_rt *rt, t_hit *hit, int depth);
 

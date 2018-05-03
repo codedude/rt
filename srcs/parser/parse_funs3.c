@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 20:45:34 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/01 13:17:29 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 17:44:00 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int		parse_t_rot(void *data, char **strs)
 int		parse_t_side(void *data, char **strs)
 {
 	t_object	*obj;
-	int			n;
+	t_float		n;
 
 	obj = (t_object*)data;
-	if (ft_atoi_s(strs[0], &n) == ERROR)
+	if (ft_atof_s(strs[0], &n) == ERROR)
 		return (ERROR);
 	obj->side = n;
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:14:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 22:24:20 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 16:41:20 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "vec.h"
 #include "render.h"
 #include "rt.h"
+#include "stdio.h"
 
 void			compute_hit_normal(t_ray *ray, t_inter *inter)
 {
@@ -31,6 +32,10 @@ void			compute_hit_normal(t_ray *ray, t_inter *inter)
 		norm_paraboloid(ray, inter->obj, inter);
 	else if (inter->obj->type == HYPERBOLOID)
 		norm_hyperboloid(ray, inter->obj, inter);
+	else if (inter->obj->type == SQUARE
+			|| inter->obj->type == DISK
+			|| inter->obj->type == RING)
+		norm_plane(ray, inter->obj, inter);
 	inter->normal = vec_norm(matrix_mul_vec(inter->obj->obj_to_w,
 		inter->normal));
 }
@@ -52,6 +57,10 @@ t_float			intersect(t_ray *ray, t_object *obj, t_inter *inter)
 		intersect_paraboloid(ray, obj, &t, inter);
 	else if (obj->type == HYPERBOLOID)
 		intersect_hyperboloid(ray, obj, &t, inter);
+	else if (obj->type == SQUARE
+			|| obj->type == DISK
+			|| obj->type == RING)
+		intersect_limited_planes(ray, obj, &t, inter);
 	return (t);
 }
 
@@ -75,9 +84,9 @@ static void		trace_it(t_hit *hit, t_object *obj, t_ray *tmp,
 		{
 			if (obj->is_limited > 0)
 			{
-				if (hit->inter.t2[0] < t && hit->inter.t2[1] < t)
+				if (hit->inter.t2[0] < hit->inter.t || hit->inter.t2[1] < hit->inter.t)
 				{
-					if(is_cut(obj, hit, &t, tmp) == 1)
+					if(is_cut(obj, hit, &t, tmp) == 0)
 					{
 						hit->inter.t = t;
 						hit->inter.obj = obj;

@@ -87,7 +87,7 @@ paraboloid
 	perturbation = 0
 	rot = 0.0 0.0 0.0
 	texture = 0
-	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	limited = 1 -30.0 30.0 -30.0 30.0 -100.0 100.0
 }
 
 sphere
@@ -117,5 +117,5 @@ hyperboloid
 	perturbation = 0
 	rot = 0.0 0.0 90.0
 	texture = 0
-	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
+	limited = 1 -50.0 50.0 -100.0 100.0 -1000.0 1000.0
 }

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:32:54 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 21:52:06 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 17:50:24 by mcasubol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ enum {
 	CANVAS, CAMERA,
 	PLANE, SPHERE, CONE, CYLINDER, DISK, HALF_SPHERE, HYPERBOLOID, TORUS,
 	PARABOLOID, PARALLELOGRAM, CUBE, PYRAMID,
-	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_PAR, LIGHT_SPOT
+	LIGHT_AMBIENT, LIGHT_POINT, LIGHT_PAR, LIGHT_SPOT,
+	SQUARE, RING
 };
 
 enum {
@@ -58,7 +59,7 @@ typedef struct			s_object {
 	t_int				type;
 	t_vec				pos;
 	t_vec				dir;
-	t_int				side;
+	t_float				side;
 	t_vec				color;
 	t_vec				intensity;
 	t_float				radius;
