@@ -41,7 +41,7 @@ plane
 	refraction = 1.333333
 	perturbation = 5
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 }
 
 
@@ -52,12 +52,12 @@ cylinder
 	radius = 9.0
 	color = 199 147 116
 	phong = 12 0.40 0.60
-	reflexion = 0.0
+	reflexion = 0.5
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 2
 	rot = -30.0 0.0 -45.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -72,7 +72,7 @@ paraboloid
 	refraction = 1.31
 	perturbation = 6
 	rot = 180.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -87,7 +87,7 @@ sphere
 	refraction = 1.31
 	perturbation = 1
 	rot = 0.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -102,7 +102,7 @@ sphere
 	refraction = 1.33333
 	perturbation = 0
 	rot = 0.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -117,7 +117,7 @@ sphere
 	refraction = 1.33333
 	perturbation = 3
 	rot = 0.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
 
@@ -132,6 +132,6 @@ hyperboloid
 	refraction = 0.0
 	perturbation = 6
 	rot = 180.0 0.0 0.0
-	texture = 0
+	texture = 0 0.0 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 }
