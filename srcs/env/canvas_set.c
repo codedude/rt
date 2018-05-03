@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:58:26 by valentin          #+#    #+#             */
-/*   Updated: 2018/04/18 14:21:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 00:33:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int		canvas_set_width(t_rt *rt, int width)
 {
-	if (width < 64 || width > 4096)
+	if (width < 128 || width > 4096)
 		return (ERROR);
 	rt->canvas_update = 1;
 	rt->canvas.width = width;
@@ -26,7 +26,7 @@ int		canvas_set_width(t_rt *rt, int width)
 
 int		canvas_set_height(t_rt *rt, int height)
 {
-	if (height < 64 || height > 2160)
+	if (height < 128 || height > 2160)
 		return (ERROR);
 	rt->canvas_update = 1;
 	rt->canvas.height = height;

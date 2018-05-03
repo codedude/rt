@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:09:01 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 22:45:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 00:38:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ static int		check_counter_details(int counter[OBJECT_DETAILS_SIZE],
 	return (n == 0 ? ERROR : SUCCESS);
 }
 
-static int		parse_global_need_space(int *i, int type, t_object **obj)
+static int		parse_global_need_space(int *i, int type, t_object **obj,
+					int counter[OBJECT_DETAILS_SIZE])
 {
+	ft_bzero(counter, OBJECT_DETAILS_SIZE * sizeof(int));
 	if (type == CANVAS || type == CAMERA)
 		*obj = NULL;
 	else if ((*obj = object_new(type)) == NULL)
@@ -82,8 +84,7 @@ int				parse_global(t_rt *env, char **str, int type)
 	char			**tmp;
 	int				counter[OBJECT_DETAILS_SIZE];
 
-	ft_bzero(counter, OBJECT_DETAILS_SIZE * sizeof(int));
-	if (parse_global_need_space(&i, type, &obj) == ERROR)
+	if (parse_global_need_space(&i, type, &obj, counter) == ERROR)
 		return (-1);
 	while (*(str + i) != NULL)
 	{
@@ -92,6 +93,7 @@ int				parse_global(t_rt *env, char **str, int type)
 		if (counter[r] == 1 || parse_details(env, r, tmp[1], obj) == ERROR)
 		{
 			ft_strsplit_free(tmp);
+			free(obj);
 			return (-1);
 		}
 		counter[r] += 1;

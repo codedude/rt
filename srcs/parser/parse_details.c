@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 12:59:53 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 22:43:19 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 00:09:37 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int				parse_details(t_rt *env, int id, char *line, t_object *obj)
 		return (ERROR);
 	parse_funs = get_parse_funs();
 	if (parse_funs[id].size != len_strs(tmp) || check_numbers(tmp) == ERROR)
+	{
+		ft_strsplit_free(tmp);
 		r = ERROR;
+	}
 	if (obj == NULL)
 		param = (void *)env;
 	else
