@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:23:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 17:15:12 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 13:17:30 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int				sdl_reset(t_sdl *sdl)
 		free(sdl->image);
 		sdl->image = NULL;
 	}
-	sdl_destroy_textures();
 	SDL_DestroyTexture(sdl->texture);
 	SDL_DestroyRenderer(sdl->renderer);
 	return (SUCCESS);
