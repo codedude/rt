@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:54:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 13:17:35 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 21:45:14 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		env_init(t_env *env, char *filename)
 		ft_putstr("Error : can't init sdl\n");
 		return (ERROR);
 	}
-	if ((env->tp = tp_create(TP_AUTO_THREADS, TP_ON_START)) == NULL)
+	if ((env->tp = tp_create(THREADS, TP_ON_START)) == NULL)
 		return (ERROR);
 	return (SUCCESS);
 }

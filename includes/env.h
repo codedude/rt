@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 21:19:29 by mcasubol         ###   ########.fr       */
+/*   Updated: 2018/05/03 21:51:02 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "SDL.h"
 # include "sdl_m.h"
 
-# define THREADS		4
+# define THREADS		8
 # define TASKS			32
 
 typedef struct		s_env {
