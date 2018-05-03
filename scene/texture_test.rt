@@ -30,49 +30,32 @@ light_point
 	intensity = 0.8 0.8 0.8
 }
 
-disk
+sphere
 {
-	pos = -50.0 0.0 0.0
-	radius = 50.0
+	pos = 0.0 30.0 0.0
+	radius = 20.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
 	reflexion = 0.0
 	transparency = 0.0
 	refraction = 0.0
 	perturbation = 0
-	rot = 90.0 0.0 0.0
-	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
-	texture = 0
+	rot = 0.0 0.0 0.0
+	limited = 0 0.0 10.0 5.0 0.0 -20.0 0.0
+	texture = 1
 }
 
-square
+sphere
 {
-	pos = 0.0 0.0 0.0
-	radius = 0.0
-	side = 50.0
+	pos = -30.0 10.0 -10.0
+	radius = 20.0
 	color = 254 70 70
 	phong = 12 0.40 0.60
-	reflexion = 0.0
-	transparency = 0.0
+	reflexion = 0.95
+	transparency = 0.5
 	refraction = 0.0
 	perturbation = 0
-	rot = 90.0 0.0 0.0
-	limited = 0 -50.0 50.0 -10.0 10.0 -50.0 50.0
-	texture = 0
-}
-
-ring
-{
-	pos = 50.0 0.0 0.0
-	radius = 30.0
-	side = 20.0
-	color = 254 70 70
-	phong = 12 0.40 0.60
-	reflexion = 0.0
-	transparency = 0.0
-	refraction = 0.0
-	perturbation = 0
-	rot = 90.0 0.0 0.0
+	rot = 0.0 0.0 0.0
 	limited = 0 0.0 0.0 0.0 0.0 0.0 0.0
 	texture = 1
 }

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:56:49 by valentin          #+#    #+#             */
-/*   Updated: 2018/05/02 19:56:41 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 13:15:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		object_set_texture(t_object *obj, int n)
 		obj->texture.pixels = NULL;
 	else
 	{
-		surf = sdl_get_texture(n);
+		surf = sdl_get_texture(n - 1);
 		obj->texture.pixels = (t_color *)surf->pixels;
 		obj->texture.width = surf->w;
 		obj->texture.height = surf->h;

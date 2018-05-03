@@ -133,4 +133,14 @@ t_vec				normal_perturbation(t_inter	inter);
 t_vec				water_perturbation(t_vec n, t_inter inter);
 t_vec				wave_perturbation(t_vec n, t_inter inter);
 
+/*
+** Textures
+*/
+
+t_vec				map_sphere(t_vec inter);
+t_vec				texture_color(t_inter inter);
+t_vec				uv_mapping(t_inter inter);
+int 				uv_to_texture_coord(t_vec px, t_obj_text t);
+t_vec	 			get_text_color(t_color *pixels, int coord);
+
 #endif
