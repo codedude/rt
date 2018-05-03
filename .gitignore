@@ -3,7 +3,7 @@ rt
 saved_img/*.bmp
 *.swn
 *.swo
-
+*.DS_Store
 # Prerequisites
 *.d
 
