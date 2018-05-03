@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: hcaillau <hcaillau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/05/03 16:49:25 by mcasubol         ###   ########.fr        #
+#    Updated: 2018/05/03 19:30:23 by hcaillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ FILES		+=	$(PARSERD)/reader.c $(PARSERD)/parser.c \
 				$(PARSERD)/parse_details.c $(PARSERD)/parse_data.c\
 				$(PARSERD)/parse_type.c $(PARSERD)/parse_type_2.c
 FILES		+=	$(RENDERD)/dispatch.c $(RENDERD)/rt.c $(RENDERD)/refraction.c\
-				$(RENDERD)/perlin.c $(RENDERD)/perturbation.c \
+				$(RENDERD)/perlin1.c $(RENDERD)/perlin2.c $(RENDERD)/perlin3.c $(RENDERD)/perturbation.c \
 				$(RENDERD)/intersect_paraboloid.c $(RENDERD)/intersect_hyperboloid.c \
 				$(RENDERD)/intersect_limited_planes.c \
 				$(RENDERD)/limited_objects.c \
@@ -64,7 +64,7 @@ OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-O3 -flto -std=c11 -pedantic \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(INCD) \
-				-I$(SDLINCD)
+				-I$(SDLINCD) 
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -lm -L$(LIBTPOOLD) -ltpool \
 				-L$(SDLLIBD) -lsdl2 -lsdl2_image
