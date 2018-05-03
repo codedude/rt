@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reflexion.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 19:11:24 by mcasubol          #+#    #+#             */
+/*   Updated: 2018/05/03 19:11:26 by mcasubol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "env.h"
 #include "types.h"
@@ -19,7 +31,7 @@ t_ray				reflected_ray(t_inter inter, t_vec ray)
 t_vec				reflexion(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec	reflected_color;
-	t_hit 	reflect;
+	t_hit	reflect;
 
 	reflected_color = VEC_ZERO;
 	if (depth > 0)

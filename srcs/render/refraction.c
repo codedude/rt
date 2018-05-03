@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refraction.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcasubol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/03 19:11:46 by mcasubol          #+#    #+#             */
+/*   Updated: 2018/05/03 19:14:15 by mcasubol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "env.h"
 #include "types.h"
@@ -7,7 +19,7 @@
 #include "render.h"
 #include "rt.h"
 
-t_vec		refract(t_rt *rt, t_hit *hit, int depth)
+t_vec			refract(t_rt *rt, t_hit *hit, int depth)
 {
 	t_vec		refracted_color;
 	t_hit		refract;
@@ -22,16 +34,16 @@ t_vec		refract(t_rt *rt, t_hit *hit, int depth)
 	return (refracted_color);
 }
 
-t_ray				refract_ray(t_ray ray, t_inter inter)
+t_ray			refract_ray(t_ray ray, t_inter inter)
 {
-	t_float	n;
-	t_float	c1;
-	t_float	c2;
-	t_ray	ret;
+	t_float		n;
+	t_float		c1;
+	t_float		c2;
+	t_ray		ret;
 
 	n = ray.refraction / inter.obj->refraction;
 	ray.dir = vec_norm(ray.dir);
-	c1 = vec_dot( -1 * ray.dir, inter.normal);
+	c1 = vec_dot(-1 * ray.dir, inter.normal);
 	c2 = 1.0 - (n * n * (1.0 - (c1 * c1)));
 	if (c2 < 0)
 	{
@@ -48,18 +60,18 @@ t_ray				refract_ray(t_ray ray, t_inter inter)
 
 t_float			fresnel(t_ray ray, t_inter inter)
 {
-	t_float	n;
-	t_float	cosi;
-	t_float	cost;
-	t_float	sint;
-	t_float	rs;
-	t_float	rp;
-	t_float	kr;
+	t_float		n;
+	t_float		cosi;
+	t_float		cost;
+	t_float		sint;
+	t_float		rs;
+	t_float		rp;
+	t_float		kr;
 
 	n = ray.refraction / inter.obj->refraction;
 	cosi = vec_dot(-1 * ray.dir, inter.normal);
 	sint = n * sqrt(1 - cosi * cosi);
-	if (sint >= 1) //total internal reflexion
+	if (sint >= 1)
 		kr = 1;
 	else
 	{
@@ -69,6 +81,6 @@ t_float			fresnel(t_ray ray, t_inter inter)
 		rp = ((ray.refraction * cost) - (inter.obj->refraction * cosi))
 			/ ((ray.refraction * cost) + (inter.obj->refraction * cosi));
 		kr = (rs * rs + rp * rp) / 2;
-	}	
+	}
 	return (kr);
 }
