@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 23:45:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 01:36:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			main(int argc, char **argv)
 {
 	t_env	env;
 
-	if (argc < 2)
+	if (argc != 2)
 	{
 		ft_putstr("rt : ./rtv1 SCENE\n");
 		return (EXIT_FAILURE);
