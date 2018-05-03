@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 19:10:06 by valentin          #+#    #+#             */
-/*   Updated: 2018/05/01 17:33:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 00:07:04 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,14 @@ int			rt_init(t_rt *rt, char *filename)
 		return (ERROR);
 	objects_init(&rt->objects);
 	if ((file = read_file(filename)) == NULL)
+	{
+		free(rt->filename);
 		return (ERROR);
+	}
 	if (parse_file(rt, file) == ERROR)
 	{
 		ft_strsplit_free(file);
+		free(rt->filename);
 		return (ERROR);
 	}
 	set_ratio(rt);

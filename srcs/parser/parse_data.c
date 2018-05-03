@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:24:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/03 22:44:16 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/04 00:27:15 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ static int		parse_data_2(t_rt *env, char **data, int *i, int type)
 			return (ERROR);
 	}
 	else
+	{
+		objects_destroy(&env->objects);
 		return (ERROR);
+	}
 	return (SUCCESS);
 }
 
