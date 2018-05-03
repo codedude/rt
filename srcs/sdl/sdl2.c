@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:23:17 by vparis            #+#    #+#             */
-/*   Updated: 2018/05/02 17:33:57 by vparis           ###   ########.fr       */
+/*   Updated: 2018/05/03 13:16:43 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int			sdl_create_screen(t_sdl *sdl, int width, int height)
 	sdl->height = height;
 	if (sdl_create_renderer(sdl) == ERROR
 		|| sdl_create_texture(sdl) == ERROR
-		|| sdl_create_buffer(sdl) == ERROR
-		|| sdl_init_textures() == ERROR)
+		|| sdl_create_buffer(sdl) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }
